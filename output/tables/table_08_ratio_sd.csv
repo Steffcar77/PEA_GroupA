@@ -1,0 +1,5 @@
+"measure","sd","share_of_total_ss","n"
+"Total",0.2287,1,180
+"Between universities (SD of university means)",0.2228,0.9377,60
+"Within universities (deviation from university mean)",0.0571,0.0623,180
+"Net of university and year effects (residual; part of within)",0.0369,0.026,180

@@ -1,0 +1,9 @@
+"version","rows","universities","convexity_5pct","crs_5pct","estimator","median_farrell","n_efficient","share_efficient","spearman_with_main"
+"Main (g4/12): pooled 2021-2023, faculty + deflated costs",183,61,"not rejected","not rejected","DEA CRS",1.31,3,0.016,1
+"R1. Frontier 2021 only",61,61,"not rejected","not rejected","DEA CRS",1.18,4,0.066,0.979
+"R2. Frontier 2022 only",61,61,"not rejected","not rejected","DEA CRS",1.288,3,0.049,0.996
+"R3. Frontier 2023 only",61,61,"not rejected","not rejected","DEA CRS",1.28,4,0.066,0.99
+"R4. Nominal costs",183,61,"not rejected","not rejected","DEA CRS",1.326,3,0.016,0.997
+"R5. Faculty + fellows",183,61,"not rejected","not rejected","DEA CRS",1.332,4,0.022,0.906
+"R6. Without ap potential outliers",170,59,"not rejected","not rejected","DEA CRS",1.313,3,0.018,1
+"R7. Without 3 humanities universities",174,58,"rejected","rejected","FDH",1.029,72,0.414,0.805

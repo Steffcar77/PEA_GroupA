@@ -1,0 +1,4 @@
+# Instructor kit and reference material: keep bytes identical to the originals
+# (no line-ending conversion), so their MD5 checksums stay unchanged after a clone.
+template/** -text
+docs/** -text

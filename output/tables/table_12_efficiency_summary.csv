@@ -1,0 +1,5 @@
+"period","n","efficient","share_efficient","mean_farrell","median_farrell","mean_ci95_low","mean_ci95_high","median_ci95_width","estimator"
+"2021",61,2,0.033,1.87,1.254,1.877,1.987,0.079,"DEA, constant returns to scale (RTS = 3)"
+"2022",61,1,0.016,2.012,1.31,2.019,2.148,0.068,"DEA, constant returns to scale (RTS = 3)"
+"2023",61,0,0,2.181,1.404,2.188,2.319,0.065,"DEA, constant returns to scale (RTS = 3)"
+"2021-2023",183,3,0.016,2.021,1.31,2.028,2.151,0.071,"DEA, constant returns to scale (RTS = 3)"

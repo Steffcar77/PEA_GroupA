@@ -1,0 +1,2 @@
+"test","nsplit","nrep","p_mean_statistic","p_ks_statistic","note"
+"H0: convex technology (test.convexity, bootstrap)",10,200,"0.625","0.685","Simar and Wilson bootstrap test; first p from the averaged statistic, second from the Kolmogorov-Smirnov statistic over splits; only 10 splits (runtime), so less stable than the fast test with 1000 splits. Bootstrap test.rts dropped (over 30 minutes with NREP = 200)."

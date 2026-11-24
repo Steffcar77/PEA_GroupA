@@ -1,0 +1,14 @@
+"obs","id","year","publications","faculty_lag","cost_real_lag","first_deletion_level","times_in_deletion_sets","small_university","nhn_residual_06","nhn_residual_percentile"
+124,"Roma La Sapienza",2021,11537,3340,195.72,1,12,FALSE,-0.122,0.728
+15,"Bologna",2023,9317,3172,260.02,2,11,FALSE,-0.269,0.372
+156,"Torino",2023,6573,2279,210.7,3,10,FALSE,-0.206,0.544
+125,"Roma La Sapienza",2022,11351,3510,215.99,4,9,FALSE,-0.158,0.633
+126,"Roma La Sapienza",2023,11551,3576,237.46,5,8,FALSE,-0.154,0.656
+67,"Milano",2021,9463,2199,190.91,6,7,FALSE,-0.042,0.911
+14,"Bologna",2022,8957,2997,229.53,7,6,FALSE,-0.255,0.4
+83,"Napoli Federico II",2022,8604,2859,169.52,8,4,FALSE,-0.268,0.378
+69,"Milano",2023,8929,2419,239.06,9,4,FALSE,-0.17,0.617
+96,"Padova",2023,9267,2551,245.56,9,4,FALSE,-0.15,0.667
+183,"Verona",2023,2701,838,113.44,11,1,FALSE,-0.345,0.217
+82,"Napoli Federico II",2021,8493,2630,159.57,12,1,FALSE,-0.244,0.439
+84,"Napoli Federico II",2023,8525,2866,195.16,12,1,FALSE,-0.296,0.294

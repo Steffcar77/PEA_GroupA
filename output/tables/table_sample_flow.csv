@@ -1,0 +1,5 @@
+"step","rows","rows_dropped","universities","years","universities_dropped"
+"1. Teaching panel 2020-2023",244,0,61,"2020-2023",""
+"2. Lagged teaching load observed (no 2019 data)",183,61,61,"2021-2023",""
+"3. Outcome and lagged controls observed",183,0,61,"2021-2023",""
+"4. 2018 field shares observed (estimation sample of 06)",180,3,60,"2021-2023","Siena Stranieri"

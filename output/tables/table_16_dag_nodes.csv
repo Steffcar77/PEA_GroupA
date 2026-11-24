@@ -1,0 +1,16 @@
+"id","label","x","y","width","height","status"
+"reputation","Prior reputation",0.13,0.8,0.2,0.13,"not directly observed"
+"field","Field composition
+(2018 proxy)",0.13,0.5,0.2,0.13,"observed proxy"
+"size","Prior institutional
+size / capacity",0.13,0.2,0.2,0.13,"conceptual baseline capacity"
+"students","Students S
+(t-1)",0.42,0.8,0.17,0.13,"observed"
+"faculty","Faculty F
+(t-1; held fixed)",0.42,0.2,0.17,0.13,"observed; initial capacity is an intervention assumption"
+"load","Teaching load
+L = S / F (t-1)",0.67,0.73,0.19,0.13,"deterministic ratio, not an independently assigned treatment"
+"costs","Resources / costs C
+(t-1; timing unclear)",0.67,0.27,0.21,0.13,"observed annual spending; within-year causal order is unknown"
+"publications","Scopus publications Y
+(t)",0.9,0.5,0.19,0.13,"observed bibliometric outcome"

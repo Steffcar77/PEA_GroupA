@@ -1,0 +1,5 @@
+"version","note"
+"R1-R3","One frontier per year: each year is compared only with itself, so a fall in recent Scopus counts cannot penalise 2023 against 2021."
+"R6","R6 removes single university-year observations, not universities as such: 13 observations of 7 universities (Bologna; Milano; Napoli Federico II; Padova; Roma La Sapienza; Torino; Verona). Napoli Federico II and Roma La Sapienza are flagged in every year, so they leave the sample entirely."
+"R7","R7 removes all years of Napoli L'Orientale, Siena Stranieri and Perugia Stranieri as a sensitivity check for possible output-coverage differences. Scopus also indexes books and monographs; a coverage error in this dataset has not been established. See Elsevier's Scopus content policy and selection page."
+"All","Spearman correlations use the university-years common to the version and the main frontier; scores of different frontiers are not directly comparable in levels."

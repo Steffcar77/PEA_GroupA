@@ -1,0 +1,8 @@
+"note"
+"Estimator chosen by the fixed rule: DEA, constant returns to scale (RTS = 3)"
+"Pooled frontier: each university appears three times, so observations are not independent; tests and subsampling treat them as independent."
+"One technology is assumed for 2021-2023."
+"Scopus indexing may be incomplete for recent years: 2023 may look less efficient (SFA year effects in 06 about -0.05 in 2022 and -0.11 in 2023); g4/13 estimates one frontier per year as a check."
+"Main analysis keeps all observations; the version without the ap potential outliers is a robustness check in g4/13."
+"Fast tests (NSPLIT = 1000) give reject/not-reject decisions at 10/5/1%; failing to reject H0 is not evidence that H0 is true."
+"Efficiency is relative to the observed best practice in this sample: it is not overall university quality."

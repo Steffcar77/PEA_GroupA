@@ -1,0 +1,894 @@
+"version","id","year","efficiency_farrell"
+"R1. Frontier 2021 only","Bari",2021,1.24802617080382
+"R1. Frontier 2021 only","Bari Politecnico",2021,1.05129279097009
+"R1. Frontier 2021 only","Basilicata",2021,1.19531101308043
+"R1. Frontier 2021 only","Bergamo",2021,1.98796171991575
+"R1. Frontier 2021 only","Bologna",2021,1.31407261621022
+"R1. Frontier 2021 only","Brescia",2021,1.07975749828741
+"R1. Frontier 2021 only","Cagliari",2021,1.53589091047799
+"R1. Frontier 2021 only","Calabria",2021,1.7742382963316
+"R1. Frontier 2021 only","Camerino",2021,1.17999238352978
+"R1. Frontier 2021 only","Cassino",2021,1.53870053833596
+"R1. Frontier 2021 only","Catania",2021,1.27969438934501
+"R1. Frontier 2021 only","Catanzaro",2021,1
+"R1. Frontier 2021 only","Chieti e Pescara",2021,1.46964442428174
+"R1. Frontier 2021 only","Ferrara",2021,1.06628974181121
+"R1. Frontier 2021 only","Firenze",2021,1.13277826986535
+"R1. Frontier 2021 only","Foggia",2021,1.08076291670716
+"R1. Frontier 2021 only","Genova",2021,1.03560751354138
+"R1. Frontier 2021 only","Insubria",2021,1
+"R1. Frontier 2021 only","L'Aquila",2021,1
+"R1. Frontier 2021 only","Macerata",2021,2.6526889255104
+"R1. Frontier 2021 only","Marche Politecnica",2021,1.00086991180595
+"R1. Frontier 2021 only","Messina",2021,1.26238315204376
+"R1. Frontier 2021 only","Milano",2021,1.00032639903745
+"R1. Frontier 2021 only","Milano Bicocca",2021,1.07448072648852
+"R1. Frontier 2021 only","Milano Politecnico",2021,1.11519205801498
+"R1. Frontier 2021 only","Modena e Reggio Emilia",2021,1.10341373444557
+"R1. Frontier 2021 only","Molise",2021,1
+"R1. Frontier 2021 only","Napoli Federico II",2021,1.16199343052834
+"R1. Frontier 2021 only","Napoli L'Orientale",2021,13.9937343326805
+"R1. Frontier 2021 only","Napoli Parthenope",2021,1.14122289006308
+"R1. Frontier 2021 only","Napoli Vanvitelli",2021,1.06289783559296
+"R1. Frontier 2021 only","Padova",2021,1.06521293735159
+"R1. Frontier 2021 only","Palermo",2021,1.36536949000506
+"R1. Frontier 2021 only","Parma",2021,1.2868943763768
+"R1. Frontier 2021 only","Pavia",2021,1.01355553096089
+"R1. Frontier 2021 only","Perugia",2021,1.08043512276838
+"R1. Frontier 2021 only","Perugia Stranieri",2021,4.43566320114177
+"R1. Frontier 2021 only","Piemonte Orientale",2021,1.14240634415862
+"R1. Frontier 2021 only","Pisa",2021,1.01038540334977
+"R1. Frontier 2021 only","Reggio Calabria",2021,1.45823430880558
+"R1. Frontier 2021 only","Roma Foro Italico",2021,1.02983817327207
+"R1. Frontier 2021 only","Roma La Sapienza",2021,1.07114718602173
+"R1. Frontier 2021 only","Roma Tor Vergata",2021,1.18820650399481
+"R1. Frontier 2021 only","Roma Tre",2021,1.65867635836425
+"R1. Frontier 2021 only","Salento",2021,1.25020936026625
+"R1. Frontier 2021 only","Salerno",2021,1.1516876791629
+"R1. Frontier 2021 only","Sannio",2021,1.00625882872397
+"R1. Frontier 2021 only","Sassari",2021,1.62407348740857
+"R1. Frontier 2021 only","Siena",2021,1.28516234195689
+"R1. Frontier 2021 only","Siena Stranieri",2021,14.3385197830585
+"R1. Frontier 2021 only","Teramo",2021,1.99429190361199
+"R1. Frontier 2021 only","Torino",2021,1.28450343222199
+"R1. Frontier 2021 only","Torino Politecnico",2021,1.03983612514485
+"R1. Frontier 2021 only","Trento",2021,1.02463040626654
+"R1. Frontier 2021 only","Trieste",2021,1.0690647162409
+"R1. Frontier 2021 only","Tuscia",2021,1.18132135190466
+"R1. Frontier 2021 only","Udine",2021,1.40591504875151
+"R1. Frontier 2021 only","Urbino",2021,1.54680401288876
+"R1. Frontier 2021 only","Venezia Cà Foscari",2021,1.98490110971238
+"R1. Frontier 2021 only","Venezia Iuav",2021,3.06862820114416
+"R1. Frontier 2021 only","Verona",2021,1.28609180138653
+"R2. Frontier 2022 only","Bari",2022,1.48724531464558
+"R2. Frontier 2022 only","Bari Politecnico",2022,1
+"R2. Frontier 2022 only","Basilicata",2022,1.23219978803509
+"R2. Frontier 2022 only","Bergamo",2022,2.21740722643167
+"R2. Frontier 2022 only","Bologna",2022,1.40756142557441
+"R2. Frontier 2022 only","Brescia",2022,1.08018282719274
+"R2. Frontier 2022 only","Cagliari",2022,1.72389543335281
+"R2. Frontier 2022 only","Calabria",2022,1.65150206913868
+"R2. Frontier 2022 only","Camerino",2022,1.40318170160918
+"R2. Frontier 2022 only","Cassino",2022,1.51803148870345
+"R2. Frontier 2022 only","Catania",2022,1.32118089265549
+"R2. Frontier 2022 only","Catanzaro",2022,1
+"R2. Frontier 2022 only","Chieti e Pescara",2022,1.5364416976773
+"R2. Frontier 2022 only","Ferrara",2022,1.22364184694986
+"R2. Frontier 2022 only","Firenze",2022,1.15318300606132
+"R2. Frontier 2022 only","Foggia",2022,1.25280295728942
+"R2. Frontier 2022 only","Genova",2022,1.11463492359521
+"R2. Frontier 2022 only","Insubria",2022,1.10660543476807
+"R2. Frontier 2022 only","L'Aquila",2022,1.13972531983781
+"R2. Frontier 2022 only","Macerata",2022,2.67959714404088
+"R2. Frontier 2022 only","Marche Politecnica",2022,1.06135805703096
+"R2. Frontier 2022 only","Messina",2022,1.51613792260925
+"R2. Frontier 2022 only","Milano",2022,1.0834932577588
+"R2. Frontier 2022 only","Milano Bicocca",2022,1.07771922696524
+"R2. Frontier 2022 only","Milano Politecnico",2022,1.13351772149866
+"R2. Frontier 2022 only","Modena e Reggio Emilia",2022,1.21175576617881
+"R2. Frontier 2022 only","Molise",2022,1
+"R2. Frontier 2022 only","Napoli Federico II",2022,1.35353544494615
+"R2. Frontier 2022 only","Napoli L'Orientale",2022,21.0179809464717
+"R2. Frontier 2022 only","Napoli Parthenope",2022,1.28797828948893
+"R2. Frontier 2022 only","Napoli Vanvitelli",2022,1.16725896492338
+"R2. Frontier 2022 only","Padova",2022,1.10722479203833
+"R2. Frontier 2022 only","Palermo",2022,1.61023602860973
+"R2. Frontier 2022 only","Parma",2022,1.57670331864173
+"R2. Frontier 2022 only","Pavia",2022,1.04929808968056
+"R2. Frontier 2022 only","Perugia",2022,1.30677047942074
+"R2. Frontier 2022 only","Perugia Stranieri",2022,5.34025297959244
+"R2. Frontier 2022 only","Piemonte Orientale",2022,1.28130779933071
+"R2. Frontier 2022 only","Pisa",2022,1.0969687400604
+"R2. Frontier 2022 only","Reggio Calabria",2022,1.38695167435693
+"R2. Frontier 2022 only","Roma Foro Italico",2022,1.09907462210859
+"R2. Frontier 2022 only","Roma La Sapienza",2022,1.2649343676071
+"R2. Frontier 2022 only","Roma Tor Vergata",2022,1.26969817488765
+"R2. Frontier 2022 only","Roma Tre",2022,1.91717966100905
+"R2. Frontier 2022 only","Salento",2022,1.20641526832713
+"R2. Frontier 2022 only","Salerno",2022,1.21520191069516
+"R2. Frontier 2022 only","Sannio",2022,1.09917476925499
+"R2. Frontier 2022 only","Sassari",2022,1.91720007707032
+"R2. Frontier 2022 only","Siena",2022,1.29833723464132
+"R2. Frontier 2022 only","Siena Stranieri",2022,12.3066406978764
+"R2. Frontier 2022 only","Teramo",2022,2.44004132518624
+"R2. Frontier 2022 only","Torino",2022,1.36891307403124
+"R2. Frontier 2022 only","Torino Politecnico",2022,1.02465172217657
+"R2. Frontier 2022 only","Trento",2022,1.10090896374635
+"R2. Frontier 2022 only","Trieste",2022,1.10741954286528
+"R2. Frontier 2022 only","Tuscia",2022,1.30761790351909
+"R2. Frontier 2022 only","Udine",2022,1.6177383761343
+"R2. Frontier 2022 only","Urbino",2022,1.52750975224084
+"R2. Frontier 2022 only","Venezia Cà Foscari",2022,2.08118231498542
+"R2. Frontier 2022 only","Venezia Iuav",2022,4.09675182518245
+"R2. Frontier 2022 only","Verona",2022,1.31204309899068
+"R3. Frontier 2023 only","Bari",2023,1.43335836346512
+"R3. Frontier 2023 only","Bari Politecnico",2023,1
+"R3. Frontier 2023 only","Basilicata",2023,1.18776383592359
+"R3. Frontier 2023 only","Bergamo",2023,1.9910211285888
+"R3. Frontier 2023 only","Bologna",2023,1.36081636228355
+"R3. Frontier 2023 only","Brescia",2023,1.0704929740131
+"R3. Frontier 2023 only","Cagliari",2023,1.61965110621271
+"R3. Frontier 2023 only","Calabria",2023,1.60009883491856
+"R3. Frontier 2023 only","Camerino",2023,1.43635757408216
+"R3. Frontier 2023 only","Cassino",2023,1.66448480697708
+"R3. Frontier 2023 only","Catania",2023,1.3512790403741
+"R3. Frontier 2023 only","Catanzaro",2023,1.00585603524842
+"R3. Frontier 2023 only","Chieti e Pescara",2023,1.58008862968231
+"R3. Frontier 2023 only","Ferrara",2023,1.20995861758777
+"R3. Frontier 2023 only","Firenze",2023,1.2506185038909
+"R3. Frontier 2023 only","Foggia",2023,1.25946238445248
+"R3. Frontier 2023 only","Genova",2023,1.12987588096095
+"R3. Frontier 2023 only","Insubria",2023,1.26848648133828
+"R3. Frontier 2023 only","L'Aquila",2023,1.13633395492955
+"R3. Frontier 2023 only","Macerata",2023,2.53093004674945
+"R3. Frontier 2023 only","Marche Politecnica",2023,1.1094456275367
+"R3. Frontier 2023 only","Messina",2023,1.40136409843571
+"R3. Frontier 2023 only","Milano",2023,1.09169325107569
+"R3. Frontier 2023 only","Milano Bicocca",2023,1.06881407835794
+"R3. Frontier 2023 only","Milano Politecnico",2023,1.01970061344972
+"R3. Frontier 2023 only","Modena e Reggio Emilia",2023,1.19113094962757
+"R3. Frontier 2023 only","Molise",2023,1.25876542741128
+"R3. Frontier 2023 only","Napoli Federico II",2023,1.30377175184629
+"R3. Frontier 2023 only","Napoli L'Orientale",2023,26.1371051137992
+"R3. Frontier 2023 only","Napoli Parthenope",2023,1.23249244582906
+"R3. Frontier 2023 only","Napoli Vanvitelli",2023,1.21305110059197
+"R3. Frontier 2023 only","Padova",2023,1.10794327388917
+"R3. Frontier 2023 only","Palermo",2023,1.62028821899094
+"R3. Frontier 2023 only","Parma",2023,1.56420738734663
+"R3. Frontier 2023 only","Pavia",2023,1
+"R3. Frontier 2023 only","Perugia",2023,1.30862345763628
+"R3. Frontier 2023 only","Perugia Stranieri",2023,5.02270449216195
+"R3. Frontier 2023 only","Piemonte Orientale",2023,1.23840447647205
+"R3. Frontier 2023 only","Pisa",2023,1.11509348094959
+"R3. Frontier 2023 only","Reggio Calabria",2023,1.53634383354318
+"R3. Frontier 2023 only","Roma Foro Italico",2023,1.0932707689033
+"R3. Frontier 2023 only","Roma La Sapienza",2023,1.19540183928667
+"R3. Frontier 2023 only","Roma Tor Vergata",2023,1.17255099371561
+"R3. Frontier 2023 only","Roma Tre",2023,1.68851921793516
+"R3. Frontier 2023 only","Salento",2023,1.27960804099404
+"R3. Frontier 2023 only","Salerno",2023,1.31862692438586
+"R3. Frontier 2023 only","Sannio",2023,1
+"R3. Frontier 2023 only","Sassari",2023,1.90061665555432
+"R3. Frontier 2023 only","Siena",2023,1.34545052275771
+"R3. Frontier 2023 only","Siena Stranieri",2023,12.3000036826122
+"R3. Frontier 2023 only","Teramo",2023,2.28969587245694
+"R3. Frontier 2023 only","Torino",2023,1.39292678152084
+"R3. Frontier 2023 only","Torino Politecnico",2023,1.05184145866576
+"R3. Frontier 2023 only","Trento",2023,1
+"R3. Frontier 2023 only","Trieste",2023,1.16106502240236
+"R3. Frontier 2023 only","Tuscia",2023,1.48989171455235
+"R3. Frontier 2023 only","Udine",2023,1.52927679883261
+"R3. Frontier 2023 only","Urbino",2023,1.36739300501633
+"R3. Frontier 2023 only","Venezia Cà Foscari",2023,1.88757879790471
+"R3. Frontier 2023 only","Venezia Iuav",2023,3.87945308064238
+"R3. Frontier 2023 only","Verona",2023,1.25022164781808
+"R4. Nominal costs","Bari",2021,1.31433450086101
+"R4. Nominal costs","Bari",2022,1.48886972983478
+"R4. Nominal costs","Bari",2023,1.5652429436939
+"R4. Nominal costs","Bari Politecnico",2021,1.13127366488245
+"R4. Nominal costs","Bari Politecnico",2022,1
+"R4. Nominal costs","Bari Politecnico",2023,1.09055586310788
+"R4. Nominal costs","Basilicata",2021,1.24180563182724
+"R4. Nominal costs","Basilicata",2022,1.2918737330893
+"R4. Nominal costs","Basilicata",2023,1.31370557843257
+"R4. Nominal costs","Bergamo",2021,2.20006016624844
+"R4. Nominal costs","Bergamo",2022,2.21815248706947
+"R4. Nominal costs","Bergamo",2023,2.17161622550943
+"R4. Nominal costs","Bologna",2021,1.35970064712408
+"R4. Nominal costs","Bologna",2022,1.42903813290217
+"R4. Nominal costs","Bologna",2023,1.49736367961181
+"R4. Nominal costs","Brescia",2021,1.10530937187486
+"R4. Nominal costs","Brescia",2022,1.10205201577065
+"R4. Nominal costs","Brescia",2023,1.20149553427935
+"R4. Nominal costs","Cagliari",2021,1.68191204194959
+"R4. Nominal costs","Cagliari",2022,1.73515301149663
+"R4. Nominal costs","Cagliari",2023,1.77035019774032
+"R4. Nominal costs","Calabria",2021,1.86836042275173
+"R4. Nominal costs","Calabria",2022,1.67067492968435
+"R4. Nominal costs","Calabria",2023,1.75776799342859
+"R4. Nominal costs","Camerino",2021,1.29405162850108
+"R4. Nominal costs","Camerino",2022,1.410957701078
+"R4. Nominal costs","Camerino",2023,1.56885649687265
+"R4. Nominal costs","Cassino",2021,1.60621247562327
+"R4. Nominal costs","Cassino",2022,1.60061160761775
+"R4. Nominal costs","Cassino",2023,1.84875415260613
+"R4. Nominal costs","Catania",2021,1.41695149064862
+"R4. Nominal costs","Catania",2022,1.32602225835868
+"R4. Nominal costs","Catania",2023,1.47648749546201
+"R4. Nominal costs","Catanzaro",2021,1
+"R4. Nominal costs","Catanzaro",2022,1.02117749246763
+"R4. Nominal costs","Catanzaro",2023,1.20490174431442
+"R4. Nominal costs","Chieti e Pescara",2021,1.53201266949795
+"R4. Nominal costs","Chieti e Pescara",2022,1.56385810947515
+"R4. Nominal costs","Chieti e Pescara",2023,1.729906229072
+"R4. Nominal costs","Ferrara",2021,1.13700722642905
+"R4. Nominal costs","Ferrara",2022,1.24026412859976
+"R4. Nominal costs","Ferrara",2023,1.32453597309406
+"R4. Nominal costs","Firenze",2021,1.17037123277032
+"R4. Nominal costs","Firenze",2022,1.16979320330445
+"R4. Nominal costs","Firenze",2023,1.38884354332786
+"R4. Nominal costs","Foggia",2021,1.18667706066596
+"R4. Nominal costs","Foggia",2022,1.25933093582178
+"R4. Nominal costs","Foggia",2023,1.37799404012062
+"R4. Nominal costs","Genova",2021,1.09969744149416
+"R4. Nominal costs","Genova",2022,1.12538803179206
+"R4. Nominal costs","Genova",2023,1.23585786316248
+"R4. Nominal costs","Insubria",2021,1.01587141471808
+"R4. Nominal costs","Insubria",2022,1.13167918180331
+"R4. Nominal costs","Insubria",2023,1.43020835920636
+"R4. Nominal costs","L'Aquila",2021,1.06798436787684
+"R4. Nominal costs","L'Aquila",2022,1.14882206867409
+"R4. Nominal costs","L'Aquila",2023,1.24065191316365
+"R4. Nominal costs","Macerata",2021,2.74963382118678
+"R4. Nominal costs","Macerata",2022,2.78012596750471
+"R4. Nominal costs","Macerata",2023,2.80893491096304
+"R4. Nominal costs","Marche Politecnica",2021,1.04408701189558
+"R4. Nominal costs","Marche Politecnica",2022,1.07700455135771
+"R4. Nominal costs","Marche Politecnica",2023,1.22189242535495
+"R4. Nominal costs","Messina",2021,1.35342115791927
+"R4. Nominal costs","Messina",2022,1.52654211612695
+"R4. Nominal costs","Messina",2023,1.52952120726424
+"R4. Nominal costs","Milano",2021,1.01351025708517
+"R4. Nominal costs","Milano",2022,1.11108132858235
+"R4. Nominal costs","Milano",2023,1.24368092802022
+"R4. Nominal costs","Milano Bicocca",2021,1.08598543632506
+"R4. Nominal costs","Milano Bicocca",2022,1.11116530509003
+"R4. Nominal costs","Milano Bicocca",2023,1.22444210185168
+"R4. Nominal costs","Milano Politecnico",2021,1.12799873767252
+"R4. Nominal costs","Milano Politecnico",2022,1.17491543201225
+"R4. Nominal costs","Milano Politecnico",2023,1.16101348603461
+"R4. Nominal costs","Modena e Reggio Emilia",2021,1.13055298171752
+"R4. Nominal costs","Modena e Reggio Emilia",2022,1.23575914383535
+"R4. Nominal costs","Modena e Reggio Emilia",2023,1.32972849480791
+"R4. Nominal costs","Molise",2021,1
+"R4. Nominal costs","Molise",2022,1.0813669416897
+"R4. Nominal costs","Molise",2023,1.39674576329689
+"R4. Nominal costs","Napoli Federico II",2021,1.26669467132839
+"R4. Nominal costs","Napoli Federico II",2022,1.35845322350063
+"R4. Nominal costs","Napoli Federico II",2023,1.42530498512092
+"R4. Nominal costs","Napoli L'Orientale",2021,14.6316578800434
+"R4. Nominal costs","Napoli L'Orientale",2022,21.8270133458187
+"R4. Nominal costs","Napoli L'Orientale",2023,28.9162198981704
+"R4. Nominal costs","Napoli Parthenope",2021,1.18472219576355
+"R4. Nominal costs","Napoli Parthenope",2022,1.33079534002184
+"R4. Nominal costs","Napoli Parthenope",2023,1.36367899873278
+"R4. Nominal costs","Napoli Vanvitelli",2021,1.17875467257811
+"R4. Nominal costs","Napoli Vanvitelli",2022,1.18029383128785
+"R4. Nominal costs","Napoli Vanvitelli",2023,1.32662817325752
+"R4. Nominal costs","Padova",2021,1.08151439417929
+"R4. Nominal costs","Padova",2022,1.13378871098403
+"R4. Nominal costs","Padova",2023,1.25564340980548
+"R4. Nominal costs","Palermo",2021,1.45352090083209
+"R4. Nominal costs","Palermo",2022,1.6252489231239
+"R4. Nominal costs","Palermo",2023,1.76838207047278
+"R4. Nominal costs","Parma",2021,1.36455311839993
+"R4. Nominal costs","Parma",2022,1.59479388416985
+"R4. Nominal costs","Parma",2023,1.71214539297415
+"R4. Nominal costs","Pavia",2021,1.02690419547146
+"R4. Nominal costs","Pavia",2022,1.07976910330973
+"R4. Nominal costs","Pavia",2023,1.13900907156135
+"R4. Nominal costs","Perugia",2021,1.17587628654035
+"R4. Nominal costs","Perugia",2022,1.31032110670015
+"R4. Nominal costs","Perugia",2023,1.42910565071698
+"R4. Nominal costs","Perugia Stranieri",2021,4.88291583688252
+"R4. Nominal costs","Perugia Stranieri",2022,5.43778337887396
+"R4. Nominal costs","Perugia Stranieri",2023,5.47787701675479
+"R4. Nominal costs","Piemonte Orientale",2021,1.16773961584507
+"R4. Nominal costs","Piemonte Orientale",2022,1.31143372238872
+"R4. Nominal costs","Piemonte Orientale",2023,1.38770087778343
+"R4. Nominal costs","Pisa",2021,1.07640365983041
+"R4. Nominal costs","Pisa",2022,1.10891923354468
+"R4. Nominal costs","Pisa",2023,1.22046534368422
+"R4. Nominal costs","Reggio Calabria",2021,1.58110922351263
+"R4. Nominal costs","Reggio Calabria",2022,1.43918952253744
+"R4. Nominal costs","Reggio Calabria",2023,1.69855784950005
+"R4. Nominal costs","Roma Foro Italico",2021,1.10560406701867
+"R4. Nominal costs","Roma Foro Italico",2022,1.11368519098732
+"R4. Nominal costs","Roma Foro Italico",2023,1.19458576196831
+"R4. Nominal costs","Roma La Sapienza",2021,1.17800042475885
+"R4. Nominal costs","Roma La Sapienza",2022,1.27149081756108
+"R4. Nominal costs","Roma La Sapienza",2023,1.30653118365046
+"R4. Nominal costs","Roma Tor Vergata",2021,1.27855545580377
+"R4. Nominal costs","Roma Tor Vergata",2022,1.29628021702129
+"R4. Nominal costs","Roma Tor Vergata",2023,1.281719485765
+"R4. Nominal costs","Roma Tre",2021,1.77542668944125
+"R4. Nominal costs","Roma Tre",2022,1.91754171079231
+"R4. Nominal costs","Roma Tre",2023,1.86292076665923
+"R4. Nominal costs","Salento",2021,1.27543515560896
+"R4. Nominal costs","Salento",2022,1.26175627724506
+"R4. Nominal costs","Salento",2023,1.41798321728661
+"R4. Nominal costs","Salerno",2021,1.24029923106737
+"R4. Nominal costs","Salerno",2022,1.22755618930785
+"R4. Nominal costs","Salerno",2023,1.43853192871043
+"R4. Nominal costs","Sannio",2021,1.0293544482168
+"R4. Nominal costs","Sannio",2022,1.16662964234375
+"R4. Nominal costs","Sannio",2023,1.11364211945222
+"R4. Nominal costs","Sassari",2021,1.77917837685235
+"R4. Nominal costs","Sassari",2022,1.93286252271942
+"R4. Nominal costs","Sassari",2023,2.0780409580428
+"R4. Nominal costs","Siena",2021,1.35839316809843
+"R4. Nominal costs","Siena",2022,1.31900717382787
+"R4. Nominal costs","Siena",2023,1.47509859100688
+"R4. Nominal costs","Siena Stranieri",2021,15.0354643138799
+"R4. Nominal costs","Siena Stranieri",2022,12.3208191685723
+"R4. Nominal costs","Siena Stranieri",2023,13.428909697782
+"R4. Nominal costs","Teramo",2021,2.1339417163546
+"R4. Nominal costs","Teramo",2022,2.44580962285368
+"R4. Nominal costs","Teramo",2023,2.52442827094659
+"R4. Nominal costs","Torino",2021,1.30461160409431
+"R4. Nominal costs","Torino",2022,1.39887815548541
+"R4. Nominal costs","Torino",2023,1.56643957485762
+"R4. Nominal costs","Torino Politecnico",2021,1.06757200850339
+"R4. Nominal costs","Torino Politecnico",2022,1.04771138508125
+"R4. Nominal costs","Torino Politecnico",2023,1.15562046789002
+"R4. Nominal costs","Trento",2021,1.04597935888477
+"R4. Nominal costs","Trento",2022,1.12067303062487
+"R4. Nominal costs","Trento",2023,1.09488214178494
+"R4. Nominal costs","Trieste",2021,1.11244275012312
+"R4. Nominal costs","Trieste",2022,1.12476575592595
+"R4. Nominal costs","Trieste",2023,1.27058041986006
+"R4. Nominal costs","Tuscia",2021,1.2267627990193
+"R4. Nominal costs","Tuscia",2022,1.36665472043045
+"R4. Nominal costs","Tuscia",2023,1.64826509760642
+"R4. Nominal costs","Udine",2021,1.55034119949802
+"R4. Nominal costs","Udine",2022,1.62209645763684
+"R4. Nominal costs","Udine",2023,1.66992079678812
+"R4. Nominal costs","Urbino",2021,1.60568893096584
+"R4. Nominal costs","Urbino",2022,1.61395118588709
+"R4. Nominal costs","Urbino",2023,1.51935510611624
+"R4. Nominal costs","Venezia Cà Foscari",2021,2.01475067686391
+"R4. Nominal costs","Venezia Cà Foscari",2022,2.11784093350686
+"R4. Nominal costs","Venezia Cà Foscari",2023,2.0664227471565
+"R4. Nominal costs","Venezia Iuav",2021,3.10732679455622
+"R4. Nominal costs","Venezia Iuav",2022,4.20706935328051
+"R4. Nominal costs","Venezia Iuav",2023,4.33639955104098
+"R4. Nominal costs","Verona",2021,1.2888695543157
+"R4. Nominal costs","Verona",2022,1.36666101784526
+"R4. Nominal costs","Verona",2023,1.49762410468971
+"R5. Faculty + fellows","Bari",2021,1.24908289904977
+"R5. Faculty + fellows","Bari",2022,1.32889315525732
+"R5. Faculty + fellows","Bari",2023,1.40490441438009
+"R5. Faculty + fellows","Bari Politecnico",2021,1.14498498250962
+"R5. Faculty + fellows","Bari Politecnico",2022,1
+"R5. Faculty + fellows","Bari Politecnico",2023,1.12096499850229
+"R5. Faculty + fellows","Basilicata",2021,1.20917832390253
+"R5. Faculty + fellows","Basilicata",2022,1.22600385102245
+"R5. Faculty + fellows","Basilicata",2023,1.18408485701783
+"R5. Faculty + fellows","Bergamo",2021,2.14964203476579
+"R5. Faculty + fellows","Bergamo",2022,2.07983645071531
+"R5. Faculty + fellows","Bergamo",2023,1.99658495208776
+"R5. Faculty + fellows","Bologna",2021,1.50418598710245
+"R5. Faculty + fellows","Bologna",2022,1.5778603857596
+"R5. Faculty + fellows","Bologna",2023,1.65093508667481
+"R5. Faculty + fellows","Brescia",2021,1.12215267104815
+"R5. Faculty + fellows","Brescia",2022,1.14134998839967
+"R5. Faculty + fellows","Brescia",2023,1.17955554665085
+"R5. Faculty + fellows","Cagliari",2021,1.56155691660386
+"R5. Faculty + fellows","Cagliari",2022,1.60598384447794
+"R5. Faculty + fellows","Cagliari",2023,1.6213612978204
+"R5. Faculty + fellows","Calabria",2021,1.84461606577547
+"R5. Faculty + fellows","Calabria",2022,1.65560061061558
+"R5. Faculty + fellows","Calabria",2023,1.69224210464224
+"R5. Faculty + fellows","Camerino",2021,1.29011762330194
+"R5. Faculty + fellows","Camerino",2022,1.40453518652999
+"R5. Faculty + fellows","Camerino",2023,1.47650841102596
+"R5. Faculty + fellows","Cassino",2021,1.55430861209985
+"R5. Faculty + fellows","Cassino",2022,1.53847384479806
+"R5. Faculty + fellows","Cassino",2023,1.71828365211222
+"R5. Faculty + fellows","Catania",2021,1.29046952486387
+"R5. Faculty + fellows","Catania",2022,1.25093421426793
+"R5. Faculty + fellows","Catania",2023,1.39174632410586
+"R5. Faculty + fellows","Catanzaro",2021,1.04526575829939
+"R5. Faculty + fellows","Catanzaro",2022,1
+"R5. Faculty + fellows","Catanzaro",2023,1.17765517300762
+"R5. Faculty + fellows","Chieti e Pescara",2021,1.50707671343839
+"R5. Faculty + fellows","Chieti e Pescara",2022,1.56694771110929
+"R5. Faculty + fellows","Chieti e Pescara",2023,1.65451216075547
+"R5. Faculty + fellows","Ferrara",2021,1.17557519855838
+"R5. Faculty + fellows","Ferrara",2022,1.26803012311066
+"R5. Faculty + fellows","Ferrara",2023,1.32373238210121
+"R5. Faculty + fellows","Firenze",2021,1.30753531329583
+"R5. Faculty + fellows","Firenze",2022,1.29634772144224
+"R5. Faculty + fellows","Firenze",2023,1.55547951084415
+"R5. Faculty + fellows","Foggia",2021,1.05857477399764
+"R5. Faculty + fellows","Foggia",2022,1.14235615995831
+"R5. Faculty + fellows","Foggia",2023,1.33997167166535
+"R5. Faculty + fellows","Genova",2021,1.11104762280614
+"R5. Faculty + fellows","Genova",2022,1.13125760997091
+"R5. Faculty + fellows","Genova",2023,1.24044819609231
+"R5. Faculty + fellows","Insubria",2021,1
+"R5. Faculty + fellows","Insubria",2022,1.1042913461553
+"R5. Faculty + fellows","Insubria",2023,1.38367317079673
+"R5. Faculty + fellows","L'Aquila",2021,1.04581213608331
+"R5. Faculty + fellows","L'Aquila",2022,1.10502810250677
+"R5. Faculty + fellows","L'Aquila",2023,1.14808036370749
+"R5. Faculty + fellows","Macerata",2021,2.64642165260455
+"R5. Faculty + fellows","Macerata",2022,2.6471869902678
+"R5. Faculty + fellows","Macerata",2023,2.61009649090396
+"R5. Faculty + fellows","Marche Politecnica",2021,1.13638589301487
+"R5. Faculty + fellows","Marche Politecnica",2022,1.17514850268021
+"R5. Faculty + fellows","Marche Politecnica",2023,1.34550300988285
+"R5. Faculty + fellows","Messina",2021,1.2235877502916
+"R5. Faculty + fellows","Messina",2022,1.34133186528516
+"R5. Faculty + fellows","Messina",2023,1.33357878066264
+"R5. Faculty + fellows","Milano",2021,1.11784453020934
+"R5. Faculty + fellows","Milano",2022,1.22549717849506
+"R5. Faculty + fellows","Milano",2023,1.30161417030547
+"R5. Faculty + fellows","Milano Bicocca",2021,1.25149235648432
+"R5. Faculty + fellows","Milano Bicocca",2022,1.28175501024953
+"R5. Faculty + fellows","Milano Bicocca",2023,1.31672779650435
+"R5. Faculty + fellows","Milano Politecnico",2021,1.45776661545554
+"R5. Faculty + fellows","Milano Politecnico",2022,1.56409176479439
+"R5. Faculty + fellows","Milano Politecnico",2023,1.44328057289216
+"R5. Faculty + fellows","Modena e Reggio Emilia",2021,1.27080711992529
+"R5. Faculty + fellows","Modena e Reggio Emilia",2022,1.41052862972992
+"R5. Faculty + fellows","Modena e Reggio Emilia",2023,1.48566469878932
+"R5. Faculty + fellows","Molise",2021,1
+"R5. Faculty + fellows","Molise",2022,1.05532532391702
+"R5. Faculty + fellows","Molise",2023,1.29464624533912
+"R5. Faculty + fellows","Napoli Federico II",2021,1.17649756884294
+"R5. Faculty + fellows","Napoli Federico II",2022,1.25485170081792
+"R5. Faculty + fellows","Napoli Federico II",2023,1.37191778724856
+"R5. Faculty + fellows","Napoli L'Orientale",2021,14.4643776521247
+"R5. Faculty + fellows","Napoli L'Orientale",2022,21.3675221040383
+"R5. Faculty + fellows","Napoli L'Orientale",2023,26.6168046686029
+"R5. Faculty + fellows","Napoli Parthenope",2021,1.1439728923098
+"R5. Faculty + fellows","Napoli Parthenope",2022,1.25312808208519
+"R5. Faculty + fellows","Napoli Parthenope",2023,1.21111506389862
+"R5. Faculty + fellows","Napoli Vanvitelli",2021,1.1235290254837
+"R5. Faculty + fellows","Napoli Vanvitelli",2022,1.1739583201203
+"R5. Faculty + fellows","Napoli Vanvitelli",2023,1.25397856275565
+"R5. Faculty + fellows","Padova",2021,1.21786212618911
+"R5. Faculty + fellows","Padova",2022,1.2802841268408
+"R5. Faculty + fellows","Padova",2023,1.37408349679785
+"R5. Faculty + fellows","Palermo",2021,1.3256013780198
+"R5. Faculty + fellows","Palermo",2022,1.42605053596123
+"R5. Faculty + fellows","Palermo",2023,1.53124434429167
+"R5. Faculty + fellows","Parma",2021,1.33868592810841
+"R5. Faculty + fellows","Parma",2022,1.54497642869404
+"R5. Faculty + fellows","Parma",2023,1.68920953743661
+"R5. Faculty + fellows","Pavia",2021,1.1139030885919
+"R5. Faculty + fellows","Pavia",2022,1.13825592829558
+"R5. Faculty + fellows","Pavia",2023,1.15620102695088
+"R5. Faculty + fellows","Perugia",2021,1.14758601299434
+"R5. Faculty + fellows","Perugia",2022,1.24069383211529
+"R5. Faculty + fellows","Perugia",2023,1.34754229943911
+"R5. Faculty + fellows","Perugia Stranieri",2021,4.55851561248513
+"R5. Faculty + fellows","Perugia Stranieri",2022,5.101570180284
+"R5. Faculty + fellows","Perugia Stranieri",2023,4.64085915009702
+"R5. Faculty + fellows","Piemonte Orientale",2021,1.18268354609807
+"R5. Faculty + fellows","Piemonte Orientale",2022,1.33214889463474
+"R5. Faculty + fellows","Piemonte Orientale",2023,1.35027562778077
+"R5. Faculty + fellows","Pisa",2021,1.09482497965507
+"R5. Faculty + fellows","Pisa",2022,1.16749008204397
+"R5. Faculty + fellows","Pisa",2023,1.25933846749298
+"R5. Faculty + fellows","Reggio Calabria",2021,1.54648735190948
+"R5. Faculty + fellows","Reggio Calabria",2022,1.4239436578679
+"R5. Faculty + fellows","Reggio Calabria",2023,1.52751747278883
+"R5. Faculty + fellows","Roma Foro Italico",2021,1.03877430794646
+"R5. Faculty + fellows","Roma Foro Italico",2022,1.07928336247647
+"R5. Faculty + fellows","Roma Foro Italico",2023,1.10583543901677
+"R5. Faculty + fellows","Roma La Sapienza",2021,1.15181794022857
+"R5. Faculty + fellows","Roma La Sapienza",2022,1.24764720276435
+"R5. Faculty + fellows","Roma La Sapienza",2023,1.29739597509432
+"R5. Faculty + fellows","Roma Tor Vergata",2021,1.24390102750826
+"R5. Faculty + fellows","Roma Tor Vergata",2022,1.35149414384405
+"R5. Faculty + fellows","Roma Tor Vergata",2023,1.24637869228335
+"R5. Faculty + fellows","Roma Tre",2021,1.75122976934523
+"R5. Faculty + fellows","Roma Tre",2022,1.82044874608028
+"R5. Faculty + fellows","Roma Tre",2023,1.73321743672748
+"R5. Faculty + fellows","Salento",2021,1.30605929633026
+"R5. Faculty + fellows","Salento",2022,1.27099607240736
+"R5. Faculty + fellows","Salento",2023,1.44222793671805
+"R5. Faculty + fellows","Salerno",2021,1.22532409065683
+"R5. Faculty + fellows","Salerno",2022,1.18601320273199
+"R5. Faculty + fellows","Salerno",2023,1.33450095759866
+"R5. Faculty + fellows","Sannio",2021,1.05372780350674
+"R5. Faculty + fellows","Sannio",2022,1.20465181342657
+"R5. Faculty + fellows","Sannio",2023,1.09289874811915
+"R5. Faculty + fellows","Sassari",2021,1.59385017983053
+"R5. Faculty + fellows","Sassari",2022,1.79678139729823
+"R5. Faculty + fellows","Sassari",2023,1.91433336749693
+"R5. Faculty + fellows","Siena",2021,1.33317036419421
+"R5. Faculty + fellows","Siena",2022,1.32698114356288
+"R5. Faculty + fellows","Siena",2023,1.47323246687056
+"R5. Faculty + fellows","Siena Stranieri",2021,16.2921875640954
+"R5. Faculty + fellows","Siena Stranieri",2022,11.8375478586035
+"R5. Faculty + fellows","Siena Stranieri",2023,13.3694510406871
+"R5. Faculty + fellows","Teramo",2021,1.93752748140912
+"R5. Faculty + fellows","Teramo",2022,2.24468057853446
+"R5. Faculty + fellows","Teramo",2023,2.32475617754841
+"R5. Faculty + fellows","Torino",2021,1.35708548985157
+"R5. Faculty + fellows","Torino",2022,1.4868465430483
+"R5. Faculty + fellows","Torino",2023,1.61551772851457
+"R5. Faculty + fellows","Torino Politecnico",2021,1.26790360553826
+"R5. Faculty + fellows","Torino Politecnico",2022,1.25038771705861
+"R5. Faculty + fellows","Torino Politecnico",2023,1.25089971982202
+"R5. Faculty + fellows","Trento",2021,1.20859028606421
+"R5. Faculty + fellows","Trento",2022,1.32888160123505
+"R5. Faculty + fellows","Trento",2023,1.21828642952813
+"R5. Faculty + fellows","Trieste",2021,1.12001294357691
+"R5. Faculty + fellows","Trieste",2022,1.1553986079355
+"R5. Faculty + fellows","Trieste",2023,1.23754227116066
+"R5. Faculty + fellows","Tuscia",2021,1.23722395391787
+"R5. Faculty + fellows","Tuscia",2022,1.36832274581604
+"R5. Faculty + fellows","Tuscia",2023,1.59686507960828
+"R5. Faculty + fellows","Udine",2021,1.53627393407224
+"R5. Faculty + fellows","Udine",2022,1.59746849519439
+"R5. Faculty + fellows","Udine",2023,1.58965370028898
+"R5. Faculty + fellows","Urbino",2021,1.63450961299652
+"R5. Faculty + fellows","Urbino",2022,1.62448997984931
+"R5. Faculty + fellows","Urbino",2023,1.45385579927689
+"R5. Faculty + fellows","Venezia Cà Foscari",2021,2.32364222795072
+"R5. Faculty + fellows","Venezia Cà Foscari",2022,2.38986997308544
+"R5. Faculty + fellows","Venezia Cà Foscari",2023,2.26218169431814
+"R5. Faculty + fellows","Venezia Iuav",2021,3.96481494049996
+"R5. Faculty + fellows","Venezia Iuav",2022,4.99221052424429
+"R5. Faculty + fellows","Venezia Iuav",2023,4.87591036671127
+"R5. Faculty + fellows","Verona",2021,1.49721482326121
+"R5. Faculty + fellows","Verona",2022,1.48373112515228
+"R5. Faculty + fellows","Verona",2023,1.58299388156378
+"R6. Without ap potential outliers","Bari",2021,1.32566304264996
+"R6. Without ap potential outliers","Bari",2022,1.4886890824581
+"R6. Without ap potential outliers","Bari",2023,1.54499627404857
+"R6. Without ap potential outliers","Bari Politecnico",2021,1.14410418325425
+"R6. Without ap potential outliers","Bari Politecnico",2022,1
+"R6. Without ap potential outliers","Bari Politecnico",2023,1.04391557548634
+"R6. Without ap potential outliers","Basilicata",2021,1.24974907167831
+"R6. Without ap potential outliers","Basilicata",2022,1.28523753459689
+"R6. Without ap potential outliers","Basilicata",2023,1.24566546916019
+"R6. Without ap potential outliers","Bergamo",2021,2.20575522202084
+"R6. Without ap potential outliers","Bergamo",2022,2.21806310639158
+"R6. Without ap potential outliers","Bergamo",2023,2.09888480370322
+"R6. Without ap potential outliers","Bologna",2021,1.36232317879896
+"R6. Without ap potential outliers","Brescia",2021,1.10732009396692
+"R6. Without ap potential outliers","Brescia",2022,1.09942919792561
+"R6. Without ap potential outliers","Brescia",2023,1.17715773541487
+"R6. Without ap potential outliers","Cagliari",2021,1.68609653199552
+"R6. Without ap potential outliers","Cagliari",2022,1.73380286644016
+"R6. Without ap potential outliers","Cagliari",2023,1.74445793275747
+"R6. Without ap potential outliers","Calabria",2021,1.87229395901517
+"R6. Without ap potential outliers","Calabria",2022,1.66837548813898
+"R6. Without ap potential outliers","Calabria",2023,1.72616009225597
+"R6. Without ap potential outliers","Camerino",2021,1.31022206847687
+"R6. Without ap potential outliers","Camerino",2022,1.4100251090846
+"R6. Without ap potential outliers","Camerino",2023,1.54795801846807
+"R6. Without ap potential outliers","Cassino",2021,1.61774664941641
+"R6. Without ap potential outliers","Cassino",2022,1.59142806762984
+"R6. Without ap potential outliers","Cassino",2023,1.75408197034014
+"R6. Without ap potential outliers","Catania",2021,1.4206262733931
+"R6. Without ap potential outliers","Catania",2022,1.32544162317345
+"R6. Without ap potential outliers","Catania",2023,1.45582238414705
+"R6. Without ap potential outliers","Catanzaro",2021,1
+"R6. Without ap potential outliers","Catanzaro",2022,1.02117749246763
+"R6. Without ap potential outliers","Catanzaro",2023,1.20490174431442
+"R6. Without ap potential outliers","Chieti e Pescara",2021,1.53508259398099
+"R6. Without ap potential outliers","Chieti e Pescara",2022,1.56057000146629
+"R6. Without ap potential outliers","Chieti e Pescara",2023,1.69960426443381
+"R6. Without ap potential outliers","Ferrara",2021,1.13954210462414
+"R6. Without ap potential outliers","Ferrara",2022,1.23827058335316
+"R6. Without ap potential outliers","Ferrara",2023,1.30159511620875
+"R6. Without ap potential outliers","Firenze",2021,1.17261093857248
+"R6. Without ap potential outliers","Firenze",2022,1.1678011073662
+"R6. Without ap potential outliers","Firenze",2023,1.36226410900306
+"R6. Without ap potential outliers","Foggia",2021,1.20159304719827
+"R6. Without ap potential outliers","Foggia",2022,1.25854802160776
+"R6. Without ap potential outliers","Foggia",2023,1.35543561054669
+"R6. Without ap potential outliers","Genova",2021,1.10210392132436
+"R6. Without ap potential outliers","Genova",2022,1.1240983888788
+"R6. Without ap potential outliers","Genova",2023,1.21625789118741
+"R6. Without ap potential outliers","Insubria",2021,1.01763950944045
+"R6. Without ap potential outliers","Insubria",2022,1.12867203451334
+"R6. Without ap potential outliers","Insubria",2023,1.40055751542843
+"R6. Without ap potential outliers","L'Aquila",2021,1.0795992547519
+"R6. Without ap potential outliers","L'Aquila",2022,1.14781044072058
+"R6. Without ap potential outliers","L'Aquila",2023,1.2250279170677
+"R6. Without ap potential outliers","Macerata",2021,2.76619651098681
+"R6. Without ap potential outliers","Macerata",2022,2.76894639447484
+"R6. Without ap potential outliers","Macerata",2023,2.66479119563307
+"R6. Without ap potential outliers","Marche Politecnica",2021,1.0461866847035
+"R6. Without ap potential outliers","Marche Politecnica",2022,1.07512803433988
+"R6. Without ap potential outliers","Marche Politecnica",2023,1.19958589373566
+"R6. Without ap potential outliers","Messina",2021,1.36846353473173
+"R6. Without ap potential outliers","Messina",2022,1.52538509033832
+"R6. Without ap potential outliers","Messina",2023,1.51113786138128
+"R6. Without ap potential outliers","Milano",2022,1.10777263314501
+"R6. Without ap potential outliers","Milano Bicocca",2021,1.08726707486238
+"R6. Without ap potential outliers","Milano Bicocca",2022,1.10715404649945
+"R6. Without ap potential outliers","Milano Bicocca",2023,1.19717800043848
+"R6. Without ap potential outliers","Milano Politecnico",2021,1.12942541721659
+"R6. Without ap potential outliers","Milano Politecnico",2022,1.16995051740228
+"R6. Without ap potential outliers","Milano Politecnico",2023,1.13576361315183
+"R6. Without ap potential outliers","Modena e Reggio Emilia",2021,1.13262016449397
+"R6. Without ap potential outliers","Modena e Reggio Emilia",2022,1.23288036819928
+"R6. Without ap potential outliers","Modena e Reggio Emilia",2023,1.30354447138167
+"R6. Without ap potential outliers","Molise",2021,1
+"R6. Without ap potential outliers","Molise",2022,1.07231831627567
+"R6. Without ap potential outliers","Molise",2023,1.32503057970426
+"R6. Without ap potential outliers","Napoli L'Orientale",2021,14.7406448437962
+"R6. Without ap potential outliers","Napoli L'Orientale",2022,21.7370427634485
+"R6. Without ap potential outliers","Napoli L'Orientale",2023,27.4196486152676
+"R6. Without ap potential outliers","Napoli Parthenope",2021,1.19215389705949
+"R6. Without ap potential outliers","Napoli Parthenope",2022,1.32603375695678
+"R6. Without ap potential outliers","Napoli Parthenope",2023,1.2931203102856
+"R6. Without ap potential outliers","Napoli Vanvitelli",2021,1.18182927379918
+"R6. Without ap potential outliers","Napoli Vanvitelli",2022,1.17873053231191
+"R6. Without ap potential outliers","Napoli Vanvitelli",2023,1.305957668229
+"R6. Without ap potential outliers","Padova",2021,1.08333039611081
+"R6. Without ap potential outliers","Padova",2022,1.13060284423838
+"R6. Without ap potential outliers","Palermo",2021,1.46858125509599
+"R6. Without ap potential outliers","Palermo",2022,1.62357937458222
+"R6. Without ap potential outliers","Palermo",2023,1.7472785540391
+"R6. Without ap potential outliers","Parma",2021,1.36751958483054
+"R6. Without ap potential outliers","Parma",2022,1.59262424454537
+"R6. Without ap potential outliers","Parma",2023,1.68282121927862
+"R6. Without ap potential outliers","Pavia",2021,1.02839125278117
+"R6. Without ap potential outliers","Pavia",2022,1.07611465046992
+"R6. Without ap potential outliers","Pavia",2023,1.11419370273313
+"R6. Without ap potential outliers","Perugia",2021,1.19002717944158
+"R6. Without ap potential outliers","Perugia",2022,1.30989527249253
+"R6. Without ap potential outliers","Perugia",2023,1.4104865764725
+"R6. Without ap potential outliers","Perugia Stranieri",2021,4.9450489280286
+"R6. Without ap potential outliers","Perugia Stranieri",2022,5.42693725351577
+"R6. Without ap potential outliers","Perugia Stranieri",2023,5.26651227196666
+"R6. Without ap potential outliers","Piemonte Orientale",2021,1.16984646059302
+"R6. Without ap potential outliers","Piemonte Orientale",2022,1.3078206569879
+"R6. Without ap potential outliers","Piemonte Orientale",2023,1.35982754729782
+"R6. Without ap potential outliers","Pisa",2021,1.07879366354229
+"R6. Without ap potential outliers","Pisa",2022,1.10748598569208
+"R6. Without ap potential outliers","Pisa",2023,1.19972335023555
+"R6. Without ap potential outliers","Reggio Calabria",2021,1.59977564077093
+"R6. Without ap potential outliers","Reggio Calabria",2022,1.43338027481588
+"R6. Without ap potential outliers","Reggio Calabria",2023,1.61048973260338
+"R6. Without ap potential outliers","Roma Foro Italico",2021,1.10814244233125
+"R6. Without ap potential outliers","Roma Foro Italico",2022,1.11193291469025
+"R6. Without ap potential outliers","Roma Foro Italico",2023,1.17784226991535
+"R6. Without ap potential outliers","Roma Tor Vergata",2021,1.28151958422444
+"R6. Without ap potential outliers","Roma Tor Vergata",2022,1.29309217672354
+"R6. Without ap potential outliers","Roma Tor Vergata",2023,1.26284960819563
+"R6. Without ap potential outliers","Roma Tre",2021,1.79498240942575
+"R6. Without ap potential outliers","Roma Tre",2022,1.91749828939929
+"R6. Without ap potential outliers","Roma Tre",2023,1.7657920861631
+"R6. Without ap potential outliers","Salento",2021,1.27974489280869
+"R6. Without ap potential outliers","Salento",2022,1.2556019343469
+"R6. Without ap potential outliers","Salento",2023,1.3449162363959
+"R6. Without ap potential outliers","Salerno",2021,1.2544273396456
+"R6. Without ap potential outliers","Salerno",2022,1.22618229916149
+"R6. Without ap potential outliers","Salerno",2023,1.41068359721102
+"R6. Without ap potential outliers","Sannio",2021,1.03330025246704
+"R6. Without ap potential outliers","Sannio",2022,1.15912814522151
+"R6. Without ap potential outliers","Sannio",2023,1.05701962674503
+"R6. Without ap potential outliers","Sassari",2021,1.78361157059571
+"R6. Without ap potential outliers","Sassari",2022,1.93098409262592
+"R6. Without ap potential outliers","Sassari",2023,2.04660706616512
+"R6. Without ap potential outliers","Siena",2021,1.36130343576576
+"R6. Without ap potential outliers","Siena",2022,1.31652818448809
+"R6. Without ap potential outliers","Siena",2023,1.44888723002839
+"R6. Without ap potential outliers","Siena Stranieri",2021,15.0664839710783
+"R6. Without ap potential outliers","Siena Stranieri",2022,12.3191187147203
+"R6. Without ap potential outliers","Siena Stranieri",2023,13.2602618839217
+"R6. Without ap potential outliers","Teramo",2021,2.15740160970978
+"R6. Without ap potential outliers","Teramo",2022,2.44511781876576
+"R6. Without ap potential outliers","Teramo",2023,2.39256482704267
+"R6. Without ap potential outliers","Torino",2021,1.30685167866834
+"R6. Without ap potential outliers","Torino",2022,1.3952843801569
+"R6. Without ap potential outliers","Torino Politecnico",2021,1.06954616934876
+"R6. Without ap potential outliers","Torino Politecnico",2022,1.04494579114294
+"R6. Without ap potential outliers","Torino Politecnico",2023,1.13482598416866
+"R6. Without ap potential outliers","Trento",2021,1.04785242482475
+"R6. Without ap potential outliers","Trento",2022,1.11830268445886
+"R6. Without ap potential outliers","Trento",2023,1.07558553834371
+"R6. Without ap potential outliers","Trieste",2021,1.114651871473
+"R6. Without ap potential outliers","Trieste",2022,1.12268538806058
+"R6. Without ap potential outliers","Trieste",2023,1.24934457957045
+"R6. Without ap potential outliers","Tuscia",2021,1.23452630825177
+"R6. Without ap potential outliers","Tuscia",2022,1.36008937545405
+"R6. Without ap potential outliers","Tuscia",2023,1.56295228761766
+"R6. Without ap potential outliers","Udine",2021,1.57022894911509
+"R6. Without ap potential outliers","Udine",2022,1.62157378374365
+"R6. Without ap potential outliers","Udine",2023,1.64843833774318
+"R6. Without ap potential outliers","Urbino",2021,1.6157492092838
+"R6. Without ap potential outliers","Urbino",2022,1.60433823820743
+"R6. Without ap potential outliers","Urbino",2023,1.44163151904775
+"R6. Without ap potential outliers","Venezia Cà Foscari",2021,2.01807595460903
+"R6. Without ap potential outliers","Venezia Cà Foscari",2022,2.11344438818055
+"R6. Without ap potential outliers","Venezia Cà Foscari",2023,2.03045557970948
+"R6. Without ap potential outliers","Venezia Iuav",2021,3.11163786448858
+"R6. Without ap potential outliers","Venezia Iuav",2022,4.19383873979502
+"R6. Without ap potential outliers","Venezia Iuav",2023,4.25042648886277
+"R6. Without ap potential outliers","Verona",2021,1.2891789993388
+"R6. Without ap potential outliers","Verona",2022,1.36011057580576
+"R7. Without 3 humanities universities","Bari",2021,1
+"R7. Without 3 humanities universities","Bari",2022,1
+"R7. Without 3 humanities universities","Bari",2023,1.19194894452626
+"R7. Without 3 humanities universities","Bari Politecnico",2021,1
+"R7. Without 3 humanities universities","Bari Politecnico",2022,1
+"R7. Without 3 humanities universities","Bari Politecnico",2023,1
+"R7. Without 3 humanities universities","Basilicata",2021,1
+"R7. Without 3 humanities universities","Basilicata",2022,1
+"R7. Without 3 humanities universities","Basilicata",2023,1
+"R7. Without 3 humanities universities","Bergamo",2021,1.93198263386397
+"R7. Without 3 humanities universities","Bergamo",2022,1.80161943319838
+"R7. Without 3 humanities universities","Bergamo",2023,1.55775962660443
+"R7. Without 3 humanities universities","Bologna",2021,1.06817925273733
+"R7. Without 3 humanities universities","Bologna",2022,1.05649212906107
+"R7. Without 3 humanities universities","Bologna",2023,1.01567028013309
+"R7. Without 3 humanities universities","Brescia",2021,1
+"R7. Without 3 humanities universities","Brescia",2022,1
+"R7. Without 3 humanities universities","Brescia",2023,1
+"R7. Without 3 humanities universities","Cagliari",2021,1.3280309544282
+"R7. Without 3 humanities universities","Cagliari",2022,1.40066777963272
+"R7. Without 3 humanities universities","Cagliari",2023,1.41424357353561
+"R7. Without 3 humanities universities","Calabria",2021,1.61274238227147
+"R7. Without 3 humanities universities","Calabria",2022,1.44681908548708
+"R7. Without 3 humanities universities","Calabria",2023,1.49976580796253
+"R7. Without 3 humanities universities","Camerino",2021,1
+"R7. Without 3 humanities universities","Camerino",2022,1
+"R7. Without 3 humanities universities","Camerino",2023,1.05610972568579
+"R7. Without 3 humanities universities","Cassino",2021,1.17575757575758
+"R7. Without 3 humanities universities","Cassino",2022,1.1593625498008
+"R7. Without 3 humanities universities","Cassino",2023,1.19262295081967
+"R7. Without 3 humanities universities","Catania",2021,1
+"R7. Without 3 humanities universities","Catania",2022,1
+"R7. Without 3 humanities universities","Catania",2023,1.07563959955506
+"R7. Without 3 humanities universities","Catanzaro",2021,1
+"R7. Without 3 humanities universities","Catanzaro",2022,1
+"R7. Without 3 humanities universities","Catanzaro",2023,1.07032457496136
+"R7. Without 3 humanities universities","Chieti e Pescara",2021,1.27405541561713
+"R7. Without 3 humanities universities","Chieti e Pescara",2022,1.47616632860041
+"R7. Without 3 humanities universities","Chieti e Pescara",2023,1.52568134171908
+"R7. Without 3 humanities universities","Ferrara",2021,1
+"R7. Without 3 humanities universities","Ferrara",2022,1.03091910207539
+"R7. Without 3 humanities universities","Ferrara",2023,1.20588235294118
+"R7. Without 3 humanities universities","Firenze",2021,1
+"R7. Without 3 humanities universities","Firenze",2022,1
+"R7. Without 3 humanities universities","Firenze",2023,1.0899756352245
+"R7. Without 3 humanities universities","Foggia",2021,1.0906862745098
+"R7. Without 3 humanities universities","Foggia",2022,1.05367008681926
+"R7. Without 3 humanities universities","Foggia",2023,1.22367409684858
+"R7. Without 3 humanities universities","Genova",2021,1
+"R7. Without 3 humanities universities","Genova",2022,1
+"R7. Without 3 humanities universities","Genova",2023,1.03517373694308
+"R7. Without 3 humanities universities","Insubria",2021,1
+"R7. Without 3 humanities universities","Insubria",2022,1.04874835309618
+"R7. Without 3 humanities universities","Insubria",2023,1.19609316303531
+"R7. Without 3 humanities universities","L'Aquila",2021,1
+"R7. Without 3 humanities universities","L'Aquila",2022,1
+"R7. Without 3 humanities universities","L'Aquila",2023,1
+"R7. Without 3 humanities universities","Macerata",2021,1.86538461538462
+"R7. Without 3 humanities universities","Macerata",2022,1.84684684684685
+"R7. Without 3 humanities universities","Macerata",2023,2.14565826330532
+"R7. Without 3 humanities universities","Marche Politecnica",2021,1
+"R7. Without 3 humanities universities","Marche Politecnica",2022,1
+"R7. Without 3 humanities universities","Marche Politecnica",2023,1.04810690423163
+"R7. Without 3 humanities universities","Messina",2021,1.12164124909223
+"R7. Without 3 humanities universities","Messina",2022,1.19643493761141
+"R7. Without 3 humanities universities","Messina",2023,1.1216577540107
+"R7. Without 3 humanities universities","Milano",2021,1
+"R7. Without 3 humanities universities","Milano",2022,1.02657843349967
+"R7. Without 3 humanities universities","Milano",2023,1.05980512935379
+"R7. Without 3 humanities universities","Milano Bicocca",2021,1
+"R7. Without 3 humanities universities","Milano Bicocca",2022,1
+"R7. Without 3 humanities universities","Milano Bicocca",2023,1.0096362322332
+"R7. Without 3 humanities universities","Milano Politecnico",2021,1
+"R7. Without 3 humanities universities","Milano Politecnico",2022,1
+"R7. Without 3 humanities universities","Milano Politecnico",2023,1
+"R7. Without 3 humanities universities","Modena e Reggio Emilia",2021,1
+"R7. Without 3 humanities universities","Modena e Reggio Emilia",2022,1.12272089761571
+"R7. Without 3 humanities universities","Modena e Reggio Emilia",2023,1.09059945504087
+"R7. Without 3 humanities universities","Molise",2021,1
+"R7. Without 3 humanities universities","Molise",2022,1
+"R7. Without 3 humanities universities","Molise",2023,1.08345120226308
+"R7. Without 3 humanities universities","Napoli Federico II",2021,1
+"R7. Without 3 humanities universities","Napoli Federico II",2022,1
+"R7. Without 3 humanities universities","Napoli Federico II",2023,1.1100293255132
+"R7. Without 3 humanities universities","Napoli Parthenope",2021,1
+"R7. Without 3 humanities universities","Napoli Parthenope",2022,1.04555808656036
+"R7. Without 3 humanities universities","Napoli Parthenope",2023,1.06361829025845
+"R7. Without 3 humanities universities","Napoli Vanvitelli",2021,1
+"R7. Without 3 humanities universities","Napoli Vanvitelli",2022,1
+"R7. Without 3 humanities universities","Napoli Vanvitelli",2023,1.04410876132931
+"R7. Without 3 humanities universities","Padova",2021,1
+"R7. Without 3 humanities universities","Padova",2022,1.02335892721964
+"R7. Without 3 humanities universities","Padova",2023,1.02115031833387
+"R7. Without 3 humanities universities","Palermo",2021,1
+"R7. Without 3 humanities universities","Palermo",2022,1.0607210626186
+"R7. Without 3 humanities universities","Palermo",2023,1.32172019597169
+"R7. Without 3 humanities universities","Parma",2021,1.09107946026987
+"R7. Without 3 humanities universities","Parma",2022,1.2808
+"R7. Without 3 humanities universities","Parma",2023,1.30162601626016
+"R7. Without 3 humanities universities","Pavia",2021,1
+"R7. Without 3 humanities universities","Pavia",2022,1.00931346460883
+"R7. Without 3 humanities universities","Pavia",2023,1.0187769601624
+"R7. Without 3 humanities universities","Perugia",2021,1
+"R7. Without 3 humanities universities","Perugia",2022,1.03484087102178
+"R7. Without 3 humanities universities","Perugia",2023,1.16649287452207
+"R7. Without 3 humanities universities","Piemonte Orientale",2021,1.11876317638791
+"R7. Without 3 humanities universities","Piemonte Orientale",2022,1.2398753894081
+"R7. Without 3 humanities universities","Piemonte Orientale",2023,1.13958482462419
+"R7. Without 3 humanities universities","Pisa",2021,1
+"R7. Without 3 humanities universities","Pisa",2022,1
+"R7. Without 3 humanities universities","Pisa",2023,1.02296633941094
+"R7. Without 3 humanities universities","Reggio Calabria",2021,1
+"R7. Without 3 humanities universities","Reggio Calabria",2022,1
+"R7. Without 3 humanities universities","Reggio Calabria",2023,1.02842809364548
+"R7. Without 3 humanities universities","Roma Foro Italico",2021,1
+"R7. Without 3 humanities universities","Roma Foro Italico",2022,1
+"R7. Without 3 humanities universities","Roma Foro Italico",2023,1
+"R7. Without 3 humanities universities","Roma La Sapienza",2021,1
+"R7. Without 3 humanities universities","Roma La Sapienza",2022,1.01638622147828
+"R7. Without 3 humanities universities","Roma La Sapienza",2023,1
+"R7. Without 3 humanities universities","Roma Tor Vergata",2021,1
+"R7. Without 3 humanities universities","Roma Tor Vergata",2022,1.00618752974774
+"R7. Without 3 humanities universities","Roma Tor Vergata",2023,1.10690677000228
+"R7. Without 3 humanities universities","Roma Tre",2021,1.27410617551463
+"R7. Without 3 humanities universities","Roma Tre",2022,1.29056203605514
+"R7. Without 3 humanities universities","Roma Tre",2023,1.18500486854917
+"R7. Without 3 humanities universities","Salento",2021,1
+"R7. Without 3 humanities universities","Salento",2022,1
+"R7. Without 3 humanities universities","Salento",2023,1
+"R7. Without 3 humanities universities","Salerno",2021,1
+"R7. Without 3 humanities universities","Salerno",2022,1
+"R7. Without 3 humanities universities","Salerno",2023,1.10322156476003
+"R7. Without 3 humanities universities","Sannio",2021,1
+"R7. Without 3 humanities universities","Sannio",2022,1.07182320441989
+"R7. Without 3 humanities universities","Sannio",2023,1
+"R7. Without 3 humanities universities","Sassari",2021,1.47651006711409
+"R7. Without 3 humanities universities","Sassari",2022,1.546875
+"R7. Without 3 humanities universities","Sassari",2023,1.72353389185072
+"R7. Without 3 humanities universities","Siena",2021,1.11856617647059
+"R7. Without 3 humanities universities","Siena",2022,1.09575389948007
+"R7. Without 3 humanities universities","Siena",2023,1.29377777777778
+"R7. Without 3 humanities universities","Teramo",2021,1.46599496221662
+"R7. Without 3 humanities universities","Teramo",2022,1.59016393442623
+"R7. Without 3 humanities universities","Teramo",2023,1.42298288508557
+"R7. Without 3 humanities universities","Torino",2021,1
+"R7. Without 3 humanities universities","Torino",2022,1.00207745956373
+"R7. Without 3 humanities universities","Torino",2023,1.43967746843146
+"R7. Without 3 humanities universities","Torino Politecnico",2021,1
+"R7. Without 3 humanities universities","Torino Politecnico",2022,1
+"R7. Without 3 humanities universities","Torino Politecnico",2023,1
+"R7. Without 3 humanities universities","Trento",2021,1
+"R7. Without 3 humanities universities","Trento",2022,1.02862190812721
+"R7. Without 3 humanities universities","Trento",2023,1
+"R7. Without 3 humanities universities","Trieste",2021,1
+"R7. Without 3 humanities universities","Trieste",2022,1
+"R7. Without 3 humanities universities","Trieste",2023,1.02305825242718
+"R7. Without 3 humanities universities","Tuscia",2021,1
+"R7. Without 3 humanities universities","Tuscia",2022,1.00743494423792
+"R7. Without 3 humanities universities","Tuscia",2023,1.16055625790139
+"R7. Without 3 humanities universities","Udine",2021,1.24125230202578
+"R7. Without 3 humanities universities","Udine",2022,1.27767584097859
+"R7. Without 3 humanities universities","Udine",2023,1.32494145199063
+"R7. Without 3 humanities universities","Urbino",2021,1.27429467084639
+"R7. Without 3 humanities universities","Urbino",2022,1.23181818181818
+"R7. Without 3 humanities universities","Urbino",2023,1.13892365456821
+"R7. Without 3 humanities universities","Venezia Cà Foscari",2021,1.84343036978757
+"R7. Without 3 humanities universities","Venezia Cà Foscari",2022,1.82970451010886
+"R7. Without 3 humanities universities","Venezia Cà Foscari",2023,1.75991649269311
+"R7. Without 3 humanities universities","Venezia Iuav",2021,1.17142857142857
+"R7. Without 3 humanities universities","Venezia Iuav",2022,1.43023255813953
+"R7. Without 3 humanities universities","Venezia Iuav",2023,1.35164835164835
+"R7. Without 3 humanities universities","Verona",2021,1.02862190812721
+"R7. Without 3 humanities universities","Verona",2022,1.06124681006198
+"R7. Without 3 humanities universities","Verona",2023,1.18548685671973
