@@ -14,6 +14,18 @@ FEAR 5.0 (P. Wilson; not on CRAN, installed from the course zip file)
 The versions of each run are saved in output/sessionInfo.txt.
 
 
+GETTING THE PROJECT FROM GITHUB
+-------------------------------
+Private repository (group members only): https://github.com/Steffcar77/PEA_GroupA
+  git clone https://github.com/Steffcar77/PEA_GroupA.git
+  cd PEA_GroupA
+Install R 4.5.3 and FEAR 5.0 (course zip file), then run the master as described below.
+output/template_run/ is not in the repository: run_all_g4.R recreates it at every run.
+.claude/ (local assistant settings) is excluded. template/ and docs/ are stored without
+line-ending conversion (.gitattributes), so they stay byte-identical to the originals.
+Group workflow: git pull before working; git add, git commit and git push after working.
+
+
 HOW TO RUN
 ----------
 Open a clean R session, set the working directory to this folder (PEA_GroupA) and run:

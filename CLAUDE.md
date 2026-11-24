@@ -29,7 +29,11 @@ Domanda causale: "Would an externally imposed rise in teaching demand reduce res
 7. Va consegnato TUTTO il materiale del progetto: tieni la cartella ordinata e documentata in README.txt.
 
 ## Lavoro di gruppo
-- Esiste una sola cartella del progetto, condivisa tra i tre membri. Non lavorare su copie parallele.
+- Esiste una sola cartella del progetto, condivisa tra i tre membri tramite il repository GitHub
+  privato https://github.com/Steffcar77/PEA_GroupA (branch main). Non lavorare su copie parallele.
+- Regola git: PRIMA di lavorare `git pull`; DOPO aver lavorato `git add`, `git commit` e `git push`.
+  .gitignore esclude .claude/, file di sessione R e output/template_run/; .gitattributes
+  lascia template/ e docs/ identiche byte per byte agli originali.
 - Prima di iniziare, leggi "Stato del lavoro" e "Divisione dei compiti" qui sotto. Non modificare
   script assegnati a un altro membro senza che la persona con cui lavori lo confermi.
 - A fine sessione proponi (e aggiorna solo dopo conferma) "Stato del lavoro" e "Registro deviazioni",
@@ -274,7 +278,8 @@ Noi usiamo risorse vere e test formali.
 2. Tre atenei umanistici nel campione principale (scelta attuale) o esclusi dopo una verifica
    di copertura? La scelta cambia lo stimatore da DEA CRS a FDH.
 3. Lunghezza del report, durata e formato della presentazione del 18 dicembre.
-4. Gruppo: cartella condivisa (OneDrive) e divisione dei compiti.
+4. Gruppo: divisione dei compiti; accesso di Filippo e Alfonso al repository GitHub
+   (creato il 24 novembre 2026).
 
 ## Prossimi passi
 1. Inviare la nota alla prof e registrare la risposta.
