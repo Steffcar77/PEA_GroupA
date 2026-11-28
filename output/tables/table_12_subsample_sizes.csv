@@ -1,2 +1,2 @@
 "candidate_sizes","n_candidates","chosen_m_95_median","chosen_m_95_min","chosen_m_95_max","method"
-"2-37",36,25,2,35,"subsample.sizes = NULL: m chosen per observation (Simar and Wilson 2011a)"
+"2-37",36,15,4,34,"subsample.sizes = NULL: m chosen per observation (Simar and Wilson 2011a)"

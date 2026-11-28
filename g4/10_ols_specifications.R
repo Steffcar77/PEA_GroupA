@@ -1,11 +1,15 @@
 # 10_ols_specifications.R
-# Group A, PEA project 4. Six main OLS specifications and one robustness column:
+# Group A, PEA project 4. Six main OLS specifications and two robustness columns:
 # outcome log_publications (t), exposure lag_log_teaching_load = log(S/F) in t-1.
 #
 #   (1) year effects                         (2) = (1) + lag_lcurrent
 #   (3) year effects + 2018 field shares     (4) = (3) + lag_lcurrent
 #   (5) university and year effects          (6) = (5) + lag_lcurrent  -> must equal 06
 #   (7) = (6) with log(regular students / faculty) in t-1 as the load (robustness)
+#   (8) = (6) + lag_log_phd, log PhD students in t-1 (robustness). PhD students can be a
+#       confounder (prior research capacity drives both enrolment and publications) or a
+#       mediator (more students -> more resources -> more PhD positions -> publications),
+#       so they do not enter the main specification, which stays identical to 06.
 #
 # Interpretation of the exposure coefficient. Every column controls for
 # lag_log_faculty. Since log(S/F) = log S - log F, holding log F fixed the
@@ -35,7 +39,7 @@ a <- read.csv(file.path(run_dir, "results_group_04_sample.csv"), check.names = F
 a <- a[order(a$id, a$year), ]
 rownames(a) <- NULL
 G <- length(unique(a$id))
-stopifnot(nrow(a) == 180L, G == 60L)
+stopifnot(nrow(a) == 180L, G == 60L, all(is.finite(a$lag_log_phd)))
 
 exposure <- "lag_log_teaching_load"
 fields <- c("medicine_share18", "engphys_share18", "ssh_share18")
@@ -58,21 +62,24 @@ a$lag_log_regular_load <- log(regular_prev / faculty_prev)
 # 1. SPECIFICATIONS -------------------------------------------------------------
 
 specs <- list(
-  "(1)" = list(fields = FALSE, university = FALSE, costs = FALSE, load = exposure),
-  "(2)" = list(fields = FALSE, university = FALSE, costs = TRUE,  load = exposure),
-  "(3)" = list(fields = TRUE,  university = FALSE, costs = FALSE, load = exposure),
-  "(4)" = list(fields = TRUE,  university = FALSE, costs = TRUE,  load = exposure),
-  "(5)" = list(fields = FALSE, university = TRUE,  costs = FALSE, load = exposure),
-  "(6)" = list(fields = FALSE, university = TRUE,  costs = TRUE,  load = exposure),
-  "(7)" = list(fields = FALSE, university = TRUE,  costs = TRUE,  load = "lag_log_regular_load")
+  "(1)" = list(fields = FALSE, university = FALSE, costs = FALSE, load = exposure, phd = FALSE),
+  "(2)" = list(fields = FALSE, university = FALSE, costs = TRUE,  load = exposure, phd = FALSE),
+  "(3)" = list(fields = TRUE,  university = FALSE, costs = FALSE, load = exposure, phd = FALSE),
+  "(4)" = list(fields = TRUE,  university = FALSE, costs = TRUE,  load = exposure, phd = FALSE),
+  "(5)" = list(fields = FALSE, university = TRUE,  costs = FALSE, load = exposure, phd = FALSE),
+  "(6)" = list(fields = FALSE, university = TRUE,  costs = TRUE,  load = exposure, phd = FALSE),
+  "(7)" = list(fields = FALSE, university = TRUE,  costs = TRUE,  load = "lag_log_regular_load",
+               phd = FALSE),
+  "(8)" = list(fields = FALSE, university = TRUE,  costs = TRUE,  load = exposure, phd = TRUE)
 )
-# In (5)-(7) the time-invariant 2018 field shares are absorbed by university effects.
+# In (5)-(8) the time-invariant 2018 field shares are absorbed by university effects.
 # (7) = (6) with log(regular students / faculty) as the load measure (robustness).
+# (8) = (6) + lag_log_phd (robustness; PhD students may be a confounder or a mediator).
 load_labels <- c(lag_log_teaching_load = "enrolled students / faculty",
                  lag_log_regular_load = "regular students / faculty")
 
 fit_column <- function(s) {
-  rhs <- c(s$load, "lag_log_faculty", if (s$costs) "lag_lcurrent",
+  rhs <- c(s$load, "lag_log_faculty", if (s$costs) "lag_lcurrent", if (s$phd) "lag_log_phd",
            if (s$fields) fields, if (s$university) "factor(id)", "factor(year)")
   fit <- lm(reformulate(rhs, response = "log_publications"), data = a, na.action = na.fail)
   V <- sandwich::vcovCL(fit, cluster = a$id, type = "HC1")
@@ -97,7 +104,8 @@ long_rows <- list()
 for (column in names(specs)) {
   s <- specs[[column]]
   tests <- fits[[column]]$tests
-  for (term in intersect(c(s$load, "lag_log_faculty", "lag_lcurrent"), rownames(tests))) {
+  for (term in intersect(c(s$load, "lag_log_faculty", "lag_lcurrent", "lag_log_phd"),
+                         rownames(tests))) {
     b <- tests[term, "Estimate"]
     se <- tests[term, "Std. Error"]
     long_rows[[paste(column, term)]] <- data.frame(
@@ -105,7 +113,9 @@ for (column in names(specs)) {
       load_measure = load_labels[[s$load]], estimate = b, cluster_se = se,
       lo = b - critical * se, hi = b + critical * se, p = tests[term, "Pr(>|t|)"],
       field_shares = s$fields, university_effects = s$university, cost_control = s$costs,
-      target = if (s$costs) "fixed resources" else "total",
+      phd_control = s$phd,
+      target = if (s$phd) "fixed resources + PhD (robustness)" else
+        if (s$costs) "fixed resources" else "total",
       n = nobs(fits[[column]]$fit), universities = G,
       r_squared = summary(fits[[column]]$fit)$r.squared,
       r_squared_within = within_r2(fits[[column]]$fit, s)
@@ -139,7 +149,8 @@ cell <- function(column, term) {
 }
 yes_no <- function(x) ifelse(x, "yes", "no")
 wide <- data.frame(row = c("log(teaching load), t-1", "", "log faculty, t-1", "",
-                           "log current costs, t-1", "", "95% CI, teaching load",
+                           "log current costs, t-1", "", "log PhD students, t-1", "",
+                           "95% CI, teaching load",
                            "Load measure", "Year effects", "2018 field shares",
                            "University effects",
                            "Target", "N", "Universities", "R-squared",
@@ -148,7 +159,7 @@ for (column in names(specs)) {
   s <- specs[[column]]
   x <- long[long$column == column & long$term == "load", ]
   wide[[column]] <- c(cell(column, "load"), cell(column, "lag_log_faculty"),
-                      cell(column, "lag_lcurrent"),
+                      cell(column, "lag_lcurrent"), cell(column, "lag_log_phd"),
                       sprintf("[%.2f, %.2f]", x$lo, x$hi), x$load_measure,
                       "yes", if (s$university) "absorbed" else yes_no(s$fields),
                       yes_no(s$university), x$target, x$n, x$universities,

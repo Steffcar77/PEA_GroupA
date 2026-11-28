@@ -71,10 +71,11 @@ g4/            Group scripts (numbered from 07):
                                    set to NA (output/g4_project_panel_2020_2023.csv; checks
                                    that only those 61 cells change), sample flow by
                                    restriction (on that copy), exposure check, missing
-                                   values, adjunct-faculty 2023 check, sample descriptives,
+                                   values (including PhD students), adjunct-faculty 2023
+                                   check, sample descriptives (including PhD students),
                                    data notes to verify at the source (adjunct 2023,
-                                   Perugia Stranieri faculty 2022, Molise costs):
-                                   table_07_data_notes.csv.
+                                   Perugia Stranieri faculty 2022, Molise costs, PhD
+                                   students): table_07_data_notes.csv.
                08_ratio_variation.R  SDs of log(students/faculty) between and within
                                    universities, 2020-2022, and figure of the variation.
                09_ratio_decomposition.R  dlog(S/F) = dlog S - dlog F: variance shares (raw,
@@ -83,10 +84,11 @@ g4/            Group scripts (numbered from 07):
                                    students at fixed faculty" defined as dlog S > 0 and
                                    |dlog F| <= 0.01, with exact and +/-2% sensitivity
                                    (table_09_fixed_faculty.csv).
-               10_ols_specifications.R  seven OLS columns on the 06 sample (year effects /
+               10_ols_specifications.R  eight OLS columns on the 06 sample (year effects /
                                    + 2018 field shares / + university effects, each without
                                    and with cost control; column (7) = (6) with regular
-                                   students / faculty as the load); column (6) must
+                                   students / faculty as the load; column (8) = (6) + lagged
+                                   log PhD students, robustness only); column (6) must
                                    reproduce 06.
                11_nhn_start_sensitivity.R  NHN of 06 (exposure in the frontier) from 32
                                    starting values, profile log-likelihood towards
@@ -98,9 +100,12 @@ g4/            Group scripts (numbered from 07):
                                    diagnostics only; NHN elasticities must not be cited.
                                    Runs only if RUN_SENSITIVITY = TRUE.
                12_research_frontier.R  Block 2 with FEAR: pooled research-only frontier
-                                   2021-2023 (61 universities, 183 rows); inputs faculty and
+                                   2021-2023 (61 universities, 183 rows); inputs research
+                                   staff (faculty + research fellows + PhD students) and
                                    deflated current costs in t-1, output Scopus publications
-                                   in t. Outliers (ap), convexity and returns-to-scale tests
+                                   in t (inputs and labels written to
+                                   table_12_efficiency_summary.csv and read by 13 and 15).
+                                   Outliers (ap), convexity and returns-to-scale tests
                                    (fast versions, NSPLIT = 1000), estimator chosen by a fixed
                                    rule (label estimator_short, read by 13 and 15),
                                    output-oriented efficiency with subsampling 95%
@@ -108,13 +113,16 @@ g4/            Group scripts (numbered from 07):
                                    m < 10), figure against the teaching load, ap rule and
                                    separation gaps (gap_to_next) in the notes. Always runs
                                    (about 3 minutes); needs FEAR 5.0 and data/.
-               13_frontier_robustness.R  Robustness of 12: one frontier per year, nominal
-                                   costs, faculty + fellows, without ap potential outliers,
-                                   without the 3 humanities universities with almost no
-                                   Scopus output. Each version re-applies the estimator rule;
-                                   summary with Spearman correlation against 12 and summary
-                                   dot plot (fig_13_robustness_summary.png). Main estimator
-                                   label read from 12. Bootstrap convexity test with
+               13_frontier_robustness.R  Robustness of 12 (main inputs read from 12):
+                                   R1-R3 one frontier per year, R4 nominal costs, R5 faculty
+                                   + fellows, R6 without ap potential outliers, R7 without
+                                   the 3 humanities universities with almost no Scopus
+                                   output, R8 faculty, PhD students and costs as three
+                                   inputs, R9 faculty only (main version until 28/11/2026).
+                                   Each version re-applies the estimator rule; summary with
+                                   Spearman correlation against 12 and summary dot plot
+                                   (fig_13_robustness_summary.png). Main estimator and
+                                   input labels read from 12. Bootstrap convexity test with
                                    p-values (NSPLIT = 10, NREP = 1000) only if
                                    RUN_SENSITIVITY, for information (the estimator rule uses
                                    the fast tests); bootstrap test.rts dropped (over 30 min).
@@ -125,13 +133,16 @@ g4/            Group scripts (numbered from 07):
                                    Quadrants use each university's median efficiency
                                    (1 / Farrell) and median publications over 2021-2023;
                                    cutoffs are medians across the 61 universities.
-                                   Estimator label read from 12; footer explains why the
-                                   intervals lie above the estimate.
+                                   Estimator and input labels read from 12, robustness
+                                   labels read from 13; footer explains why the intervals
+                                   lie above the estimate.
                                    No new estimation or dependencies. Runs after 13.
                16_causal_dag.R  Assumed causal DAG in base R (PNG/PDF, 16:9), with
                                    node, edge and assumptions tables. Checks acyclicity.
                                    Distinguishes the deterministic ratio S/F from causal
-                                   hypotheses; students -> costs has unverified timing.
+                                   hypotheses; students -> costs has unverified timing;
+                                   PhD students have an ambiguous role (dashed links from
+                                   reputation, size and students, and to publications).
                                    Runs after 15 and is linked from the HTML index.
 report/        note_for_professor.md  working note: findings, idea A vs idea B, proposal B,
                                    draft data request and causal design.

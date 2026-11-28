@@ -1,14 +1,14 @@
-"obs","id","year","publications","faculty_lag","cost_real_lag","first_deletion_level","times_in_deletion_sets","small_university","nhn_residual_06","nhn_residual_percentile"
-124,"Roma La Sapienza",2021,11537,3340,195.72,1,12,FALSE,-0.122,0.728
-15,"Bologna",2023,9317,3172,260.02,2,11,FALSE,-0.269,0.372
-156,"Torino",2023,6573,2279,210.7,3,10,FALSE,-0.206,0.544
-125,"Roma La Sapienza",2022,11351,3510,215.99,4,9,FALSE,-0.158,0.633
-126,"Roma La Sapienza",2023,11551,3576,237.46,5,8,FALSE,-0.154,0.656
-67,"Milano",2021,9463,2199,190.91,6,7,FALSE,-0.042,0.911
-14,"Bologna",2022,8957,2997,229.53,7,6,FALSE,-0.255,0.4
-83,"Napoli Federico II",2022,8604,2859,169.52,8,4,FALSE,-0.268,0.378
-69,"Milano",2023,8929,2419,239.06,9,4,FALSE,-0.17,0.617
-96,"Padova",2023,9267,2551,245.56,9,4,FALSE,-0.15,0.667
-183,"Verona",2023,2701,838,113.44,11,1,FALSE,-0.345,0.217
-82,"Napoli Federico II",2021,8493,2630,159.57,12,1,FALSE,-0.244,0.439
-84,"Napoli Federico II",2023,8525,2866,195.16,12,1,FALSE,-0.296,0.294
+"obs","id","year","publications","research_staff_lag","faculty_lag","cost_real_lag","first_deletion_level","times_in_deletion_sets","small_university","nhn_residual_06","nhn_residual_percentile"
+126,"Roma La Sapienza",2023,11551,8148,3576,237.46,1,12,FALSE,-0.154,0.656
+124,"Roma La Sapienza",2021,11537,7130,3340,195.72,2,11,FALSE,-0.122,0.728
+125,"Roma La Sapienza",2022,11351,7635,3510,215.99,3,10,FALSE,-0.158,0.633
+15,"Bologna",2023,9317,6871,3172,260.02,4,9,FALSE,-0.269,0.372
+67,"Milano",2021,9463,3882,2199,190.91,5,8,FALSE,-0.042,0.911
+14,"Bologna",2022,8957,6259,2997,229.53,6,6,FALSE,-0.255,0.4
+68,"Milano",2022,9218,4130,2306,213.83,7,6,FALSE,-0.093,0.811
+69,"Milano",2023,8929,4377,2419,239.06,7,6,FALSE,-0.17,0.617
+156,"Torino",2023,6573,4028,2279,210.7,9,4,FALSE,-0.206,0.544
+96,"Padova",2023,9267,5224,2551,245.56,10,1,FALSE,-0.15,0.667
+74,"Milano Politecnico",2022,5945,4451,1506,167.67,11,2,FALSE,-0.249,0.428
+75,"Milano Politecnico",2023,6429,4776,1627,160.37,11,2,FALSE,-0.185,0.6
+13,"Bologna",2021,8859,5806,2850,210.32,12,1,FALSE,-0.251,0.422

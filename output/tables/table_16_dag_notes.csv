@@ -5,5 +5,6 @@
 "Without cost control: candidate total response to students at fixed faculty. With cost control: candidate fixed-faculty, fixed-spending target. Neither regression identifies these effects without additional assumptions."
 "L = S/F is deterministic. Changing students at fixed faculty differs from reducing faculty; do not interpret an independent intervention on the ratio without specifying its source."
 "Prior reputation and institutional capacity are conceptual common causes, not new regressors. University effects cannot guarantee removal of time-varying confounding."
+"PhD students have an ambiguous role: a confounder if reputation or capacity drive both PhD programmes and publications, a mediator if more students bring resources and PhD positions (dashed S -> PhD). Controlling for them could remove part of the effect of interest, so they are not in the main OLS specification (only in column (8) of g4/10); they enter the frontier as part of research capacity (g4/12)."
 "The diagram is deliberately incomplete: student quality, programme changes, staff responses and common year shocks may add paths. No sufficient adjustment set is claimed."
 "Source: docs/VQR_Ten_Group_Projects.pdf, pp. 1, 5 and 12; working assumptions documented in CLAUDE.md."

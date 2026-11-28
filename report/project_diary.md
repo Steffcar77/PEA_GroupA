@@ -267,6 +267,45 @@ passi restano in CLAUDE.md.
   del bootstrap e le figure di 12 e 15. Fit SFA di 06 identici (cambia solo il tempo di calcolo).
 - Problemi: nessuno. Variabile phd non toccata (passo separato).
 
+28 novembre 2026 – Dottorandi nell'input lavoro della frontiera (Stefano; verifica dei dati di Filippo)
+- Cosa: il 27/11 la prof ha chiesto "dottorandi insieme ai ricercatori" nell'input lavoro.
+  Filippo ha verificato che phd (STUDENTS ENROLLED IN PHD PROGRAMMES, ANVUR) è già nel
+  teaching_panel, completa e senza zeri; 05 crea lag_log_phd. Decisione del gruppo: un solo
+  input research staff = docenti + assegnisti + dottorandi in t−1 (deviazione 14).
+  - 12: frontiera principale con research staff e costi deflazionati; ap, test .fast, stimatore
+    e intervalli rifatti con la stessa regola e lo stesso seed. Legenda di fig_12 su tre colonne.
+  - 13: varianti R1–R7 con il nuovo input; nuove R8 (docenti, dottorandi e costi come tre input)
+    e R9 (solo docenti, vecchia principale). Input ed etichette letti da 12.
+  - 10: colonna (8) = (6) + lag_log_phd, solo robustezza (il dottorato può essere confondente o
+    mediatore). 07: phd nei mancanti, nelle descrittive e nelle note dati. 16: nodo PhD students
+    con frecce tratteggiate da reputazione, dimensione e studenti, e verso le pubblicazioni.
+- Perché: l'input della frontiera misura la capacità di ricerca, che include assegnisti e
+  dottorandi; l'esposizione resta studenti/docenti perché misura la didattica. Un solo input
+  aggregato tiene p + q = 3 con n = 183.
+- Risultato (vecchio → nuovo):
+  - test .fast invariati: convessità e CRS non respinti a 10/5/1% → DEA CRS in entrambi i casi;
+  - Farrell mediano 1.310 → 1.388 (per anno 1.254 / 1.310 / 1.404 → 1.283 / 1.404 / 1.470);
+  - efficienti 3 → 4: da Catanzaro 2021, Molise 2021, Bari Politecnico 2022 a Foggia 2021,
+    Insubria 2021, L'Aquila 2021, Molise 2021;
+  - ampiezza mediana dell'IC95 0.071 → 0.086; intervalli instabili (m < 10) 45 → 51
+    (16 / 18 / 17 per anno, 31 atenei); m mediano 25 → 15;
+  - ap: sempre 13 atenei-anno (ora di 6 atenei). Entrano Milano 2022, Milano Politecnico 2022 e
+    2023, Bologna 2021; escono Napoli Federico II (3 anni) e Verona 2023. Stacchi maggiori a 3
+    (0.068) e 4 (0.041) eliminazioni (prima 1 e 4);
+  - Spearman nuova vs vecchia classifica: 0.838 (R9 riproduce esattamente la vecchia principale);
+  - robustezze: R1–R3 Spearman 0.99–1.00, mediane 1.28 / 1.29 / 1.27; R4 1.418 (0.997);
+    R5 1.332 (0.954); R6 1.377 (1.000); R7 FDH, 65 efficienti su 174 (37%), 1.040 (0.830);
+    R8 DEA CRS, 6 efficienti, 1.293 (0.890); R9 1.310 (0.838);
+  - bootstrap della convessità (NREP 1000): p = 0.641 / 0.648 → 0.851 / 0.363;
+  - OLS: (6) 0.011 (SE 0.350) invariata; (8) carico −0.077 (0.333), lag_log_phd 0.141 (0.100),
+    R² within 0.110. Colonne 1–7 identiche.
+  - Note: le elasticità NHN_Z (0.717, 0.302, somma 1.020) usano i soli docenti: per la nuova
+    frontiera sono un'indicazione da una specificazione diversa, non una conferma del test RTS.
+- Verifica: esecuzione completa da sessione pulita (RUN_SENSITIVITY = TRUE), exit code 0,
+  8 controlli superati; campione, 06, colonne 1–7 di 10 e tabelle di 08, 09, 11 (tranne le note)
+  identici. Figure di 12, 13, 15 e 16 controllate a vista (in fig_13 allargato il margine sinistro).
+- Problemi: nessuno.
+
 ## Note sui risultati (dagli output del 22 novembre 2026)
 - Interpretazione del coefficiente (10 e 06): con lag_log_faculty sempre presente, il coefficiente
   di log(S/F) coincide con quello di log S a docenti fissi, cioè l'intervento scelto ("più studenti

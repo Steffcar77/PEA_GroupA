@@ -123,7 +123,7 @@ cat("Exposure check passed: lag_log_teaching_load = log(students/faculty) in t-1
 # 3. MISSING VALUES AND ZEROS OF THE KEY VARIABLES, BY YEAR -------------------
 
 # Blank and N.A. cells are kept as missing; they are never recoded as zero.
-key_vars <- c("faculty", "fellows", "students", "graduates",
+key_vars <- c("faculty", "fellows", "phd", "students", "graduates",
               "current_management", "publications", fields)
 missing_rows <- list()
 for (v in key_vars) {
@@ -186,6 +186,7 @@ describe <- list(
   c("Faculty, internal teaching staff (t-1)", "faculty", "2020-2022"),
   c("Students per faculty member (t-1)", "students_per_faculty", "2020-2022"),
   c("Research fellows (t-1)", "fellows", "2020-2022"),
+  c("PhD students (t-1)", "phd", "2020-2022"),
   c("Current-management costs, million EUR nominal (t-1)", "current_management_m", "2020-2022")
 )
 descriptive_rows <- list()
@@ -281,11 +282,36 @@ mo_note <- sprintf(paste(
                 pct(cm$cm_change[seq_len(mo_rank - 1)])), collapse = "; "))
 stopifnot(w20$UNIVERSITY_ID[1] == "Molise", lag_years$id[1] == "Molise")
 
+# (d) PhD students (STUDENTS ENROLLED IN PHD PROGRAMMES, ANVUR), now part of the
+# research-staff input of the frontier (g4/12) and of column (8) of g4/10.
+phd_wb <- suppressWarnings(as.numeric(workbook[["STUDENTS ENROLLED IN PHD PROGRAMMES"]][
+  match(paste(panel$id, panel$year), paste(workbook$UNIVERSITY_ID, workbook$YEAR))]))
+stopifnot(isTRUE(all.equal(panel$phd, phd_wb)))
+phd_median <- tapply(panel$phd, panel$year, median)
+log_phd <- log(panel$phd)
+phd_res <- resid(lm(log_phd ~ factor(id) + factor(year), data = panel))
+phd_within_share <- sum(phd_res^2) / sum((log_phd - mean(log_phd))^2)
+phd_share_students <- panel$phd / panel$students
+phd_note <- sprintf(paste(
+  "PhD students (STUDENTS ENROLLED IN PHD PROGRAMMES, ANVUR): observed for %d of %d university-years",
+  "(%d missing, %d zeros). Median %s (2020) -> %s (2023), %s. Share of the total sum of squares of log PhD",
+  "students left after university and year effects: %.1f%% (little within variation). Correlation with",
+  "faculty: %.2f in levels, %.2f in logs. PhD students are %.1f%% of enrolled students at the median",
+  "(%.1f%%-%.1f%%): it is not documented whether NUMBER OF ENROLLED STUDENTS already includes them.",
+  "To include in the data request."),
+  sum(!is.na(panel$phd)), nrow(panel), sum(is.na(panel$phd)), sum(panel$phd == 0, na.rm = TRUE),
+  format(phd_median[["2020"]]), format(phd_median[["2023"]]),
+  pct(phd_median[["2023"]] / phd_median[["2020"]] - 1),
+  100 * phd_within_share, cor(panel$phd, panel$faculty), cor(log_phd, log(panel$faculty)),
+  100 * median(phd_share_students), 100 * min(phd_share_students), 100 * max(phd_share_students))
+
 data_notes <- data.frame(
-  item = c("Adjunct faculty 2023", "Perugia Stranieri faculty 2022", "Molise current-management costs"),
+  item = c("Adjunct faculty 2023", "Perugia Stranieri faculty 2022", "Molise current-management costs",
+           "PhD students"),
   status = c("treated as missing; no estimate affected", "to verify at the source",
-             "components consistent; 2022 jump to verify at the source"),
-  note = c(adj_note, ps_note, mo_note)
+             "components consistent; 2022 jump to verify at the source",
+             "complete; inclusion in enrolled students to verify"),
+  note = c(adj_note, ps_note, mo_note, phd_note)
 )
 print(data_notes)
 write.csv(data_notes, file.path(tab_dir, "table_07_data_notes.csv"), row.names = FALSE)

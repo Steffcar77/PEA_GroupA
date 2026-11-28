@@ -1,62 +1,62 @@
 "university","median_efficiency","median_publications","efficiency_group","publication_group","efficiency_cutoff","publication_cutoff"
-"Bari",0.671731936361627,4068,"Below median","At or above median",0.764630834248439,2250
-"Bari Politecnico",0.957931870624805,1327,"At or above median","Below median",0.764630834248439,2250
-"Basilicata",0.800160626370446,813,"At or above median","Below median",0.764630834248439,2250
-"Bergamo",0.453359461655874,741,"Below median","Below median",0.764630834248439,2250
-"Bologna",0.701034958721853,8957,"Below median","At or above median",0.764630834248439,2250
-"Brescia",0.903081236806197,2445,"At or above median","At or above median",0.764630834248439,2250
-"Cagliari",0.576766839734899,2373,"Below median","At or above median",0.764630834248439,2250
-"Calabria",0.579320541869943,2012,"Below median","Below median",0.764630834248439,2250
-"Camerino",0.709207228691983,820,"Below median","Below median",0.764630834248439,2250
-"Cassino",0.618143762103134,495,"Below median","Below median",0.764630834248439,2250
-"Catania",0.703914899174395,3596,"Below median","At or above median",0.764630834248439,2250
-"Catanzaro",0.979261692875295,1294,"At or above median","Below median",0.764630834248439,2250
-"Chieti e Pescara",0.640791505065722,1972,"Below median","Below median",0.764630834248439,2250
-"Ferrara",0.807577934454408,2361,"At or above median","At or above median",0.764630834248439,2250
-"Firenze",0.852797775549822,6015,"At or above median","At or above median",0.764630834248439,2250
-"Foggia",0.7945664232363,1267,"At or above median","Below median",0.764630834248439,2250
-"Genova",0.889601844370066,4778,"At or above median","At or above median",0.764630834248439,2250
-"Insubria",0.885996967605545,1518,"At or above median","Below median",0.764630834248439,2250
-"L'Aquila",0.871223997032309,2022,"At or above median","Below median",0.764630834248439,2250
-"Macerata",0.361507216146137,333,"Below median","Below median",0.764630834248439,2250
-"Marche Politecnica",0.930121779043732,2263,"At or above median","At or above median",0.764630834248439,2250
-"Messina",0.661752991276344,2805,"Below median","At or above median",0.764630834248439,2250
-"Milano",0.902712316661011,9218,"At or above median","At or above median",0.764630834248439,2250
-"Milano Bicocca",0.903216678078137,4151,"At or above median","At or above median",0.764630834248439,2250
-"Milano Politecnico",0.880464903453743,5945,"At or above median","At or above median",0.764630834248439,2250
-"Modena e Reggio Emilia",0.81110870591652,2936,"At or above median","At or above median",0.764630834248439,2250
-"Molise",0.932558909814352,751,"At or above median","Below median",0.764630834248439,2250
-"Napoli Federico II",0.736451090996144,8525,"Below median","At or above median",0.764630834248439,2250
-"Napoli L'Orientale",0.0460044179368102,34,"Below median","Below median",0.764630834248439,2250
-"Napoli Parthenope",0.773323249233584,910,"At or above median","Below median",0.764630834248439,2250
-"Napoli Vanvitelli",0.846145904632519,3356,"At or above median","At or above median",0.764630834248439,2250
-"Padova",0.884483888481318,9247,"At or above median","At or above median",0.764630834248439,2250
-"Palermo",0.615923074446126,3674,"Below median","At or above median",0.764630834248439,2250
-"Parma",0.627894497666309,2500,"Below median","At or above median",0.764630834248439,2250
-"Pavia",0.929269013820524,3793,"At or above median","At or above median",0.764630834248439,2250
-"Perugia",0.763419809964772,2985,"Below median","At or above median",0.764630834248439,2250
-"Perugia Stranieri",0.189878984109264,44,"Below median","Below median",0.764630834248439,2250
-"Piemonte Orientale",0.764630834248439,1397,"At or above median","Below median",0.764630834248439,2250
-"Pisa",0.902945963126648,5704,"At or above median","At or above median",0.764630834248439,2250
-"Reggio Calabria",0.625087652614897,615,"Below median","Below median",0.764630834248439,2250
-"Roma Foro Italico",0.89933483107528,239,"At or above median","Below median",0.764630834248439,2250
-"Roma La Sapienza",0.786965033086157,11537,"At or above median","At or above median",0.764630834248439,2250
-"Roma Tor Vergata",0.780323619170586,4202,"At or above median","At or above median",0.764630834248439,2250
-"Roma Tre",0.557108523598245,1886,"Below median","Below median",0.764630834248439,2250
-"Salento",0.781405736111416,1518,"At or above median","Below median",0.764630834248439,2250
-"Salerno",0.797176503090661,3042,"At or above median","At or above median",0.764630834248439,2250
-"Sannio",0.946056227053593,563,"At or above median","Below median",0.764630834248439,2250
-"Sassari",0.517870656635039,1313,"Below median","Below median",0.764630834248439,2250
-"Siena",0.734590080159079,2250,"Below median","At or above median",0.764630834248439,2250
-"Siena Stranieri",0.075413291890752,24,"Below median","Below median",0.764630834248439,2250
-"Teramo",0.417961506704941,397,"Below median","Below median",0.764630834248439,2250
-"Torino",0.71669977405434,6739,"Below median","At or above median",0.764630834248439,2250
-"Torino Politecnico",0.934976000717093,4015,"At or above median","At or above median",0.764630834248439,2250
-"Trento",0.929726148549651,2911,"At or above median","At or above median",0.764630834248439,2250
-"Trieste",0.890721488526258,2472,"At or above median","At or above median",0.764630834248439,2250
-"Tuscia",0.73524579931827,807,"Below median","Below median",0.764630834248439,2250
-"Udine",0.616684858885266,1635,"Below median","Below median",0.764630834248439,2250
-"Urbino",0.623309958077996,660,"Below median","Below median",0.764630834248439,2250
-"Venezia Cà Foscari",0.492500308794286,1286,"Below median","Below median",0.764630834248439,2250
-"Venezia Iuav",0.238445029016275,182,"Below median","Below median",0.764630834248439,2250
-"Verona",0.735234338875409,2743,"Below median","At or above median",0.764630834248439,2250
+"Bari",0.739291420193526,4068,"At or above median","At or above median",0.712322295236866,2250
+"Bari Politecnico",0.850544067498887,1327,"At or above median","Below median",0.712322295236866,2250
+"Basilicata",0.847462232301461,813,"At or above median","Below median",0.712322295236866,2250
+"Bergamo",0.500117968878695,741,"Below median","Below median",0.712322295236866,2250
+"Bologna",0.605468417316065,8957,"Below median","At or above median",0.712322295236866,2250
+"Brescia",0.922672957812318,2445,"At or above median","At or above median",0.712322295236866,2250
+"Cagliari",0.662545983253724,2373,"Below median","At or above median",0.712322295236866,2250
+"Calabria",0.636653789621924,2012,"Below median","Below median",0.712322295236866,2250
+"Camerino",0.653069069477845,820,"Below median","Below median",0.712322295236866,2250
+"Cassino",0.650462358163714,495,"Below median","Below median",0.712322295236866,2250
+"Catania",0.77988600542965,3596,"At or above median","At or above median",0.712322295236866,2250
+"Catanzaro",0.975378701827401,1294,"At or above median","Below median",0.712322295236866,2250
+"Chieti e Pescara",0.653608467871272,1972,"Below median","Below median",0.712322295236866,2250
+"Ferrara",0.757183909093893,2361,"At or above median","At or above median",0.712322295236866,2250
+"Firenze",0.759965673677304,6015,"At or above median","At or above median",0.712322295236866,2250
+"Foggia",0.879067626195186,1267,"At or above median","Below median",0.712322295236866,2250
+"Genova",0.809128923326403,4778,"At or above median","At or above median",0.712322295236866,2250
+"Insubria",0.893022514384609,1518,"At or above median","Below median",0.712322295236866,2250
+"L'Aquila",0.938976456747204,2022,"At or above median","Below median",0.712322295236866,2250
+"Macerata",0.391555513802901,333,"Below median","Below median",0.712322295236866,2250
+"Marche Politecnica",0.830652066619039,2263,"At or above median","At or above median",0.712322295236866,2250
+"Messina",0.753127659359162,2805,"At or above median","At or above median",0.712322295236866,2250
+"Milano",0.869231143611517,9218,"At or above median","At or above median",0.712322295236866,2250
+"Milano Bicocca",0.765200828332945,4151,"At or above median","At or above median",0.712322295236866,2250
+"Milano Politecnico",0.593358521657668,5945,"Below median","At or above median",0.712322295236866,2250
+"Modena e Reggio Emilia",0.697076914220049,2936,"Below median","At or above median",0.712322295236866,2250
+"Molise",0.936773413215925,751,"At or above median","Below median",0.712322295236866,2250
+"Napoli Federico II",0.774295108452868,8525,"At or above median","At or above median",0.712322295236866,2250
+"Napoli L'Orientale",0.0467812482986823,34,"Below median","Below median",0.712322295236866,2250
+"Napoli Parthenope",0.776145205438117,910,"At or above median","Below median",0.712322295236866,2250
+"Napoli Vanvitelli",0.784078688049109,3356,"At or above median","At or above median",0.712322295236866,2250
+"Padova",0.7528120993116,9247,"At or above median","At or above median",0.712322295236866,2250
+"Palermo",0.686379177451455,3674,"Below median","At or above median",0.712322295236866,2250
+"Parma",0.631838508019339,2500,"Below median","At or above median",0.712322295236866,2250
+"Pavia",0.839187335761378,3793,"At or above median","At or above median",0.712322295236866,2250
+"Perugia",0.8083220417058,2985,"At or above median","At or above median",0.712322295236866,2250
+"Perugia Stranieri",0.210256718892389,44,"Below median","Below median",0.712322295236866,2250
+"Piemonte Orientale",0.712322295236866,1397,"At or above median","Below median",0.712322295236866,2250
+"Pisa",0.818492793002531,5704,"At or above median","At or above median",0.712322295236866,2250
+"Reggio Calabria",0.691875851991528,615,"Below median","Below median",0.712322295236866,2250
+"Roma Foro Italico",0.881493494374044,239,"At or above median","Below median",0.712322295236866,2250
+"Roma La Sapienza",0.709134589741958,11537,"Below median","At or above median",0.712322295236866,2250
+"Roma Tor Vergata",0.672009276952734,4202,"Below median","At or above median",0.712322295236866,2250
+"Roma Tre",0.569552484260476,1886,"Below median","Below median",0.712322295236866,2250
+"Salento",0.779444037779176,1518,"At or above median","Below median",0.712322295236866,2250
+"Salerno",0.820780831478179,3042,"At or above median","At or above median",0.712322295236866,2250
+"Sannio",0.891273872740135,563,"At or above median","Below median",0.712322295236866,2250
+"Sassari",0.564904994554745,1313,"Below median","Below median",0.712322295236866,2250
+"Siena",0.695539024788453,2250,"Below median","At or above median",0.712322295236866,2250
+"Siena Stranieri",0.0764835539403136,24,"Below median","Below median",0.712322295236866,2250
+"Teramo",0.41549607758921,397,"Below median","Below median",0.712322295236866,2250
+"Torino",0.695965241215359,6739,"Below median","At or above median",0.712322295236866,2250
+"Torino Politecnico",0.697297069669294,4015,"Below median","At or above median",0.712322295236866,2250
+"Trento",0.738280400940165,2911,"At or above median","At or above median",0.712322295236866,2250
+"Trieste",0.817201130949872,2472,"At or above median","At or above median",0.712322295236866,2250
+"Tuscia",0.688364622586814,807,"Below median","Below median",0.712322295236866,2250
+"Udine",0.655030330766558,1635,"Below median","Below median",0.712322295236866,2250
+"Urbino",0.635441374379789,660,"Below median","Below median",0.712322295236866,2250
+"Venezia Cà Foscari",0.425843954773974,1286,"Below median","Below median",0.712322295236866,2250
+"Venezia Iuav",0.200416064907372,182,"Below median","Below median",0.712322295236866,2250
+"Verona",0.704652881823364,2743,"Below median","At or above median",0.712322295236866,2250

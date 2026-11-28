@@ -1,14 +1,19 @@
 # 13_frontier_robustness.R
 # Group A, PEA project 4, Block 2. Robustness checks of the research-only frontier of 12.
 #
-# Versions (each re-applies the estimator rule of 12 with the fast tests, NSPLIT = 1000):
+# Main inputs (read from g4/12): research staff (faculty + fellows + PhD students) and
+# deflated current costs, t-1. Versions (each re-applies the estimator rule of 12 with the
+# fast tests, NSPLIT = 1000); unless stated, they use the main inputs:
 #   R1-R3 one frontier per year (2021, 2022, 2023);
 #   R4    nominal instead of deflated current costs;
-#   R5    faculty + research fellows as the labour input;
-#   R6    without the ap potential outliers of 12 (13 university-years);
+#   R5    faculty + research fellows as the labour input (no PhD students);
+#   R6    without the ap potential outliers of 12;
 #   R7    without the 3 universities with almost no Scopus output (Napoli L'Orientale,
 #         Siena Stranieri, Perugia Stranieri): sensitivity to a possible coverage problem.
-#         Scopus also indexes books; the completeness of this extract is not established.
+#         Scopus also indexes books; the completeness of this extract is not established;
+#   R8    three separate inputs: faculty, PhD students, deflated costs (p + q = 4);
+#   R9    faculty only + deflated costs: the main version until 28 November 2026.
+#         Its Spearman correlation with the main scores compares the new and old rankings.
 # For each version: estimator chosen, median Farrell score, share of efficient units and the
 # Spearman correlation of the scores with the main version (common university-years).
 #
@@ -33,13 +38,22 @@ main_summary <- read.csv(file.path(tab_dir, "table_12_efficiency_summary.csv"),
                          check.names = FALSE)
 stopifnot(nrow(main) == 183L)
 main_key <- paste(main$id, main$year)
+total <- main_summary[main_summary$period == "2021-2023", ]
+stopifnot(nrow(total) == 1L, total$estimator_short %in% c("DEA CRS", "DEA VRS", "FDH"))
 
-# Research fellows in t-1, from the teaching panel.
+# Main inputs as used by 12; the labour input is the first, deflated costs the second.
+inputs_main <- strsplit(total$input_columns, ";", fixed = TRUE)[[1]]
+stopifnot(length(inputs_main) == 2L, all(inputs_main %in% names(main)),
+          inputs_main[2] == "cost_real_lag")
+labour_main <- inputs_main[1]
+
+# Faculty + research fellows in t-1 (R5), checked against the teaching panel.
 panel <- read.csv(file.path("output", "template_run", "teaching_panel_2020_2023.csv"),
                   check.names = FALSE)
 previous <- match(paste(main$id, main$year - 1L), paste(panel$id, panel$year))
-stopifnot(!anyNA(previous))
-main$labour_lag <- main$faculty_lag + panel$fellows[previous]
+stopifnot(!anyNA(previous), all(main$fellows_lag == panel$fellows[previous]),
+          all(main$phd_lag == panel$phd[previous]))
+main$labour_lag <- main$faculty_lag + main$fellows_lag
 
 
 # 1. ONE VERSION = TESTS + ESTIMATOR RULE + SCORES --------------------------------
@@ -77,7 +91,6 @@ run_version <- function(label, dat, x_cols) {
   list(summary = summary_row, scores = scores)
 }
 
-inputs_main <- c("faculty_lag", "cost_real_lag")
 humanities <- c("Napoli L'Orientale", "Siena Stranieri", "Perugia Stranieri")
 stopifnot(all(humanities %in% main$id))
 
@@ -88,21 +101,23 @@ for (yr in 2021:2023) {
                                                   main[main$year == yr, ], inputs_main)
 }
 versions[[length(versions) + 1]] <- run_version("R4. Nominal costs", main,
-                                                c("faculty_lag", "cost_nominal_lag"))
+                                                c(labour_main, "cost_nominal_lag"))
 versions[[length(versions) + 1]] <- run_version("R5. Faculty + fellows", main,
                                                 c("labour_lag", "cost_real_lag"))
 versions[[length(versions) + 1]] <- run_version("R6. Without ap potential outliers",
                                                 main[!main$ap_potential_outlier, ], inputs_main)
 versions[[length(versions) + 1]] <- run_version("R7. Without 3 humanities universities",
                                                 main[!main$id %in% humanities, ], inputs_main)
+versions[[length(versions) + 1]] <- run_version("R8. Faculty, PhD students and costs as three inputs",
+                                                main, c("faculty_lag", "phd_lag", "cost_real_lag"))
+versions[[length(versions) + 1]] <- run_version("R9. Faculty only (main until 28 Nov 2026)", main,
+                                                c("faculty_lag", "cost_real_lag"))
 
 
 # 2. SUMMARY TABLE (MAIN VERSION FIRST) ------------------------------------------
 
-total <- main_summary[main_summary$period == "2021-2023", ]
-stopifnot(nrow(total) == 1L, total$estimator_short %in% c("DEA CRS", "DEA VRS", "FDH"))
 main_row <- data.frame(
-  version = "Main (g4/12): pooled 2021-2023, faculty + deflated costs",
+  version = paste0("Main (g4/12): pooled 2021-2023, ", total$inputs_short),
   rows = nrow(main), universities = length(unique(main$id)),
   convexity_5pct = main_tests$level_05[1], crs_5pct = main_tests$level_05[2],
   estimator = total$estimator_short, median_farrell = total$median_farrell,
@@ -121,16 +136,28 @@ write.csv(do.call(rbind, lapply(versions, `[[`, "scores")),
 removed <- main[main$ap_potential_outlier, ]
 years_removed <- table(removed$id)
 all_years_out <- sort(names(years_removed)[years_removed == length(unique(main$year))])
-notes <- data.frame(version = c("R1-R3", "R6", "R7", "All"), note = c(
-  "One frontier per year: each year is compared only with itself, so a fall in recent Scopus counts cannot penalise 2023 against 2021.",
-  sprintf(paste("R6 removes single university-year observations, not universities as such:",
-                "%d observations of %d universities (%s). %s %s flagged in every year, so %s",
-                "the sample entirely."),
-          nrow(removed), length(unique(removed$id)), paste(sort(unique(removed$id)), collapse = "; "),
+all_years_text <- if (length(all_years_out) == 0) {
+  "No university is flagged in every year."
+} else {
+  sprintf("%s %s flagged in every year, so %s the sample entirely.",
           paste(all_years_out, collapse = " and "),
           if (length(all_years_out) == 1) "is" else "are",
-          if (length(all_years_out) == 1) "it leaves" else "they leave"),
+          if (length(all_years_out) == 1) "it leaves" else "they leave")
+}
+notes <- data.frame(version = c("Main", "R1-R3", "R6", "R7", "R8", "R9", "All"), note = c(
+  paste0("Main inputs read from g4/12: ", total$inputs_label, "."),
+  "One frontier per year: each year is compared only with itself, so a fall in recent Scopus counts cannot penalise 2023 against 2021.",
+  sprintf(paste("R6 removes single university-year observations, not universities as such:",
+                "%d observations of %d universities (%s). %s"),
+          nrow(removed), length(unique(removed$id)), paste(sort(unique(removed$id)), collapse = "; "),
+          all_years_text),
   "R7 removes all years of Napoli L'Orientale, Siena Stranieri and Perugia Stranieri as a sensitivity check for possible output-coverage differences. Scopus also indexes books and monographs; a coverage error in this dataset has not been established. See Elsevier's Scopus content policy and selection page.",
+  paste("R8 uses faculty, PhD students and deflated costs as three separate inputs (p + q = 4). With one more input DEA mechanically finds",
+        "more efficient units: each extra dimension adds directions in which a unit can be undominated, so the share of efficient units",
+        "rises and scores move towards 1 even if the technology is unchanged. Fellows are excluded here (they are in the main input and in R5).",
+        "Four separate labour and cost inputs (p + q = 5) are not used: with n = 183 the DEA convergence rate n^(2/(p+q+1)) becomes slow and",
+        "too many units would lie on the frontier for the comparison to be informative."),
+  "R9 is the main version until 28 November 2026 (faculty only + deflated costs). Its Spearman correlation is the rank correlation between the new and the old main scores.",
   "Spearman correlations use the university-years common to the version and the main frontier; scores of different frontiers are not directly comparable in levels."
 ))
 write.csv(notes, file.path(tab_dir, "table_13_notes.csv"), row.names = FALSE)
@@ -145,7 +172,7 @@ labels <- sub(":.*", "", robustness$version)
 k <- nrow(robustness)
 symbols <- c(19, rep(1, k - 1))
 png(file.path(fig_dir, "fig_13_robustness_summary.png"), width = 1800, height = 1000, res = 150)
-par(mfrow = c(1, 2), mar = c(4.5, 16, 3, 1))
+par(mfrow = c(1, 2), mar = c(4.5, 19, 3, 1))
 plot(robustness$median_farrell, k:1, pch = symbols, cex = 1.4, yaxt = "n", ylab = "",
      xlab = "Median Farrell output score (1 = frontier)", main = "Median inefficiency",
      xlim = range(c(1, robustness$median_farrell)))

@@ -2,9 +2,18 @@
 # Group A, PEA project 4, Block 2 (common trunk). "Research-only" frontier with FEAR.
 #
 # Pooled frontier 2021-2023: 61 universities, 183 university-years.
-#   inputs  (t-1): faculty; current-management costs deflated to 2020 euros (ISTAT NIC)
+#   inputs  (t-1): research staff = faculty + research fellows + PhD students;
+#                  current-management costs deflated to 2020 euros (ISTAT NIC)
 #   output  (t)  : Scopus publications
 # Unlike 06, Siena Stranieri is included: the 2018 field shares are not needed here.
+#
+# Labour input (changed on 28 November 2026, after the instructor asked on 27 November to
+# include PhD students together with researchers): the input measures research capacity,
+# which includes fellows and PhD students; the exposure (teaching load) stays
+# students / faculty, because it measures teaching. One aggregated labour input keeps
+# p + q = 3 with n = 183. The previous main input (faculty only) is variant R9 in g4/13.
+# MAIN_INPUTS, input_columns and inputs_label are written to table_12_efficiency_summary.csv
+# and read by g4/13 and g4/15.
 #
 # FEAR conventions: variables by rows (t()), ORIENTATION = 2 (output), METRIC = 2 (Farrell:
 # 1 = efficient, 1.25 = output could rise by 25% with the same inputs).
@@ -49,6 +58,9 @@ set.seed(20261122)
 NSPLIT <- 1000L
 NDEL <- 12L      # deletions examined by ap(), as in the FEAR tutorial and chapter
 ALPHA_COLUMN <- 2L  # fast-test indicators are for the 10%, 5%, 1% levels: use the 5% one
+MAIN_INPUTS <- c("research_staff_lag", "cost_real_lag")
+INPUTS_LABEL <- "research staff (faculty + fellows + PhD students) and deflated current costs, t-1"
+INPUTS_SHORT <- "research staff + deflated costs"
 
 
 # 1. DEFLATOR AND FRONTIER DATASET ------------------------------------------------
@@ -68,11 +80,15 @@ rownames(d) <- NULL
 previous <- match(paste(d$id, d$year - 1L), paste(panel$id, panel$year))
 stopifnot(!anyNA(previous))
 d$faculty_lag <- panel$faculty[previous]
+d$fellows_lag <- panel$fellows[previous]
+d$phd_lag <- panel$phd[previous]
+d$research_staff_lag <- d$faculty_lag + d$fellows_lag + d$phd_lag
 d$cost_nominal_lag <- panel$current_management[previous] / 1e6
 d$nic_lag <- unname(nic_index[as.character(d$year - 1L)])
 d$cost_real_lag <- d$cost_nominal_lag * nic_index[["2020"]] / d$nic_lag  # million EUR, 2020 prices
 d$lag_log_teaching_load <- log(panel$students[previous] / panel$faculty[previous])
-num <- c("publications", "faculty_lag", "cost_real_lag")
+num <- c("publications", "faculty_lag", "fellows_lag", "phd_lag", "research_staff_lag",
+         "cost_real_lag")
 stopifnot(nrow(d) == 183L, length(unique(d$id)) == 61L,
           all(vapply(d[num], function(x) all(is.finite(x) & x > 0), logical(1))))
 
@@ -89,8 +105,8 @@ sample_comparison <- data.frame(
 print(sample_comparison)
 write.csv(sample_comparison, file.path(tab_dir, "table_12_sample_comparison.csv"), row.names = FALSE)
 
-X <- t(as.matrix(d[, c("faculty_lag", "cost_real_lag")]))  # 2 x 183
-Y <- t(as.matrix(d$publications))                          # 1 x 183
+X <- t(as.matrix(d[, MAIN_INPUTS]))  # 2 x 183
+Y <- t(as.matrix(d$publications))    # 1 x 183
 
 
 # 2. OUTLIERS: WILSON (1993) DIAGNOSTIC -------------------------------------------
@@ -124,8 +140,8 @@ match_06 <- match(paste(d$id[flagged], d$year[flagged]), paste(sample_06$id, sam
 
 outliers <- data.frame(
   obs = flagged, id = d$id[flagged], year = d$year[flagged],
-  publications = d$publications[flagged], faculty_lag = d$faculty_lag[flagged],
-  cost_real_lag = round(d$cost_real_lag[flagged], 2),
+  publications = d$publications[flagged], research_staff_lag = d$research_staff_lag[flagged],
+  faculty_lag = d$faculty_lag[flagged], cost_real_lag = round(d$cost_real_lag[flagged], 2),
   first_deletion_level = first_level, times_in_deletion_sets = times_in_sets,
   small_university = log(d$publications[flagged]) < 4.5,
   nhn_residual_06 = round(nhn_resid[match_06], 3),
@@ -217,6 +233,9 @@ efficiency_summary <- rbind(
 )
 efficiency_summary$estimator <- estimator
 efficiency_summary$estimator_short <- estimator_short
+efficiency_summary$input_columns <- paste(MAIN_INPUTS, collapse = ";")
+efficiency_summary$inputs_label <- INPUTS_LABEL
+efficiency_summary$inputs_short <- INPUTS_SHORT
 efficiency_summary[3:9] <- lapply(efficiency_summary[3:9], round, digits = 3)
 print(efficiency_summary)
 write.csv(efficiency_summary, file.path(tab_dir, "table_12_efficiency_summary.csv"),
@@ -245,12 +264,14 @@ symbols <- c(1, 2, 0)
 filled <- c(19, 17, 15)
 year_k <- match(d$year, years)
 unstable <- d$ci_unstable_m_lt_10
-png(file.path(fig_dir, "fig_12_efficiency_vs_load.png"), width = 1600, height = 1150, res = 150)
-par(mar = c(4.5, 4.5, 6.5, 1))
+png(file.path(fig_dir, "fig_12_efficiency_vs_load.png"), width = 1600, height = 1200, res = 150)
+par(mar = c(4.5, 4.5, 8, 1))
 plot(d$lag_log_teaching_load, d$shephard, type = "n", ylim = c(0, 1.05),
      xlab = "log(students / faculty), t-1",
      ylab = "Research efficiency, 1 / Farrell output score (1 = frontier)")
-title(main = paste("Research-only efficiency and teaching load,", estimator), line = 5)
+title(main = paste("Research-only efficiency and teaching load,", estimator), line = 6.6)
+mtext(paste("Inputs:", INPUTS_LABEL, "| output: Scopus publications, t"), side = 3,
+      line = 5.3, cex = 0.8)
 segments(d$lag_log_teaching_load, 1 / d$ci95_high, d$lag_log_teaching_load, 1 / d$ci95_low,
          col = "grey60", lty = ifelse(unstable, 3, 1))
 points(d$lag_log_teaching_load, d$shephard,
@@ -261,7 +282,9 @@ lines(smooth, lty = 2, lwd = 2)
 # text labels would overlap because they cluster in the centre of the plot.
 out <- d[d$ap_potential_outlier, ]
 points(out$lag_log_teaching_load, out$shephard, pch = 4, cex = 1.6, lwd = 1.5)
-legend("bottom", inset = c(0, 1.01), xpd = TRUE, ncol = 4, bty = "n", cex = 0.8,
+# Three columns (filled by column): years | outlier, unstable, interval | lowess.
+legend("bottom", inset = c(0, 1.01), xpd = TRUE, ncol = 3, bty = "n", cex = 0.8,
+       text.width = 0.3 * diff(par("usr")[1:2]),
        legend = c(years, "ap potential outlier", "filled, dotted: m < 10 (unstable interval)",
                   "95% interval (subsampling)", "lowess (descriptive)"),
        pch = c(symbols, 4, 19, NA, NA), lty = c(NA, NA, NA, NA, 3, 1, 2),
@@ -273,6 +296,10 @@ dev.off()
 
 notes <- c(
   paste("Estimator chosen by the fixed rule:", estimator),
+  paste0("Inputs: ", INPUTS_LABEL, "; output: Scopus publications in t. Research staff = faculty + research fellows + ",
+         "PhD students (changed on 28 November 2026 after the instructor's request of 27 November to include PhD students ",
+         "with researchers). The input measures research capacity; the exposure stays students / faculty because it ",
+         "measures teaching. One aggregated labour input keeps p + q = 3 with n = 183. Faculty only (previous main) is R9 in g4/13."),
   "Pooled frontier: each university appears three times, so observations are not independent; tests and subsampling treat them as independent.",
   "One technology is assumed for 2021-2023.",
   "Scopus indexing may be incomplete for recent years: 2023 may look less efficient (SFA year effects in 06 about -0.05 in 2022 and -0.11 in 2023); g4/13 estimates one frontier per year as a check.",

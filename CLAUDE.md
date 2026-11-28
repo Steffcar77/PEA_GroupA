@@ -116,8 +116,13 @@ Materiale fuori dalla cartella (non va consegnato):
   frontiera (docenti 0,70, costi 0,32): il modello non è identificato (g4/11). Per i
   rendimenti di scala usare la NHN_Z (ri-stima, cite = TRUE in table_11_*) con SE cluster,
   dicendo che è una specificazione pooled mantenuta, oppure la colonna (6) OLS di 10.
+  Le elasticità NHN_Z usano i soli docenti come input lavoro: per la frontiera DEA principale
+  (research staff) sono un'indicazione da una specificazione diversa, non una conferma del test RTS.
+- Dottorandi (phd = STUDENTS ENROLLED IN PHD PROGRAMMES, ANVUR): completi per 61 atenei × 4 anni,
+  senza zeri; 05 crea lag_log_phd. Non si sa se sono già inclusi negli iscritti (circa il 2%):
+  è nella richiesta di dati. Ruolo ambiguo (confondente o mediatore): nella OLS solo colonna (8).
 - Il teaching_panel contiene già:
-  - faculty, fellows, students, graduates;
+  - faculty, fellows, phd, students, graduates;
   - current_management (euro nominali);
   - publications, citations, cnci, wos_documents;
   - labor = faculty + fellows;
@@ -129,7 +134,9 @@ Materiale fuori dalla cartella (non va consegnato):
 | Intervento        | più studenti a docenti fissi                  | —                    |
 | Frontiera DEA/FDH | unica 2021–2023 (183 oss.)                    | una per anno         |
 | Costi             | deflazionati con indice ISTAT prezzi consumo  | nominali             |
-| Input lavoro      | solo docenti (coerente con 06)                | docenti + assegnisti |
+| Input lavoro (frontiera) | research staff = docenti + assegnisti + dottorandi (dal 28/11, su indicazione della prof del 27/11) | solo docenti (R9, vecchia principale); docenti + assegnisti (R5); docenti, dottorandi e costi separati (R8) |
+| Esposizione       | studenti / docenti (misura la didattica; invariata) | studenti regolari / docenti (colonna 7) |
+| OLS               | identica a 06 (colonna 6)                     | + lag_log_phd (colonna 8) |
 
 Nel report (da scrivere più avanti, su richiesta di Stefano del 23 novembre):
 - le stime sono associazioni: il target è un aumento di studenti a capacità docente iniziale fissa;
@@ -152,17 +159,21 @@ Esecuzione e script (confermati il 22 novembre 2026):
   (solo anno) / (+ quote disciplinari 2018) / (+ effetti fissi università), ognuna senza e con
   lag_lcurrent. Lo script si ferma se la colonna effetti fissi università + anno + lag_lcurrent
   non riproduce esattamente il coefficiente di 06. La (7) ripete la (6) usando gli studenti regolari.
+  La (8) (dal 28/11) ripete la (6) aggiungendo lag_log_phd, solo come robustezza.
 - 12 (Blocco 2, tronco comune, FEAR): frontiera pooled 2021–2023, 61 atenei, 183 righe (anche
-  Siena Stranieri, esclusa in 06); input in t−1 docenti e costi correnti deflazionati (NIC, euro
-  2020); output pubblicazioni Scopus in t. ORIENTATION 2, METRIC 2, variabili per righe (t()).
+  Siena Stranieri, esclusa in 06); input in t−1 research staff (docenti + assegnisti + dottorandi,
+  dal 28/11; prima solo docenti) e costi correnti deflazionati (NIC, euro 2020); output
+  pubblicazioni Scopus in t. Input, etichette e stimatore sono scritti in
+  table_12_efficiency_summary.csv e letti da 13 e 15. ORIENTATION 2, METRIC 2, variabili per righe (t()).
   Regola dello stimatore fissata prima: convessità non respinta → DEA (RTS 3 se CRS non respinto,
   altrimenti RTS 1); convessità respinta → FDH. Livello 5%. set.seed(20261122).
   Intervalli con dea.subsample / fdh.subsample e subsample.sizes = NULL (ottimizzazione automatica
   di Simar e Wilson 2011a, come raccomanda il FEAR-chapter).
 - Outlier: analisi principale con tutte le osservazioni (si tolgono solo errori di dati verificati);
   la versione senza gli outlier segnalati da ap si fa sempre come robustezza in 13.
-- 13 (robustezze della frontiera): frontiera per anno, costi nominali, docenti + assegnisti,
-  senza outlier.
+- 13 (robustezze della frontiera): R1–R3 frontiera per anno, R4 costi nominali, R5 docenti +
+  assegnisti, R6 senza outlier, R7 senza i 3 umanistici, R8 docenti, dottorandi e costi come tre
+  input, R9 solo docenti (vecchia principale). Tutte con la stessa regola dei test.
 
 ## Registro deviazioni (da aggiornare sempre)
 1. Il kit del prof sta tutto insieme in template/, invece che in data/ + code/prof/,
@@ -170,8 +181,10 @@ Esecuzione e script (confermati il 22 novembre 2026):
 2. 00_run_all.R è copiato ma non usato: lo sostituisce run_all_g4.R.
 3. Non sono stati copiati i resti delle esercitazioni (.RData, .Rhistory, FEAR_tutorial.RData,
    results_*.csv). comandi_tutorial.R è in docs/ solo come esempio di sintassi FEAR.
-4. La frontiera DEA/FDH usa solo i docenti e i costi deflazionati, mentre 01 e 02 del prof
-   usano labor = docenti + assegnisti e costi nominali. La SFA di 06 resta invariata.
+4. La frontiera DEA/FDH usa come input lavoro il research staff (docenti + assegnisti +
+   dottorandi, dal 28 novembre 2026; prima solo i docenti, vedi n. 14) e i costi deflazionati,
+   mentre 01 e 02 del prof usano labor = docenti + assegnisti e costi nominali.
+   La SFA di 06 resta invariata (input lavoro: solo docenti).
 5. I valori di adjunct 2023 (tutti 0) sono trattati come mancanti. Aggiornamento del
    28 novembre 2026: ora sono messi davvero a NA nella copia del gruppo del project panel
    (vedi n. 10); prima era solo un'etichetta in table_adjunct_check.csv. Nessuna stima cambia.
@@ -221,6 +234,15 @@ Esecuzione e script (confermati il 22 novembre 2026):
     colonna ci_unstable_m_lt_10) e il motivo per cui l'intervallo sta sopra la stima. Aggiunta
     la colonna estimator_short, letta da 13 e 15 al posto di "DEA CRS" scritto a mano.
     Legende delle figure 12 e 15 spostate fuori dai dati. Punteggi e test invariati.
+14. (28 novembre 2026) Cambio dell'input lavoro della frontiera su indicazione della prof del
+    27 novembre ("dottorandi insieme ai ricercatori"), deciso dal gruppo: un solo input
+    research staff = docenti + assegnisti + dottorandi in t−1 (phd del teaching_panel, verificata
+    da Filippo), più i costi deflazionati; p + q = 3 con n = 183. L'esposizione resta studenti /
+    docenti. La vecchia principale (solo docenti) è R9 in 13; nuova R8 (docenti, dottorandi e
+    costi come tre input; non quattro input, p + q = 5, per la dimensionalità). Esiti dei test
+    .fast e stimatore (DEA CRS) invariati. In 10 nuova colonna (8) = (6) + lag_log_phd, solo
+    robustezza; la principale resta identica a 06. In 07 phd entra nei mancanti, nelle
+    descrittive e nelle note dati; in 16 nuovo nodo PhD students con frecce tratteggiate.
 
 ## Piano: lavoro comune (prima della scelta tra idea A e B)
 Blocco 1: dati e benchmark del template
@@ -296,9 +318,13 @@ Noi usiamo risorse vere e test formali.
 - 28 novembre 2026: correzioni dell'audit (deviazioni 10–13) ed esecuzione completa da sessione
   pulita con RUN_SENSITIVITY = TRUE, exit code 0, tutti gli 8 controlli superati.
   sessionInfo.txt viene da questa esecuzione. Confronto con gli output precedenti: campione,
-  06, colonne OLS, test .fast, punteggi, intervalli e robustezze identici.
-- Report e slide non scritti (rinviati da Stefano). Invio della nota alla prof e risposta
-  non documentati. Le modifiche non sono ancora committate.
+  06, colonne OLS, test .fast, punteggi, intervalli e robustezze identici. Commit fatto.
+- 28 novembre 2026 (secondo passo): dottorandi nell'input lavoro della frontiera (deviazione 14),
+  colonna (8) in 10, nodo PhD nel DAG; esecuzione completa da sessione pulita con
+  RUN_SENSITIVITY = TRUE, exit code 0, 8 controlli superati. Modifiche non ancora committate.
+- La prof il 27/11 ha chiesto i dottorandi insieme ai ricercatori; il resto della risposta
+  alla nota non è documentato.
+- Report e slide non scritti (rinviati da Stefano).
 - Risultati chiave (dettagli in report/project_diary.md):
   - OLS di 06 = colonna (6) di 10: 0.011 (SE cluster 0.350): stima imprecisa, non "zero";
     variazione dell'esposizione al netto di effetti ateneo e anno: 2.6%;
@@ -307,8 +333,12 @@ Noi usiamo risorse vere e test formali.
   - NHN_Z citata = la ri-stima: 0.491 in log sigma_u, SE cluster 0.537 (p = 0.36), logLik 44.856;
     soluzione del kit 0.416 (logLik 44.742) solo per confronto. Elasticità NHN_Z: docenti 0.72
     (SE cluster 0.09), costi 0.30 (0.07), somma 1.020 (SE cluster 0.026): coerente con CRS;
-  - frontiera pooled: DEA CRS, 3 efficienti su 183; 45 intervalli su 183 instabili (m < 10);
-    bootstrap convessità (NREP 1000) p = 0.64 / 0.65; senza i 3 atenei umanistici (R7) → FDH;
+  - frontiera pooled (research staff + costi deflazionati): DEA CRS (test .fast invariati),
+    Farrell mediano 1.388, 4 efficienti su 183 (Foggia, Insubria, L'Aquila, Molise, tutti 2021);
+    51 intervalli su 183 instabili (m < 10); bootstrap convessità (NREP 1000) p = 0.85 / 0.36;
+    Spearman con la vecchia principale solo docenti (R9) 0.84; R8 (tre input) 6 efficienti;
+    senza i 3 atenei umanistici (R7) → FDH (37% efficienti);
+  - OLS colonna (8) = (6) + lag_log_phd: carico −0.077 (SE cluster 0.333), PhD 0.141 (0.100);
   - "più studenti a docenti fermi" (±1%): 4 casi su 120 variazioni (esatti 1, ±2% 9).
 - Limiti da dichiarare nel report: sezione "Verifica di completezza" del diario.
 

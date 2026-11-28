@@ -318,7 +318,7 @@ rts_row <- function(fit, label) {
 rts_table <- rbind(rts_row(z_refit, "NHN_Z (refit)"), rts_row(z_kit, "NHN_Z (kit solution of 06)"))
 rts_table$cite <- rts_table$model == "NHN_Z (refit)" & cite_refit
 rts_table$note <- c(
-  "Frontier coefficients of lag_log_faculty and lag_lcurrent; SE of the sum = sqrt(V_ff + V_cc + 2 V_fc) from the university-clustered covariance (vcovCL HC1, df = G - 1). Pooled maintained specification without university effects.",
+  "Frontier coefficients of lag_log_faculty and lag_lcurrent; SE of the sum = sqrt(V_ff + V_cc + 2 V_fc) from the university-clustered covariance (vcovCL HC1, df = G - 1). Pooled maintained specification without university effects. Labour input = faculty only (as in 06), while the main DEA frontier of g4/12 uses research staff (faculty + fellows + PhD students): consistency with constant returns here is an indication from a different specification, not a confirmation of the returns-to-scale test of that frontier.",
   "For comparison only: kit point is not a maximum (scores do not sum to zero); its SEs have no inferential justification.")
 rts_table[2:9] <- lapply(rts_table[2:9], signif, digits = 5)
 print(rts_table[, 1:8])
@@ -334,7 +334,7 @@ best_min_eigen <- start_table$min_hessian_eigenvalue[best]
 z_exposure <- se_table[se_table$term == "exposure" & grepl("^NHN_Z", se_table$model), ]
 notes_11 <- data.frame(topic = c("NHN identification", "NHN identification", "NHN identification",
                                  "NHN identification", "NHN elasticities", "NHN_Z solutions",
-                                 "NHN_Z kit solution"),
+                                 "NHN_Z kit solution", "NHN_Z returns to scale"),
   note = c(
     sprintf("Skewness of the OLS residuals of the same frontier specification: %+.3f (positive: the 'wrong' sign for a production frontier, where the composed error should be negatively skewed).", skew_ols),
     sprintf("Profile log-likelihood over lambda is %s from lambda = %g (%.2f) to lambda = %g (%.2f): it rises towards sigma_v -> 0 (deterministic frontier).",
@@ -347,7 +347,13 @@ notes_11 <- data.frame(topic = c("NHN identification", "NHN identification", "NH
     sprintf("The two NHN_Z log-likelihoods are almost equal (refit %.3f, kit %.3f) while delta1 differs (%.3f vs %.3f): the likelihood is flat in the direction of the exposure, so delta1 is poorly determined and not significant in either solution (cluster p = %.2f and %.2f). Cite the refit (higher likelihood).",
             ll_refit, ll_kit, z_exposure$estimate[1], z_exposure$estimate[2], z_exposure$p[1], z_exposure$p[2]),
     sprintf("Kit cluster SEs are for comparison only: at a point that is not a maximum the scores do not sum to zero (max |sum| = %.2f, refit %.3f), so the sandwich has no inferential justification.",
-            max_score_kit, max_score_refit)
+            max_score_kit, max_score_refit),
+    sprintf(paste("NHN_Z (refit) elasticities: faculty %.3f, costs %.3f, sum %.3f (cluster SE %.3f), consistent with",
+                  "constant returns to scale. They are estimated with faculty only as the labour input (specification of 06),",
+                  "while the main DEA frontier of g4/12 uses research staff (faculty + fellows + PhD students): this is an",
+                  "indication from a different specification, not a confirmation of the returns-to-scale test of that frontier."),
+            rts_table$faculty_elasticity[1], rts_table$cost_elasticity[1], rts_table$sum_elasticities[1],
+            rts_table$sum_cluster_se[1])
   ))
 print(notes_11)
 write.csv(notes_11, file.path(tab_dir, "table_11_notes.csv"), row.names = FALSE)

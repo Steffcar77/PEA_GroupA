@@ -15,7 +15,10 @@ comparison <- read_table("table_12_sample_comparison.csv")
 eff_summary <- read_table("table_12_efficiency_summary.csv")
 # Estimator of the main frontier, as chosen by the fixed rule in g4/12.
 main_estimator <- eff_summary$estimator_short[eff_summary$period == "2021-2023"]
-stopifnot(length(main_estimator) == 1L, main_estimator %in% c("DEA CRS", "DEA VRS", "FDH"))
+main_inputs_short <- eff_summary$inputs_short[eff_summary$period == "2021-2023"]
+main_inputs_label <- eff_summary$inputs_label[eff_summary$period == "2021-2023"]
+stopifnot(length(main_estimator) == 1L, main_estimator %in% c("DEA CRS", "DEA VRS", "FDH"),
+          length(main_inputs_short) == 1L, nzchar(main_inputs_short))
 
 # Validate the presentation inputs; never silently drop missing observations.
 stopifnot(nrow(eff) == 183L, length(unique(eff$id)) == 61L,
@@ -26,8 +29,8 @@ stopifnot(nrow(eff) == 183L, length(unique(eff$id)) == 61L,
           all(is.finite(eff$lag_log_teaching_load)),
           all(is.finite(eff$ci95_low)), all(is.finite(eff$ci95_high)),
           all(eff$ci95_low > 0), all(eff$ci95_low <= eff$ci95_high),
-          nrow(variation) == 4L, nrow(rob) == 8L,
-          identical(names(ols)[-1], paste0("(", 1:7, ")")),
+          nrow(variation) == 4L, nrow(rob) >= 2L, grepl("^Main", rob$version[1]),
+          identical(names(ols)[-1], paste0("(", 1:8, ")")),
           rob$estimator[1] == main_estimator,
           is.logical(eff$ci_unstable_m_lt_10))
 
@@ -111,37 +114,50 @@ draw_asset("efficiency_vs_load", function() {
          legend = c("2021", "2022", "2023", "ap potential outlier", "95% subsampling interval"),
          pch = c(1, 2, 0, 4, NA), lty = c(NA, NA, NA, NA, 1),
          col = c(rep("grey15", 4), "grey70"))
-  footer(c("183 university-years, 61 universities. Descriptive association; not an estimated causal effect.",
+  footer(c(paste0("183 university-years, 61 universities. Inputs: ", main_inputs_label,
+                  ". Descriptive association; not an estimated causal effect."),
            paste("Intervals lie above the estimate: the", main_estimator, "estimate is biased towards efficiency; the interval is for the true score and already corrects for that bias."),
            sprintf("Source: g4/12. Tests and subsampling treat repeated observations as independent; %d of %d intervals use a subsample size m < 10 (unstable).",
                    sum(eff$ci_unstable_m_lt_10), nrow(eff))))
 })
 
 draw_asset("robustness", function() {
-  labels <- c("Main: pooled 2021-2023", "R1: frontier 2021", "R2: frontier 2022", "R3: frontier 2023",
-              "R4: nominal costs", "R5: faculty + fellows", "R6: without ap outliers", "R7: without 3 humanities univ.")
-  labels <- paste0(labels, " [", rob$estimator, "]")
-  pos <- nrow(rob):1
-  symbols <- ifelse(rob$estimator == "FDH", 17, 1)
+  # Labels, estimators and the estimator-change footer come from table_13 (no hand-written list).
+  k <- nrow(rob)
+  short <- sub("^(R[0-9]+)\\. ", "\\1: ", rob$version)
+  short[1] <- paste0("Main: pooled 2021-2023, ", main_inputs_short)
+  labels <- paste0(short, " [", rob$estimator, "]")
+  pos <- k:1
+  symbols <- ifelse(rob$estimator == "FDH", 17, ifelse(rob$estimator == "DEA VRS", 0, 1))
   symbols[1] <- 19
+  x_range <- range(c(1, rob$median_farrell))
+  x_lim <- c(1, x_range[2] + 0.12 * diff(x_range) + 0.02)
   layout(matrix(1:2, nrow = 1), widths = c(1.65, 1))
-  par(mar = c(4.5, 19, 3, 1))
-  plot(rob$median_farrell, pos, xlim = c(1, 1.43), ylim = c(0.6, 8.4),
-       yaxt = "n", xaxt = "n", ylab = "", pch = symbols, cex = 1.3,
+  par(mar = c(4.5, 22, 3, 1))
+  plot(rob$median_farrell, pos, xlim = x_lim, ylim = c(0.6, k + 0.4),
+       yaxt = "n", ylab = "", pch = symbols, cex = 1.3,
        xlab = "Median Farrell output score (1 = frontier)", main = "Frontier-specific scores")
-  axis(1, at = c(1, 1.2, 1.4), labels = c("1.0", "1.2", "1.4"))
-  axis(2, at = pos, labels = labels, tick = FALSE, cex.axis = 0.75)
+  axis(2, at = pos, labels = labels, tick = FALSE, cex.axis = 0.72)
   abline(v = rob$median_farrell[1], lty = 2, col = "grey60")
   text(rob$median_farrell, pos, sprintf("%.3f", rob$median_farrell), pos = 4, cex = 0.8)
   par(mar = c(4.5, 1.5, 3, 3))
-  plot(rob$spearman_with_main, pos, xlim = c(0.75, 1.07), ylim = c(0.6, 8.4),
-       yaxt = "n", ylab = "", pch = symbols, cex = 1.3,
+  plot(rob$spearman_with_main, pos, xlim = c(min(0.75, min(rob$spearman_with_main) - 0.02), 1.07),
+       ylim = c(0.6, k + 0.4), yaxt = "n", ylab = "", pch = symbols, cex = 1.3,
        xlab = "Spearman correlation with main scores", main = "Ranking stability")
   abline(v = 1, lty = 2, col = "grey60")
   text(rob$spearman_with_main, pos, sprintf("%.3f", rob$spearman_with_main), pos = 4, cex = 0.8)
   mtext("Robustness of the research frontier", outer = TRUE, side = 3, font = 2, cex = 1.2)
+  changed <- sub("\\..*", "", rob$version[-1][rob$estimator[-1] != rob$estimator[1]])
+  changed_estimators <- rob$estimator[-1][rob$estimator[-1] != rob$estimator[1]]
+  change_text <- if (length(changed)) {
+    paste0("Estimator differs from the main ", rob$estimator[1], " in: ",
+           paste(sprintf("%s (%s)", changed, changed_estimators), collapse = ", "),
+           ". Triangle = FDH, square = DEA VRS. Exclusions and extra inputs are sensitivity checks.")
+  } else {
+    paste0("All versions select the same estimator as the main frontier: ", rob$estimator[1], ".")
+  }
   footer(c("Source: g4/13. Correlations use common university-years; score levels across different frontiers are not directly comparable.",
-           "R7 changes the selected estimator to FDH (triangle). Exclusion of the three humanities universities remains a sensitivity check."))
+           change_text))
 })
 
 draw_asset("university_quadrants", function() {
@@ -189,17 +205,20 @@ html_table <- function(d) {
     "</tbody></table></div>")
 }
 titles <- c("Sample construction", "Descriptive statistics: OLS sample", "OLS and frontier samples",
-            "OLS results: seven specifications", "Frontier robustness", "University quadrant data")
+            "OLS results: eight specifications", "Frontier robustness", "University quadrant data")
 notes <- c(
   "Source: g4/07. Row losses are sequential; Siena Stranieri lacks 2018 field shares.",
   "Source: g4/07. 180 university-years, 60 universities. Costs in this table are nominal; the main frontier uses deflated costs.",
   "Source: g4/12. The frontier sample includes Siena Stranieri because field shares are not required.",
   paste("Source: g4/10. Outcome: log publications. SEs in parentheses: university-clustered HC1; 95% intervals use t with 59 degrees of freedom.",
         "All columns control for lagged log faculty and year effects. Column (7) uses regular students.",
+        "Column (8) adds lagged log PhD students to (6) as a robustness check: PhD students may be a confounder or a mediator, so they are not in the main specification.",
         "Targets label the intended estimands under identifying assumptions; these observational estimates do not establish causality."),
   paste("Source: g4/13. Farrell scores >= 1; 1 is the frontier. Fast tests report decisions at 5%, not p-values.",
+        paste0("Main inputs: ", main_inputs_label, "."),
         "Correlations use common observations; score levels from different frontiers are not directly comparable.",
-        "R7 excludes Napoli L'Orientale, Siena Stranieri and Perugia Stranieri. Non-rejection does not prove the null."),
+        "R7 excludes Napoli L'Orientale, Siena Stranieri and Perugia Stranieri. R8 uses faculty, PhD students and costs as three inputs (more efficient units mechanically).",
+        "R9 is the faculty-only frontier, the main version until 28 November 2026. Non-rejection does not prove the null."),
   "Source: g4/12. Each row aggregates three years by medians. Cutoffs are medians across universities; ties belong to the at-or-above group."
 )
 html <- c("<!doctype html><html lang='en'><meta charset='utf-8'>",
