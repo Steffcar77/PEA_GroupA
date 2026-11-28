@@ -33,7 +33,7 @@ passi restano in CLAUDE.md.
 - Perché: punto 5 dello standard (variazione che identifica l'effetto) e richieste della card
   (scomposizione del rapporto, risultati con e senza effetti fissi di università).
 - Risultato:
-  - 08: SD totale 0.229, tra atenei 0.223 (95% della varianza), dentro 0.057 (6%),
+  - 08: SD totale 0.229, tra atenei 0.223 (93.8% della somma dei quadrati), dentro 0.057 (6.2%),
     al netto di effetti ateneo e anno 0.037 (2.6%). Coincidono con l'esposizione di 06.
     Il rapporto medio scende ogni anno (S/F mediano 29.4 → 29.1 → 27.5).
   - 09: quota studenti 0.46 (2020–21), 0.49 (2021–22), 0.42 (insieme), 0.48 al netto degli
@@ -117,7 +117,8 @@ passi restano in CLAUDE.md.
     12–15, Perugia Stranieri circa 5). Ampiezza mediana dell'IC95: 0.07;
   - il peggioramento 2021 → 2023 è coerente con il possibile problema di indicizzazione Scopus
     (da controllare con la frontiera per anno in 13);
-  - ap segnala 13 atenei-anno, tutti GRANDI: Roma La Sapienza (3 anni), Napoli Federico II (3),
+  - ap segnala 13 atenei-anno, quasi tutti grandi (Verona è di media dimensione: 838 docenti;
+    correzione del 28 novembre 2026): Roma La Sapienza (3 anni), Napoli Federico II (3),
     Bologna 2022–23, Milano 2021 e 2023, Padova 2023, Torino 2023, Verona 2023. Nessuno è tra i
     piccoli dello scatter; i loro residui NHN di 06 sono nella media (percentili 0.22–0.91).
     Quindi ap non spiega la deriva della NHN con i piccoli atenei: quel punto resta aperto;
@@ -232,6 +233,39 @@ passi restano in CLAUDE.md.
     CLAUDE.md abbreviato.
 - Problemi: output/sessionInfo.txt riflette ora un'esecuzione con RUN_SENSITIVITY = FALSE.
   Prima della consegna serve l'esecuzione completa con RUN_SENSITIVITY = TRUE.
+
+28 novembre 2026 – Correzioni dell'audit del 27 novembre (Stefano)
+- Cosa: correzioni proposte in report/audit_2026-11-27.md, approvate da Stefano (deviazioni 10–13).
+  - 07: copia del gruppo del project panel con adjunct 2023 = NA
+    (output/g4_project_panel_2020_2023.csv; cambiano solo 61 celle); il flusso del campione
+    la usa. Nuova table_07_data_notes.csv: adjunct 2023; Perugia Stranieri docenti 55 → 69
+    (+25.5%, la variazione annua più grande del panel); Molise con la quota di gestione
+    corrente più bassa nel 2020 (17.9%), componenti dei costi coerenti, salto 2022 +38.1%.
+  - 09: "più studenti a docenti fermi" = dlog S > 0 e |dlog F| ≤ 0.01: 4 casi su 120
+    (esatti 1, entro ±2% 9). Nell'audit i "4 casi" erano studenti su e docenti giù:
+    non coincidono con questa definizione (correzione della nota del 27/11).
+  - 11: NHN_Z con ri-stima (0.491, logLik 44.856, SE cluster 0.537, cite = TRUE) e soluzione
+    del kit (0.416, logLik 44.742, SE cluster 0.538 solo per confronto: scores fino a |1.56|);
+    likelihood piatta nella direzione del carico. Elasticità NHN_Z 0.717 (0.094) e 0.302
+    (0.072), somma 1.020 (0.026). Le elasticità 0.70 / 0.32 della NHN non identificata non si
+    citano (regola in CLAUDE.md). Note di identificazione: asimmetria OLS +0.150, profilo
+    monotono, 23 partenze su 32 al confine, matrice d'informazione numericamente singolare.
+  - 12: gap_to_next = ratio[2,i] − ratio[1,i]; stacchi maggiori a 1 (0.026) e 4 (0.024)
+    eliminazioni. 45 intervalli su 183 con m < 10 (16 / 12 / 17 per anno, 29 atenei; in tutti e
+    tre gli anni Camerino, Cassino, Catanzaro, Sannio, Urbino): non concentrati in un anno.
+    Nota sul perché l'intervallo sta sopra la stima. Colonna estimator_short letta da 13 e 15.
+  - 13: bootstrap della convessità con NREP 1000: p = 0.641 e 0.648 (prima 0.625 e 0.685 con
+    NREP 200); nessun avviso FEAR. La regola dello stimatore resta sui test .fast.
+  - 15: legenda dello scatter in alto, titolo e sottotitolo dei quadranti staccati, piè di
+    pagina sugli intervalli; "the main frontier", "The frontier sample".
+  - Documentazione: CLAUDE.md, README, nota alla prof (updated 28 November 2026).
+- Perché: dubbi e problemi dell'audit (punti 5, 7, 9, 12, 13, 16, 17, 21, 22 e robustezza del codice).
+- Verifica: esecuzione completa da sessione pulita (Rscript --vanilla, senza LANG/LC_ALL/LC_CTYPE,
+  RUN_SENSITIVITY = TRUE), exit code 0, 8 controlli superati. Confronto con gli output
+  precedenti: campione, coefficiente di 06, colonne OLS, test .fast, punteggi, intervalli,
+  mediane e robustezze identici; cambiano solo le tabelle e colonne nuove, le note, i p-value
+  del bootstrap e le figure di 12 e 15. Fit SFA di 06 identici (cambia solo il tempo di calcolo).
+- Problemi: nessuno. Variabile phd non toccata (passo separato).
 
 ## Note sui risultati (dagli output del 22 novembre 2026)
 - Interpretazione del coefficiente (10 e 06): con lag_log_faculty sempre presente, il coefficiente

@@ -18,9 +18,14 @@
 # DIAGNOSTIC, NOT A RESULT: it shows that the NHN with the exposure in the frontier
 # is poorly identified in this sample. It must not be adopted as an estimate.
 #
+# Frontier coefficients of this NHN (e.g. faculty and cost elasticities) must never be
+# cited. NHN_Z: two solutions are reported, the kit solution of 06 (logLik lower, not a
+# maximum: cluster SE for comparison only) and our refit (higher likelihood: cite = TRUE).
+#
 # Run through run_all_g4.R (working directory = PEA_GroupA). Runtime: a few minutes.
 # Outputs: output/tables/table_11_nhn_starts.csv, table_11_nhn_profile.csv,
-#          table_11_sfa_cluster_se.csv; output/figures/fig_11_nhn_starts.png
+#          table_11_sfa_cluster_se.csv, table_11_nhn_z_returns_to_scale.csv,
+#          table_11_notes.csv; output/figures/fig_11_nhn_starts.png
 
 library(sfa)
 library(sandwich)
@@ -243,20 +248,109 @@ cluster_table <- function(fit, label, extra_note) {
 }
 
 best_note <- if (isTRUE(start_table$boundary[best])) {
-  "best NHN is a boundary solution: diagnostic only, NOT adopted as a result"
-} else "best NHN over all starts"
+  "best NHN is a boundary solution: diagnostic only, do not cite (NOT adopted as a result)"
+} else "best NHN over all starts: diagnostic only, do not cite"
 
-z_refit <- fit_quietly(inefficiency_formula, "NHN_Z", coef(fits_06$inefficiency))$fit
+# NHN_Z: two solutions.
+#   refit: sfm from the 06 coefficients with keep_objective = TRUE (higher likelihood);
+#   kit:   the 06 solution as stored (lower likelihood: 06 stopped before the maximum).
+# The kit fit does not keep its likelihood, so its scores are computed with the stored
+# likelihood of the refit evaluated at the kit parameters, and the kit Hessian is used
+# as bread. Check: that likelihood at the kit parameters equals the kit log-likelihood.
+z_kit_fit <- fits_06$inefficiency
+z_refit <- fit_quietly(inefficiency_formula, "NHN_Z", coef(z_kit_fit))$fit
 stopifnot(!inherits(z_refit, "error"))
-z_note <- sprintf("NHN_Z refitted from the 06 coefficients; logLik of 06 = %.3f",
-                  -as.numeric(fits_06$inefficiency$opt$value))
+z_kit <- z_refit
+z_kit$opt$par <- z_kit_fit$opt$par
+z_kit$coefficients <- coef(z_kit_fit)
+z_kit$std.errors <- z_kit_fit$std.errors
+z_kit$opt$hessian <- z_kit_fit$opt$hessian
+z_kit$opt$value <- z_kit_fit$opt$value
+stopifnot(identical(names(coef(z_kit_fit)), names(coef(z_refit))),
+          isTRUE(all.equal(unname(z_kit_fit$opt$par), unname(coef(z_kit_fit)))),
+          isTRUE(all.equal(unname(z_refit$opt$par), unname(coef(z_refit)))))
+kit_loglik_check <- sum(z_refit$objective(z_kit_fit$opt$par, per_obs = TRUE))
+if (!isTRUE(all.equal(kit_loglik_check, -as.numeric(z_kit_fit$opt$value), tolerance = 1e-8))) {
+  stop("The refit likelihood at the kit parameters (", kit_loglik_check,
+       ") does not equal the kit log-likelihood.")
+}
+max_score_kit <- max(abs(colSums(sandwich::estfun(z_kit))))
+max_score_refit <- max(abs(colSums(sandwich::estfun(z_refit))))
+ll_kit <- -as.numeric(z_kit_fit$opt$value)
+ll_refit <- -as.numeric(z_refit$opt$value)
+cite_refit <- ll_refit >= ll_kit
+
+z_note_refit <- sprintf(paste("NHN_Z refitted from the 06 coefficients (keep_objective = TRUE);",
+                              "logLik %.3f vs %.3f of the kit solution; max |sum of scores| = %.3f."),
+                        ll_refit, ll_kit, max_score_refit)
+z_note_kit <- sprintf(paste("NHN_Z kit solution of 06 (convergence code %d, but below the maximum);",
+                            "cluster SE for comparison only: scores evaluated at the kit parameters",
+                            "do not sum to zero (max |sum| = %.2f) because this is not a maximum, so",
+                            "the sandwich SE has no inferential justification here."),
+                      z_kit_fit$opt$convergence, max_score_kit)
 
 se_table <- rbind(cluster_table(nhn_fits[[best]], "NHN (best start)", best_note),
-                  cluster_table(z_refit, "NHN_Z", z_note))
+                  cluster_table(z_refit, "NHN_Z (refit)", z_note_refit),
+                  cluster_table(z_kit, "NHN_Z (kit solution of 06)", z_note_kit))
+# cite = TRUE only for the NHN_Z refit, the solution with the higher likelihood. Never for
+# the NHN rows (boundary, not identified) nor for the kit point (not a maximum).
+if (!cite_refit) warning("The NHN_Z refit does not improve on the kit likelihood: no row is cited.")
+se_table$cite <- se_table$model == "NHN_Z (refit)" & cite_refit
 num <- c("estimate", "model_se", "cluster_se", "t", "p", "logLik")
 se_table[num] <- lapply(se_table[num], signif, digits = 5)
-print(se_table[se_table$term == "exposure", ])
+print(se_table[se_table$term == "exposure", c("model", "estimate", "cluster_se", "p", "logLik", "cite")])
 write.csv(se_table, file.path(tab_dir, "table_11_sfa_cluster_se.csv"), row.names = FALSE)
+
+# Returns to scale in the NHN_Z frontier: sum of the faculty and cost elasticities.
+# SE of the sum from the cluster covariance V: sqrt(V_ff + V_cc + 2 V_fc).
+rts_row <- function(fit, label) {
+  V <- sandwich::vcovCL(fit, cluster = a$id, type = "HC1")
+  j <- match(controls, names(coef(fit)))
+  stopifnot(!anyNA(j), length(unique(j)) == 2L)
+  est <- unname(coef(fit)[j])
+  se <- sqrt(diag(V)[j])
+  sum_se <- sqrt(V[j[1], j[1]] + V[j[2], j[2]] + 2 * V[j[1], j[2]])
+  data.frame(model = label, faculty_elasticity = est[1], faculty_cluster_se = se[1],
+             cost_elasticity = est[2], cost_cluster_se = se[2], sum_elasticities = sum(est),
+             sum_cluster_se = sum_se, t_sum_equals_1 = (sum(est) - 1) / sum_se,
+             p_sum_equals_1 = 2 * pt(-abs((sum(est) - 1) / sum_se), df = G - 1))
+}
+rts_table <- rbind(rts_row(z_refit, "NHN_Z (refit)"), rts_row(z_kit, "NHN_Z (kit solution of 06)"))
+rts_table$cite <- rts_table$model == "NHN_Z (refit)" & cite_refit
+rts_table$note <- c(
+  "Frontier coefficients of lag_log_faculty and lag_lcurrent; SE of the sum = sqrt(V_ff + V_cc + 2 V_fc) from the university-clustered covariance (vcovCL HC1, df = G - 1). Pooled maintained specification without university effects.",
+  "For comparison only: kit point is not a maximum (scores do not sum to zero); its SEs have no inferential justification.")
+rts_table[2:9] <- lapply(rts_table[2:9], signif, digits = 5)
+print(rts_table[, 1:8])
+write.csv(rts_table, file.path(tab_dir, "table_11_nhn_z_returns_to_scale.csv"), row.names = FALSE)
+
+# Why the NHN with the exposure in the frontier is not identified (diagnostics only).
+e_ols <- resid(ols)
+skew_ols <- mean((e_ols - mean(e_ols))^3) / mean((e_ols - mean(e_ols))^2)^1.5
+n_starts <- length(starts)
+n_boundary <- sum(start_table$boundary[seq_len(n_starts)], na.rm = TRUE)
+profile_monotone <- all(diff(profile$profile_logLik) > 0)
+best_min_eigen <- start_table$min_hessian_eigenvalue[best]
+z_exposure <- se_table[se_table$term == "exposure" & grepl("^NHN_Z", se_table$model), ]
+notes_11 <- data.frame(topic = c("NHN identification", "NHN identification", "NHN identification",
+                                 "NHN identification", "NHN elasticities", "NHN_Z solutions",
+                                 "NHN_Z kit solution"),
+  note = c(
+    sprintf("Skewness of the OLS residuals of the same frontier specification: %+.3f (positive: the 'wrong' sign for a production frontier, where the composed error should be negatively skewed).", skew_ols),
+    sprintf("Profile log-likelihood over lambda is %s from lambda = %g (%.2f) to lambda = %g (%.2f): it rises towards sigma_v -> 0 (deterministic frontier).",
+            if (profile_monotone) "monotonically increasing" else "not monotone",
+            min(profile$lambda), profile$profile_logLik[1], max(profile$lambda),
+            profile$profile_logLik[nrow(profile)]),
+    sprintf("%d of %d starting values end at the boundary (sigma_v < 0.001 or lambda > 100).", n_boundary, n_starts),
+    sprintf("At the best (boundary) solution the information matrix is numerically singular: the minimum Hessian eigenvalue is about zero (absolute value %.0e), so standard errors cannot be computed. Diagnostic only; no estimate is adopted.", abs(best_min_eigen)),
+    "Frontier coefficients of the NHN with the exposure in the frontier (e.g. faculty and cost elasticities) come from a non-identified model: diagnostic only, do not cite. Use NHN_Z (table_11_nhn_z_returns_to_scale.csv) or OLS column (6) of g4/10.",
+    sprintf("The two NHN_Z log-likelihoods are almost equal (refit %.3f, kit %.3f) while delta1 differs (%.3f vs %.3f): the likelihood is flat in the direction of the exposure, so delta1 is poorly determined and not significant in either solution (cluster p = %.2f and %.2f). Cite the refit (higher likelihood).",
+            ll_refit, ll_kit, z_exposure$estimate[1], z_exposure$estimate[2], z_exposure$p[1], z_exposure$p[2]),
+    sprintf("Kit cluster SEs are for comparison only: at a point that is not a maximum the scores do not sum to zero (max |sum| = %.2f, refit %.3f), so the sandwich has no inferential justification.",
+            max_score_kit, max_score_refit)
+  ))
+print(notes_11)
+write.csv(notes_11, file.path(tab_dir, "table_11_notes.csv"), row.names = FALSE)
 
 
 # 6. FIGURE: FINAL logLik AGAINST FINAL log10(lambda) ---------------------------

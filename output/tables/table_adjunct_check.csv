@@ -2,4 +2,4 @@
 2020,61,0,0,246,"used as recorded"
 2021,61,0,0,271,"used as recorded"
 2022,61,0,0,257,"used as recorded"
-2023,61,0,61,NA,"treated as missing (all values are 0)"
+2023,61,0,61,NA,"all values are 0: set to NA in output/g4_project_panel_2020_2023.csv"

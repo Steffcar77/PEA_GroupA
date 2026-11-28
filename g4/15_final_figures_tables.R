@@ -12,6 +12,10 @@ variation <- read_table("table_08_ratio_sd.csv")
 eff <- read_table("table_12_efficiency.csv")
 rob <- read_table("table_13_robustness_summary.csv")
 comparison <- read_table("table_12_sample_comparison.csv")
+eff_summary <- read_table("table_12_efficiency_summary.csv")
+# Estimator of the main frontier, as chosen by the fixed rule in g4/12.
+main_estimator <- eff_summary$estimator_short[eff_summary$period == "2021-2023"]
+stopifnot(length(main_estimator) == 1L, main_estimator %in% c("DEA CRS", "DEA VRS", "FDH"))
 
 # Validate the presentation inputs; never silently drop missing observations.
 stopifnot(nrow(eff) == 183L, length(unique(eff$id)) == 61L,
@@ -24,7 +28,8 @@ stopifnot(nrow(eff) == 183L, length(unique(eff$id)) == 61L,
           all(eff$ci95_low > 0), all(eff$ci95_low <= eff$ci95_high),
           nrow(variation) == 4L, nrow(rob) == 8L,
           identical(names(ols)[-1], paste0("(", 1:7, ")")),
-          rob$estimator[1] == "DEA CRS")
+          rob$estimator[1] == main_estimator,
+          is.logical(eff$ci_unstable_m_lt_10))
 
 eff$efficiency <- 1 / eff$efficiency_farrell
 quad <- aggregate(cbind(efficiency, publications) ~ id, data = eff, FUN = median)
@@ -91,19 +96,25 @@ draw_asset("variation", function() {
 })
 
 draw_asset("efficiency_vs_load", function() {
+  par(mar = c(4.5, 5, 5, 1.5), oma = c(4, 0, 0, 0))
   plot(eff$lag_log_teaching_load, eff$efficiency, type = "n", ylim = c(0, 1.06),
-       xlab = "log(students / faculty), t-1", ylab = "Research efficiency: 1 / Farrell (1 = frontier)",
-       main = "Research efficiency and teaching load | pooled DEA CRS, 2021-2023")
+       xlab = "log(students / faculty), t-1", ylab = "Research efficiency: 1 / Farrell (1 = frontier)")
+  title(main = paste0("Research efficiency and teaching load | pooled ", main_estimator, ", 2021-2023"),
+        line = 3.4)
   segments(eff$lag_log_teaching_load, 1 / eff$ci95_high,
            eff$lag_log_teaching_load, 1 / eff$ci95_low, col = "grey70")
   points(eff$lag_log_teaching_load, eff$efficiency, pch = c(1, 2, 0)[match(eff$year, 2021:2023)])
   flagged <- eff$ap_potential_outlier
   points(eff$lag_log_teaching_load[flagged], eff$efficiency[flagged], pch = 4, cex = 1.4)
-  legend("bottomleft", c("2021", "2022", "2023", "ap potential outlier", "95% subsampling interval"),
+  # Legend above the plotting region, horizontal, outside the data.
+  legend("bottom", inset = c(0, 1.01), xpd = TRUE, horiz = TRUE, bty = "n", cex = 0.85,
+         legend = c("2021", "2022", "2023", "ap potential outlier", "95% subsampling interval"),
          pch = c(1, 2, 0, 4, NA), lty = c(NA, NA, NA, NA, 1),
-         col = c(rep("grey15", 4), "grey70"), bty = "n", cex = 0.85)
+         col = c(rep("grey15", 4), "grey70"))
   footer(c("183 university-years, 61 universities. Descriptive association; not an estimated causal effect.",
-           "Source: g4/12. Tests and subsampling treat repeated observations as independent; intervals inherit this limitation."))
+           paste("Intervals lie above the estimate: the", main_estimator, "estimate is biased towards efficiency; the interval is for the true score and already corrects for that bias."),
+           sprintf("Source: g4/12. Tests and subsampling treat repeated observations as independent; %d of %d intervals use a subsample size m < 10 (unstable).",
+                   sum(eff$ci_unstable_m_lt_10), nrow(eff))))
 })
 
 draw_asset("robustness", function() {
@@ -134,14 +145,14 @@ draw_asset("robustness", function() {
 })
 
 draw_asset("university_quadrants", function() {
-  par(mar = c(4.5, 7, 3, 1.5))
+  par(mar = c(4.5, 7, 5, 1.5))
   plot(quad$median_efficiency, quad$median_publications, log = "y",
        xlim = c(0, 1.08), ylim = c(min(quad$median_publications) / 2.5,
                                  max(quad$median_publications) * 2.5),
        pch = 1, cex = 1.1, yaxt = "n",
        xlab = "Median research efficiency, 2021-2023 (1 / Farrell; higher = more efficient)",
-       ylab = "",
-       main = "Research efficiency and publication volume | one point per university")
+       ylab = "")
+  title(main = "Research efficiency and publication volume | one point per university", line = 2.6)
   mtext("Median annual Scopus publications, 2021-2023 (log scale)", side = 2, line = 5, las = 0)
   ticks <- c(30, 100, 300, 1000, 3000, 10000)
   axis(2, at = ticks, labels = format(ticks, big.mark = ",", trim = TRUE))
@@ -181,8 +192,8 @@ titles <- c("Sample construction", "Descriptive statistics: OLS sample", "OLS an
             "OLS results: seven specifications", "Frontier robustness", "University quadrant data")
 notes <- c(
   "Source: g4/07. Row losses are sequential; Siena Stranieri lacks 2018 field shares.",
-  "Source: g4/07. 180 university-years, 60 universities. Costs in this table are nominal; the main DEA uses deflated costs.",
-  "Source: g4/12. The DEA sample includes Siena Stranieri because field shares are not required.",
+  "Source: g4/07. 180 university-years, 60 universities. Costs in this table are nominal; the main frontier uses deflated costs.",
+  "Source: g4/12. The frontier sample includes Siena Stranieri because field shares are not required.",
   paste("Source: g4/10. Outcome: log publications. SEs in parentheses: university-clustered HC1; 95% intervals use t with 59 degrees of freedom.",
         "All columns control for lagged log faculty and year effects. Column (7) uses regular students.",
         "Targets label the intended estimands under identifying assumptions; these observational estimates do not establish causality."),

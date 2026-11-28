@@ -110,7 +110,12 @@ Materiale fuori dalla cartella (non va consegnato):
 - ADJUNCT FACULTY: vale 0 nel 2023 per tutte le 61 università, e non ci sono zeri nel 2020–2022.
   È un'anomalia da verificare alla fonte, non evidenza di assenza di docenti a contratto.
   Non usare il 2023 per un'analisi di adjunct prima della verifica. Nessuna estensione
-  con adjunct è stata stimata; 07 documenta soltanto il problema.
+  con adjunct è stata stimata. Dal 28 novembre 2026 07 scrive una copia del project panel
+  con adjunct 2023 = NA (output/g4_project_panel_2020_2023.csv; cambiano solo quelle 61 celle).
+- Elasticità: NON citare mai i coefficienti di frontiera della NHN con il carico nella
+  frontiera (docenti 0,70, costi 0,32): il modello non è identificato (g4/11). Per i
+  rendimenti di scala usare la NHN_Z (ri-stima, cite = TRUE in table_11_*) con SE cluster,
+  dicendo che è una specificazione pooled mantenuta, oppure la colonna (6) OLS di 10.
 - Il teaching_panel contiene già:
   - faculty, fellows, students, graduates;
   - current_management (euro nominali);
@@ -167,7 +172,9 @@ Esecuzione e script (confermati il 22 novembre 2026):
    results_*.csv). comandi_tutorial.R è in docs/ solo come esempio di sintassi FEAR.
 4. La frontiera DEA/FDH usa solo i docenti e i costi deflazionati, mentre 01 e 02 del prof
    usano labor = docenti + assegnisti e costi nominali. La SFA di 06 resta invariata.
-5. I valori di adjunct 2023 (tutti 0) sono trattati come mancanti.
+5. I valori di adjunct 2023 (tutti 0) sono trattati come mancanti. Aggiornamento del
+   28 novembre 2026: ora sono messi davvero a NA nella copia del gruppo del project panel
+   (vedi n. 10); prima era solo un'etichetta in table_adjunct_check.csv. Nessuna stima cambia.
 6. Nuova cartella data/ (22 novembre 2026) per i dati esterni al kit del prof: indice ISTAT NIC
    (prezzi al consumo, intera collettività, medie annue, base 2015=100) per deflazionare i costi
    correnti. Contiene il file ISTAT originale scaricato da un membro del gruppo e
@@ -177,6 +184,8 @@ Esecuzione e script (confermati il 22 novembre 2026):
    resta solo il test.convexity bootstrap (NSPLIT 10, NREP 200): il test.rts bootstrap è stato
    tolto perché supera i 30 minuti anche con NREP 200. Per i rendimenti di scala resta
    test.rts.fast con NSPLIT 1000 (in 12 e in ogni versione di 13).
+   Aggiornamento del 28 novembre 2026: il test.convexity bootstrap usa NREP 1000 (non più 200,
+   che dava l'avviso FEAR). È solo informativo: la regola dello stimatore resta sui test .fast.
 8. (23 novembre 2026, Codex) Aggiunta al master l'opzione CLI --presentation-only:
    dopo un'esecuzione completa riuscita permette di rigenerare 15 e 16 dagli output
    esistenti per correzioni grafiche. Nessuna nuova stima; sessionInfo.txt resta quello
@@ -189,6 +198,29 @@ Esecuzione e script (confermati il 22 novembre 2026):
    Corrette formulazioni interpretative nella nota alla prof e nella nota R7 di 13:
    Scopus include anche libri; la mancata copertura dell'estratto non è dimostrata.
    I risultati numerici e le specificazioni di 07–13 non sono stati modificati.
+10. (28 novembre 2026, correzioni dell'audit del 27/11) Nuovo file
+    output/g4_project_panel_2020_2023.csv, scritto da 07: copia del project_panel del kit
+    con adjunct 2023 = NA; un controllo verifica che cambino solo quelle 61 celle. Il flusso
+    del campione di 07 usa questa copia; 08–13 continuano a leggere i file del kit.
+    Nuova tabella table_07_data_notes.csv (adjunct 2023, docenti di Perugia Stranieri 2022,
+    costi di Molise), con numeri calcolati dai dati.
+11. (28 novembre 2026) In 09 definizione esplicita di "più studenti a docenti fermi":
+    dlog S > 0 e |dlog F| ≤ 0,01 (principale), sensibilità con dlog F = 0 esatto e ±2%
+    (table_09_fixed_faculty.csv). La tabella dei segni resta invariata.
+12. (28 novembre 2026) In 11 la NHN_Z è riportata con due soluzioni: ri-stima (citata,
+    likelihood più alta) e soluzione del kit di 06. Per il kit l'SE cluster è calcolato con la
+    likelihood della ri-stima valutata nei parametri del kit e con l'Hessiana salvata dal kit:
+    solo "for comparison", perché in un punto che non è un massimo gli scores non sommano a
+    zero e il sandwich non ha giustificazione inferenziale (cite = FALSE). Nuove tabelle
+    table_11_nhn_z_returns_to_scale.csv (somma delle elasticità, SE = √(V11+V22+2V12)) e
+    table_11_notes.csv (diagnostiche sulla non identificazione della NHN). Nessuna nuova stima
+    oltre alla ri-stima già presente.
+13. (28 novembre 2026) In 12 documentati: la regola meccanica di ap (tutte le osservazioni dei
+    12 insiemi di eliminazione, quindi almeno 12) e gli stacchi gap_to_next = ratio[2,i] −
+    ratio[1,i] (lo stacco visibile in ap.plot); gli intervalli instabili (m < 10,
+    colonna ci_unstable_m_lt_10) e il motivo per cui l'intervallo sta sopra la stima. Aggiunta
+    la colonna estimator_short, letta da 13 e 15 al posto di "DEA CRS" scritto a mano.
+    Legende delle figure 12 e 15 spostate fuori dai dati. Punteggi e test invariati.
 
 ## Piano: lavoro comune (prima della scelta tra idea A e B)
 Blocco 1: dati e benchmark del template
@@ -255,22 +287,29 @@ Benchmark dell'anno scorso (progetto di Rita), errori da evitare:
 - "test" ridotti a un confronto tra DEA e FDH.
 Noi usiamo risorse vere e test formali.
 
-## Stato del lavoro (aggiornato al 24 novembre 2026)
-- Ambiente: R 4.5.3, sfa 1.2.0, FEAR 5.0.
+## Stato del lavoro (aggiornato al 28 novembre 2026)
+- Ambiente: R 4.5.3 (C:\Program Files\R\R-4.5.3\bin\Rscript.exe; sul PC di Stefano c'è anche
+  R 4.4.1 e Rscript non è nel PATH), sfa 1.2.0, FEAR 5.0.
 - Fatto: run_all_g4.R, g4/07–13, 15, 16; data/ (deflatore NIC); report/note_for_professor.md.
   g4/14 non creato: attende la conferma della prof sull'idea B.
-- Ultima esecuzione completa (RUN_SENSITIVITY = TRUE): 23 novembre 2026, exit code 0.
-- 24 novembre 2026: verifica dopo Codex (MD5 di template/ e docs/ intatti) e master con
-  RUN_SENSITIVITY = FALSE, tutti gli 8 controlli superati. Quindi sessionInfo.txt non viene
-  da un'esecuzione completa.
+- 27 novembre 2026: audit in sola lettura (report/audit_2026-11-27.md).
+- 28 novembre 2026: correzioni dell'audit (deviazioni 10–13) ed esecuzione completa da sessione
+  pulita con RUN_SENSITIVITY = TRUE, exit code 0, tutti gli 8 controlli superati.
+  sessionInfo.txt viene da questa esecuzione. Confronto con gli output precedenti: campione,
+  06, colonne OLS, test .fast, punteggi, intervalli e robustezze identici.
 - Report e slide non scritti (rinviati da Stefano). Invio della nota alla prof e risposta
-  non documentati.
+  non documentati. Le modifiche non sono ancora committate.
 - Risultati chiave (dettagli in report/project_diary.md):
   - OLS di 06 = colonna (6) di 10: 0.011 (SE cluster 0.350): stima imprecisa, non "zero";
     variazione dell'esposizione al netto di effetti ateneo e anno: 2.6%;
   - NHN con il carico nella frontiera: deriva verso sigma_v → 0, è una diagnostica, non un
-    risultato. NHN_Z: 0.49 in log sigma_u, SE cluster 0.54;
-  - frontiera pooled: DEA CRS, 3 efficienti su 183; senza i 3 atenei umanistici (R7) → FDH.
+    risultato; le sue elasticità (0.70 / 0.32) non si citano;
+  - NHN_Z citata = la ri-stima: 0.491 in log sigma_u, SE cluster 0.537 (p = 0.36), logLik 44.856;
+    soluzione del kit 0.416 (logLik 44.742) solo per confronto. Elasticità NHN_Z: docenti 0.72
+    (SE cluster 0.09), costi 0.30 (0.07), somma 1.020 (SE cluster 0.026): coerente con CRS;
+  - frontiera pooled: DEA CRS, 3 efficienti su 183; 45 intervalli su 183 instabili (m < 10);
+    bootstrap convessità (NREP 1000) p = 0.64 / 0.65; senza i 3 atenei umanistici (R7) → FDH;
+  - "più studenti a docenti fermi" (±1%): 4 casi su 120 variazioni (esatti 1, ±2% 9).
 - Limiti da dichiarare nel report: sezione "Verifica di completezza" del diario.
 
 ## Decisioni aperte (prof e gruppo)

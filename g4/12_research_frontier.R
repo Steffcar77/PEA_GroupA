@@ -19,7 +19,13 @@
 #
 # Confidence intervals: dea.subsample / fdh.subsample with subsample.sizes = NULL, i.e. the
 # subsample size m is chosen for each observation by the Simar and Wilson (2011a) method,
-# as recommended by the FEAR chapter (a non-optimised m gives poor coverage).
+# as recommended by the FEAR chapter (a non-optimised m gives poor coverage). Intervals with
+# a chosen m < 10 are flagged as unstable (ci_unstable_m_lt_10). The intervals lie above the
+# estimate because they are for the true score, while DEA is biased towards efficiency.
+#
+# Outliers (ap): every observation in any of the NDEL deletion sets is a potential outlier;
+# gap_to_next = ratio[2, i] - ratio[1, i] measures the separation seen in ap.plot.
+# estimator_short ("DEA CRS" / "DEA VRS" / "FDH") is read by g4/13 and g4/15.
 #
 # LIMITS (also written to table_12_notes.csv):
 # - the pooled frontier uses each university three times: observations are not independent,
@@ -129,8 +135,15 @@ outliers <- outliers[order(outliers$first_deletion_level, outliers$obs), ]
 rownames(outliers) <- NULL
 print(outliers)
 write.csv(outliers, file.path(tab_dir, "table_12_outliers.csv"), row.names = FALSE)
-write.csv(data.frame(deleted = seq_along(ap_result$r0), log_ratio_r0 = ap_result$r0),
-          file.path(tab_dir, "table_12_ap_r0.csv"), row.names = FALSE)
+# gap_to_next = ratio[2, i] - ratio[1, i]: for i deletions, the distance between the best
+# deletion set and the next-best one (log-ratios normalised so that the best is 0). This is
+# the separation visible in ap.plot; a large gap means a clearly separated deletion set.
+stopifnot(ncol(ap_result$ratio) == NDEL, all(abs(ap_result$ratio[1, ]) < 1e-12))
+ap_gap <- ap_result$ratio[2, ] - ap_result$ratio[1, ]
+ap_table <- data.frame(deleted = seq_along(ap_result$r0), log_ratio_r0 = ap_result$r0,
+                       gap_to_next = ap_gap)
+write.csv(ap_table, file.path(tab_dir, "table_12_ap_r0.csv"), row.names = FALSE)
+largest_gaps <- order(-ap_gap)[1:2]
 
 
 # 3. TESTS: CONVEXITY, THEN RETURNS TO SCALE --------------------------------------
@@ -163,11 +176,13 @@ if (!convexity_rejected) {
   rts_code <- if (crs_rejected) 1L else 3L
   estimator <- if (rts_code == 3L) "DEA, constant returns to scale (RTS = 3)" else
     "DEA, variable returns to scale (RTS = 1)"
+  estimator_short <- if (rts_code == 3L) "DEA CRS" else "DEA VRS"
   eff <- dea(X, Y, RTS = rts_code, ORIENTATION = 2, METRIC = 2)
   ci <- dea.subsample(eff, X, Y, RTS = rts_code, ORIENTATION = 2, METRIC = 2,
                       nrep = 1000, subsample.sizes = NULL)
 } else {
   estimator <- "FDH"
+  estimator_short <- "FDH"
   eff <- fdh(X, Y, ORIENTATION = 2, METRIC = 2)
   ci <- fdh.subsample(eff, X, Y, ORIENTATION = 2, METRIC = 2,
                       nrep = 1000, subsample.sizes = NULL)
@@ -183,6 +198,8 @@ d$ci95_high <- ci$ci[5, ]
 d$subsample_size_95 <- ci$msize[2, ]
 d$efficient <- abs(d$efficiency_farrell - 1) < 1e-8
 d$ap_potential_outlier <- seq_len(nrow(d)) %in% flagged
+# Intervals whose chosen subsample size is very small are flagged as unstable.
+d$ci_unstable_m_lt_10 <- d$subsample_size_95 < 10
 write.csv(d, file.path(tab_dir, "table_12_efficiency.csv"), row.names = FALSE)
 
 summarise_eff <- function(x, label) {
@@ -191,13 +208,15 @@ summarise_eff <- function(x, label) {
              mean_farrell = mean(x$efficiency_farrell),
              median_farrell = median(x$efficiency_farrell),
              mean_ci95_low = mean(x$ci95_low), mean_ci95_high = mean(x$ci95_high),
-             median_ci95_width = median(x$ci95_high - x$ci95_low))
+             median_ci95_width = median(x$ci95_high - x$ci95_low),
+             n_ci_unstable = sum(x$ci_unstable_m_lt_10))
 }
 efficiency_summary <- rbind(
   do.call(rbind, lapply(2021:2023, function(yr) summarise_eff(d[d$year == yr, ], yr))),
   summarise_eff(d, "2021-2023")
 )
 efficiency_summary$estimator <- estimator
+efficiency_summary$estimator_short <- estimator_short
 efficiency_summary[3:9] <- lapply(efficiency_summary[3:9], round, digits = 3)
 print(efficiency_summary)
 write.csv(efficiency_summary, file.path(tab_dir, "table_12_efficiency_summary.csv"),
@@ -217,30 +236,36 @@ write.csv(subsample_info, file.path(tab_dir, "table_12_subsample_sizes.csv"), ro
 # 5. FIGURE: EFFICIENCY AGAINST TEACHING LOAD IN t-1 ------------------------------
 
 # Vertical axis: 1 / Farrell, in (0, 1] (1 = on the frontier); intervals transformed too.
-# Readable without colour: one symbol per year, interval segments, labelled outliers,
-# dashed lowess line (descriptive only).
+# Readable without colour: one symbol per year (filled = unstable interval, m < 10, with a
+# dotted segment), crosses for ap potential outliers, dashed lowess line (descriptive only).
+# The legend sits above the plotting region, outside the data.
 d$shephard <- 1 / d$efficiency_farrell
 years <- 2021:2023
 symbols <- c(1, 2, 0)
-png(file.path(fig_dir, "fig_12_efficiency_vs_load.png"), width = 1600, height = 1100, res = 150)
-par(mar = c(4.5, 4.5, 3, 1))
+filled <- c(19, 17, 15)
+year_k <- match(d$year, years)
+unstable <- d$ci_unstable_m_lt_10
+png(file.path(fig_dir, "fig_12_efficiency_vs_load.png"), width = 1600, height = 1150, res = 150)
+par(mar = c(4.5, 4.5, 6.5, 1))
 plot(d$lag_log_teaching_load, d$shephard, type = "n", ylim = c(0, 1.05),
      xlab = "log(students / faculty), t-1",
-     ylab = "Research efficiency, 1 / Farrell output score (1 = frontier)",
-     main = paste("Research-only efficiency and teaching load,", estimator))
+     ylab = "Research efficiency, 1 / Farrell output score (1 = frontier)")
+title(main = paste("Research-only efficiency and teaching load,", estimator), line = 5)
 segments(d$lag_log_teaching_load, 1 / d$ci95_high, d$lag_log_teaching_load, 1 / d$ci95_low,
-         col = "grey60")
-points(d$lag_log_teaching_load, d$shephard, pch = symbols[match(d$year, years)])
+         col = "grey60", lty = ifelse(unstable, 3, 1))
+points(d$lag_log_teaching_load, d$shephard,
+       pch = ifelse(unstable, filled[year_k], symbols[year_k]))
 smooth <- lowess(d$lag_log_teaching_load, d$shephard)
 lines(smooth, lty = 2, lwd = 2)
 # Potential outliers are marked with a cross (names in table_12_outliers.csv):
 # text labels would overlap because they cluster in the centre of the plot.
 out <- d[d$ap_potential_outlier, ]
 points(out$lag_log_teaching_load, out$shephard, pch = 4, cex = 1.6, lwd = 1.5)
-legend("bottomleft", legend = c(years, "ap potential outlier (see table_12_outliers.csv)",
-                                "95% interval (subsampling)", "lowess (descriptive)"),
-       pch = c(symbols, 4, NA, NA), lty = c(NA, NA, NA, NA, 1, 2),
-       col = c(1, 1, 1, 1, "grey60", 1), bty = "n", cex = 0.85)
+legend("bottom", inset = c(0, 1.01), xpd = TRUE, ncol = 4, bty = "n", cex = 0.8,
+       legend = c(years, "ap potential outlier", "filled, dotted: m < 10 (unstable interval)",
+                  "95% interval (subsampling)", "lowess (descriptive)"),
+       pch = c(symbols, 4, 19, NA, NA), lty = c(NA, NA, NA, NA, 3, 1, 2),
+       col = c(1, 1, 1, 1, 1, "grey60", 1))
 dev.off()
 
 
@@ -252,6 +277,24 @@ notes <- c(
   "One technology is assumed for 2021-2023.",
   "Scopus indexing may be incomplete for recent years: 2023 may look less efficient (SFA year effects in 06 about -0.05 in 2022 and -0.11 in 2023); g4/13 estimates one frontier per year as a check.",
   "Main analysis keeps all observations; the version without the ap potential outliers is a robustness check in g4/13.",
+  sprintf(paste("ap rule (mechanical): every observation that appears in any of the %d deletion sets of ap (NDEL = %d)",
+                "is flagged as a potential outlier, hence at least %d are flagged by construction; here %d university-years",
+                "of %d universities."), NDEL, NDEL, NDEL, length(flagged), length(unique(d$id[flagged]))),
+  sprintf(paste("ap separation: gap_to_next = ratio[2,i] - ratio[1,i], the distance between the best and the next-best",
+                "deletion set for i deletions (the gap visible in ap.plot). Largest gaps: i = %d (%.4f) and i = %d (%.4f);",
+                "median gap over i = 1-%d: %.4f."),
+          largest_gaps[1], ap_gap[largest_gaps[1]], largest_gaps[2], ap_gap[largest_gaps[2]], NDEL, median(ap_gap)),
+  sprintf(paste("Subsampling intervals lie above the estimate: the lower bound is >= the estimated Farrell score in %d of %d cases.",
+                "This is expected: the %s estimate is biased towards efficiency (estimated Farrell <= true Farrell in the output",
+                "orientation), while the interval is for the true Farrell score and already corrects for that bias."),
+          sum(d$ci95_low >= d$efficiency_farrell - 1e-10), nrow(d), estimator_short),
+  sprintf(paste("Unstable intervals (chosen subsample size m < 10 at 95%%; column ci_unstable_m_lt_10): %d of %d;",
+                "by year %s; %d universities, of which %d in all three years (%s). Read these intervals with caution."),
+          sum(unstable), nrow(d),
+          paste(sprintf("%d: %d", years, tabulate(year_k[unstable], 3)), collapse = ", "),
+          length(unique(d$id[unstable])),
+          sum(table(d$id[unstable]) == 3L),
+          paste(sort(names(which(table(d$id[unstable]) == 3L))), collapse = ", ")),
   "Fast tests (NSPLIT = 1000) give reject/not-reject decisions at 10/5/1%; failing to reject H0 is not evidence that H0 is true.",
   "Efficiency is relative to the observed best practice in this sample: it is not overall university quality."
 )

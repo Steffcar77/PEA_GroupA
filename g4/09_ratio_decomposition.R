@@ -4,6 +4,12 @@
 # A higher ratio can come from more students or from fewer faculty: these are
 # different sources (project card). Years 2020-2022 = years of the lagged exposure.
 #
+# "More students at fixed faculty" (the chosen intervention), observed analogue:
+#   dlog S > 0 and |dlog F| <= 0.01 (faculty within +/-1%)      -> main definition;
+#   sensitivity: dlog F exactly 0, and |dlog F| <= 0.02 (+/-2%).
+# The sign table (table_09_change_sources.csv) uses the exact sign of dlog and has
+# no tolerance: "faculty down" there includes changes of less than 1%.
+#
 # Variance shares (they always sum to 1):
 #   student share = cov(dlog S, dlog r) / var(dlog r)
 #   faculty share = -cov(dlog F, dlog r) / var(dlog r)
@@ -19,6 +25,7 @@
 # Run through run_all_g4.R (working directory = PEA_GroupA).
 # Outputs: output/tables/table_09_decomposition.csv
 #          output/tables/table_09_change_sources.csv
+#          output/tables/table_09_fixed_faculty.csv
 #          output/figures/fig_09_change_sources.png
 
 run_dir <- file.path("output", "template_run")
@@ -115,6 +122,27 @@ sources <- sources[order(-sources$changes), ]
 rownames(sources) <- NULL
 print(sources)
 write.csv(sources, file.path(tab_dir, "table_09_change_sources.csv"), row.names = FALSE)
+
+# More students at (almost) fixed faculty: explicit band on dlog F.
+bands <- list(
+  list(label = "Main: faculty within +/-1%", rule = "dlog S > 0 and |dlog F| <= 0.01",
+       keep = ch$d_log_s > 0 & abs(ch$d_log_f) <= 0.01),
+  list(label = "Sensitivity: faculty exactly unchanged", rule = "dlog S > 0 and dlog F = 0",
+       keep = ch$d_log_s > 0 & ch$d_log_f == 0),
+  list(label = "Sensitivity: faculty within +/-2%", rule = "dlog S > 0 and |dlog F| <= 0.02",
+       keep = ch$d_log_s > 0 & abs(ch$d_log_f) <= 0.02)
+)
+fixed_faculty <- do.call(rbind, lapply(bands, function(b) {
+  x <- ch[b$keep, ]
+  data.frame(definition = b$label, rule = b$rule, changes = nrow(x), of_changes = nrow(ch),
+             ratio_rose = sum(x$d_log_r > 0),
+             cases = paste(sprintf("%s %s (dlog S %+.3f, dlog F %+.3f)", x$id, x$period,
+                                   x$d_log_s, x$d_log_f), collapse = "; "))
+}))
+fixed_faculty$note <- paste("Year-on-year changes 2020-2021 and 2021-2022 of the 60 universities of 06.",
+                            "Observed analogue of the intervention, not an exogenous shock.")
+print(fixed_faculty[, c("definition", "changes", "ratio_rose")])
+write.csv(fixed_faculty, file.path(tab_dir, "table_09_fixed_faculty.csv"), row.names = FALSE)
 
 
 # 4. FIGURE: dlog S AGAINST dlog F ----------------------------------------------

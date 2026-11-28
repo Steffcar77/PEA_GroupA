@@ -13,8 +13,10 @@
 # Spearman correlation of the scores with the main version (common university-years).
 #
 # Only if RUN_SENSITIVITY = TRUE: bootstrap (non-fast) test.convexity on the main dataset,
-# NSPLIT = 10, NREP = 200, to report a p-value next to the fast decision. The bootstrap
-# test.rts was dropped: it took more than 30 minutes even with NREP = 200.
+# NSPLIT = 10, NREP = 1000 (FEAR warns that fewer replications may be unreliable), to report
+# p-values next to the fast decision. The estimator rule still uses the fast tests only.
+# The bootstrap test.rts was dropped: it took more than 30 minutes even with NREP = 200.
+# The estimator label of the main version is read from g4/12 (estimator_short).
 #
 # Run through run_all_g4.R after 12 (working directory = PEA_GroupA). Runtime: several minutes.
 
@@ -98,11 +100,12 @@ versions[[length(versions) + 1]] <- run_version("R7. Without 3 humanities univer
 # 2. SUMMARY TABLE (MAIN VERSION FIRST) ------------------------------------------
 
 total <- main_summary[main_summary$period == "2021-2023", ]
+stopifnot(nrow(total) == 1L, total$estimator_short %in% c("DEA CRS", "DEA VRS", "FDH"))
 main_row <- data.frame(
   version = "Main (g4/12): pooled 2021-2023, faculty + deflated costs",
   rows = nrow(main), universities = length(unique(main$id)),
   convexity_5pct = main_tests$level_05[1], crs_5pct = main_tests$level_05[2],
-  estimator = "DEA CRS", median_farrell = total$median_farrell,
+  estimator = total$estimator_short, median_farrell = total$median_farrell,
   n_efficient = total$efficient, share_efficient = total$share_efficient,
   spearman_with_main = 1
 )
@@ -164,15 +167,16 @@ if (RUN_SENSITIVITY) {
   Y <- t(as.matrix(main$publications))
   # Only the convexity test: the bootstrap test.rts took more than 30 minutes even with
   # NREP = 200 and was dropped; returns to scale rely on test.rts.fast (NSPLIT = 1000) in 12.
+  NREP_BOOT <- 1000L
   convexity_boot <- test.convexity(X = X, Y = Y, ORIENTATION = 2, METRIC = 2,
-                                   NSPLIT = 10, NREP = 200)
+                                   NSPLIT = 10, NREP = NREP_BOOT)
   format_p <- function(p) ifelse(p < 0.001, "< 0.001", sprintf("%.3f", p))
   boot_tests <- data.frame(
     test = "H0: convex technology (test.convexity, bootstrap)",
-    nsplit = 10, nrep = 200,
+    nsplit = 10, nrep = NREP_BOOT,
     p_mean_statistic = format_p(convexity_boot$pval[1]),
     p_ks_statistic = format_p(convexity_boot$pval[2]),
-    note = "Simar and Wilson bootstrap test; first p from the averaged statistic, second from the Kolmogorov-Smirnov statistic over splits; only 10 splits (runtime), so less stable than the fast test with 1000 splits. Bootstrap test.rts dropped (over 30 minutes with NREP = 200)."
+    note = "Simar and Wilson bootstrap test; first p from the averaged statistic, second from the Kolmogorov-Smirnov statistic over splits; only 10 splits (runtime), so less stable than the fast test with 1000 splits. Reported for information: the estimator rule uses the fast tests of g4/12. Bootstrap test.rts dropped (over 30 minutes with NREP = 200)."
   )
   print(boot_tests)
   write.csv(boot_tests, file.path(tab_dir, "table_13_bootstrap_tests.csv"), row.names = FALSE)

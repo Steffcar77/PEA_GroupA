@@ -1,0 +1,8 @@
+"topic","note"
+"NHN identification","Skewness of the OLS residuals of the same frontier specification: +0.150 (positive: the 'wrong' sign for a production frontier, where the composed error should be negatively skewed)."
+"NHN identification","Profile log-likelihood over lambda is monotonically increasing from lambda = 1 (37.56) to lambda = 100000 (47.85): it rises towards sigma_v -> 0 (deterministic frontier)."
+"NHN identification","23 of 32 starting values end at the boundary (sigma_v < 0.001 or lambda > 100)."
+"NHN identification","At the best (boundary) solution the information matrix is numerically singular: the minimum Hessian eigenvalue is about zero (absolute value 3e-27), so standard errors cannot be computed. Diagnostic only; no estimate is adopted."
+"NHN elasticities","Frontier coefficients of the NHN with the exposure in the frontier (e.g. faculty and cost elasticities) come from a non-identified model: diagnostic only, do not cite. Use NHN_Z (table_11_nhn_z_returns_to_scale.csv) or OLS column (6) of g4/10."
+"NHN_Z solutions","The two NHN_Z log-likelihoods are almost equal (refit 44.856, kit 44.742) while delta1 differs (0.491 vs 0.416): the likelihood is flat in the direction of the exposure, so delta1 is poorly determined and not significant in either solution (cluster p = 0.36 and 0.44). Cite the refit (higher likelihood)."
+"NHN_Z kit solution","Kit cluster SEs are for comparison only: at a point that is not a maximum the scores do not sum to zero (max |sum| = 1.56, refit 0.033), so the sandwich has no inferential justification."
